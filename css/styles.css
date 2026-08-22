@@ -514,6 +514,12 @@ svg.ic { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
 .dg-svg { width: 100%; height: auto; max-height: 230px; display: block; }
 .media-note { display: flex; gap: 7px; align-items: center; font-size: 11px; color: var(--ink-2); margin-top: 8px; padding: 7px 10px; background: var(--surface-3); border-radius: 8px; }
 .media-note .ic { width: 14px; height: 14px; color: var(--teal); }
+.dg-jrow { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--surface); margin-bottom: 8px; }
+.dg-jn { font-weight: 700; font-size: 12.5px; min-width: 92px; }
+.dg-jdots { display: flex; gap: 5px; flex: 1; }
+.dg-jdot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line-2); background: var(--surface-3); }
+.dg-jdot.on { background: var(--teal); border-color: var(--teal); }
+.dg-jneed { font-size: 11.5px; color: var(--ink-2); font-weight: 600; white-space: nowrap; }
 
 /* ===== Masaüstü / web düzeni: sol kenar çubuğu, geniş içerik =====
    (Dosyanın sonunda: kaynak sırasında en son geldiği için temel kuralları geçersiz kılar.) */

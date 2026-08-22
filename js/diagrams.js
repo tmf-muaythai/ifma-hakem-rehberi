@@ -194,6 +194,19 @@ window.IFMA = window.IFMA || {};
       '<div class="dg-cap">' + tr(lang, "Zorunlu Sayma Limiti • Kural 30.2.5", "Compulsory Count Limit • Rule 30.2.5") + '</div></div>';
   };
 
+  // SbS onay: kaç Yan Hakem gerekli (1 sn içinde çoğunluk)
+  DG["sbs-accept"] = function (lang) {
+    function judges(total, need) {
+      var dots = "";
+      for (var i = 0; i < total; i++) dots += '<span class="dg-jdot' + (i < need ? " on" : "") + '"></span>';
+      return '<div class="dg-jrow"><span class="dg-jn">' + total + ' ' + tr(lang, "Yan Hakem", "Judges") +
+        '</span><span class="dg-jdots">' + dots + '</span><span class="dg-jneed">' + tr(lang, "en az ", "min ") + need + ' ' + tr(lang, "onay", "approve") + '</span></div>';
+    }
+    return '<div class="diagram">' + judges(5, 3) + judges(3, 2) +
+      '<div class="dg-cap">' + tr(lang, "Onaylı puan: ilk butondan itibaren 1 sn içinde çoğunluk • Kural 29.4.2",
+                                   "Accepted score: majority within 1 s of the first button • Rule 29.4.2") + '</div></div>';
+  };
+
   IFMA.diagrams = DG;
   IFMA.hasDiagram = function (name) { return !!(name && DG[name]); };
   IFMA.renderDiagram = function (name, lang) { return DG[name] ? DG[name](lang) : ""; };
@@ -207,6 +220,8 @@ window.IFMA = window.IFMA || {};
     FOUL_DOUBLE_KD: "count-flow", FOUL_RETDQ: "decision-tree", FOUL_WONC: "decision-tree",
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
     FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table", CAT_ROUNDS: "category-table", CAT_REST: "category-table",
-    JUDGE_10PT: "scoring-scale", JUDGE_TARGET: "target-zones", AREA_FOP: "fop-layout"
+    JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-scale", JUDGE_RBR: "scoring-scale",
+    JUDGE_SBS: "sbs-accept", JUDGE_BUTON: "sbs-accept",
+    JUDGE_TARGET: "target-zones", AREA_FOP: "fop-layout"
   };
 })();

@@ -732,6 +732,102 @@ window.IFMA.cards = [
     related: ["JUDGE_10PT", "FOUL_CLASS"],
     tags: ["puan kesintisi", "ihtar", "deduction", "29.2.5"]
   },
+  {
+    id: "JUDGE_KRITER", module: "yan", subtopic: "kriter", label: "ifma",
+    rule: "29.2.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["judge"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Puanlama kriterleri", en: "Scoring criteria" },
+    quick: {
+      tr: "Raundu daha fazla geçerli Muaythai vuruşu yapan sporcu kazanır. Beceri eşitse daha güçlü/etkili teknik kazandırır; Semi Contact'ta ham güç değil kontrollü hafif teknik değerlendirilir.",
+      en: "The athlete landing more scoring Muaythai skills wins the round. If skill is equal, more forceful/effective technique wins; in Semi Contact, controlled light execution counts, not raw force."
+    },
+    when: { tr: "Her raund değerlendirmesinde.", en: "In every round assessment." },
+    right: { tr: "Yan Hakem iki sporcuyu bağımsız değerlendirir ve kazananı kendisi belirler (27.1).", en: "Each judge independently evaluates the two athletes and decides the winner (27.1)." },
+    wrong: { tr: "Diğer hakeme veya bir kişiye bakarak puan vermek.", en: "Scoring by looking at another judge or person." },
+    related: ["JUDGE_10PT", "JUDGE_TARGET"],
+    tags: ["kriter", "puanlama kriteri", "29.2.1", "27.1"]
+  },
+  {
+    id: "JUDGE_RBR", module: "yan", subtopic: "rbr", label: "ifma",
+    rule: "29.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["judge"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Raund Bazlı puanlama (RbR)", en: "Round-by-Round scoring (RbR)" },
+    quick: {
+      tr: "Her raund ayrı puanlanır ve puanlar raund biter bitmez skor kartına girilir. Kazanana 10, rakibe farka göre 9/8/7.",
+      en: "Each round is scored separately and entered on the scorecard right after the round ends. 10 to the winner, 9/8/7 to the other by margin."
+    },
+    when: { tr: "RbR (Raund Bazlı) sisteminde.", en: "In the RbR (Round-by-Round) system." },
+    right: { tr: "Fark yok 10-10; küçük 10-9; açık 10-8; tam üstünlük 10-7 (29.2.3).", en: "Tie 10-10; small 10-9; clear 10-8; total domination 10-7 (29.2.3)." },
+    wrong: { tr: "Raundu geç puanlamak veya küsuratlı puan vermek.", en: "Scoring the round late, or giving fractional points." },
+    related: ["JUDGE_10PT", "JUDGE_SBS"],
+    tags: ["rbr", "raund bazlı", "round by round", "29.2"]
+  },
+  {
+    id: "JUDGE_SBS", module: "yan", subtopic: "sbs", label: "ifma",
+    rule: "29.4", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["judge"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Vuruş Bazlı puanlama (SbS)", en: "Strike-by-Strike scoring (SbS)" },
+    quick: {
+      tr: "Her geçerli Muaythai vuruşunda Yan Hakem kontrol panelindeki Kırmızı veya Mavi düğmeye basar; onaylanan her vuruş anlık olarak skora katkı sağlar.",
+      en: "For each valid Muaythai skill the judge presses the Red or Blue button on the control panel; each confirmed strike contributes to the score live."
+    },
+    when: { tr: "Eş Zamanlı (Anlık) sistemde.", en: "In the Real-Time system." },
+    right: { tr: "İki mod: On Puan'a dönüştürme veya doğrudan SbS birikimli (29.4.3).", en: "Two modes: Ten-Point-Must conversion, or Pure SbS accumulated (29.4.3)." },
+    wrong: { tr: "Bloklanan veya güçsüz vuruşa basmak.", en: "Pressing for a blocked or weak strike." },
+    related: ["JUDGE_BUTON", "JUDGE_10PT"],
+    tags: ["sbs", "vuruş bazlı", "eş zamanlı", "strike by strike", "29.4"]
+  },
+  {
+    id: "JUDGE_BUTON", module: "yan", subtopic: "buton", label: "ifma",
+    rule: "29.4.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["judge"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Elektronik butonlama ve onay", en: "Electronic buttons & acceptance" },
+    quick: {
+      tr: "Bir vuruşun onaylı puan sayılması için, ilk hakemin butona basmasından itibaren 1 sn içinde Yan Hakemlerin çoğunluğunun basması gerekir.",
+      en: "For a strike to count as an accepted score, a majority of judges must press within 1 s of the first judge's input."
+    },
+    when: { tr: "SbS (Eş Zamanlı) sistemde.", en: "In the SbS (Real-Time) system." },
+    right: { tr: "5 Yan Hakem → en az 3 onay; 3 Yan Hakem → en az 2 onay (29.4.2).", en: "5 judges → at least 3 approvals; 3 judges → at least 2 (29.4.2)." },
+    wrong: { tr: "Geç basmak — 1 sn'lik pencereyi kaçırmak.", en: "Pressing late — missing the 1 s window." },
+    related: ["JUDGE_SBS"],
+    tags: ["buton", "kırmızı", "mavi", "onay", "red blue", "29.4.2"]
+  },
+  {
+    id: "JUDGE_SKORKART", module: "yan", subtopic: "skorkart", label: "ifma",
+    rule: "27.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["judge"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Skor kartı: doldur, imzala, teslim et", en: "Scorecard: fill, sign, submit" },
+    quick: {
+      tr: "Yan Hakem her raundun puanını kaydeder; maç sonunda toplar, kazananı belirler, kartı imzalar ve Orta Hakeme teslim eder.",
+      en: "The judge records each round's points; at the end totals them, nominates a winner, signs the card and submits it to the referee."
+    },
+    when: { tr: "Maç boyunca ve sonunda.", en: "During and at the end of the match." },
+    right: { tr: "İhtar işaretleri: hakemle hemfikirse “W”, kendi tespiti “X”, kendi faul tespiti “J” (29.2.4).", en: "Warning marks: “W” if agreeing with the referee, “X” for own detection, “J” for a judge-detected foul (29.2.4)." },
+    wrong: { tr: "Karar anons edilmeden yerinden ayrılmak (27.1).", en: "Leaving the seat before the decision is announced (27.1)." },
+    related: ["JUDGE_DEDUCT", "REF_ENDMATCH"],
+    tags: ["skor kartı", "imza", "w x j", "27.1", "29.2.4"]
+  },
+  {
+    id: "JUDGE_BERABERLIK", module: "yan", subtopic: "beraberlik", label: "ifma",
+    rule: "29.3", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["judge"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Beraberlik ve kazanan belirleme", en: "Draw & determining the winner" },
+    quick: {
+      tr: "Tüm turnuvalarda mutlaka bir kazanan belirlenir. Skorlar eşitse Yan Hakem, maçın bütününü değerlendirerek Puan Verme Adımlarını uygular. Beraberlik yalnızca gösteri maçlarında verilebilir.",
+      en: "A winner must be nominated in all tournaments. If scores are equal, the judge applies the Steps for Awarding Points across the whole contest. A draw may only be given in exhibition matches."
+    },
+    when: { tr: "Skorlar eşit çıktığında.", en: "When scores are equal." },
+    right: { tr: "Kriter: daha az yorgunluk/iz, daha fazla atak, daha iyi savunma ve stil, daha az faul (29.3).", en: "Criteria: less exhaustion/bruising, more aggression, better defence and style, fewer fouls (29.3)." },
+    wrong: { tr: "Resmî maçta beraberlik ilan etmek.", en: "Declaring a draw in an official bout." },
+    related: ["JUDGE_KRITER", "JUDGE_RBR"],
+    tags: ["beraberlik", "draw", "kazanan belirleme", "29.3"]
+  },
 
   /* ===================== SPORCU KAYIT & TARTI ===================== */
   {
