@@ -504,6 +504,118 @@ window.IFMA.cards = [
     related: ["OFF_JURY"],
     tags: ["itiraz", "appeal", "500 usd", "30.12"]
   },
+  {
+    id: "FOUL_DOUBLE_KD", module: "faul", subtopic: "ciftekd", label: "ifma",
+    rule: "32.8", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref", "judge"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Çifte knockdown", en: "Double knockdown" },
+    quick: {
+      tr: "Her iki sporcu da aynı anda yere serilirse, en az biri knockdown durumunda kaldığı sürece sayım sürer; ikisi de 8 (BAED)'e kadar kalkamazsa maç durur.",
+      en: "If both athletes are down at once, the count continues while at least one remains down; if neither is up by 8 (BAED), the match is stopped."
+    },
+    when: { tr: "İki sporcu da aynı anda yere serildiğinde.", en: "When both athletes go down at once." },
+    right: { tr: "İkisi de kafa darbesiyle düşerse Puanla Galibiyet (WP); tıbbi kayıt için her ikisine RSCH/KOH işlenir (32.8.1).", en: "If both fall from head blows, decide by Win on Points (WP); record RSCH/KOH for both for medical tracking (32.8.1)." },
+    wrong: { tr: "Yalnızca birini saymak; olayı kayda geçmemek.", en: "Counting only one; not recording the event." },
+    related: ["FOUL_KNOCKDOWN", "FOUL_COUNT_THAI"],
+    tags: ["çifte knockdown", "double knockdown", "32.8"]
+  },
+  {
+    id: "FOUL_RETDQ", module: "faul", subtopic: "wonc", label: "ifma",
+    rule: "30.4", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Çekilme (RET) ve Diskalifiye (DQ)", en: "Retirement (RET) & Disqualification (DQ)" },
+    quick: {
+      tr: "RET: sporcu dinlenme sonrası köşeden çıkmaz, sayımdan sonra devam etmek istemez ya da köşesi onun adına çekilir. DQ: büyük/tehlikeli ihlalde rakip galip.",
+      en: "RET: the athlete doesn't leave the corner after rest, won't continue after a count, or the corner retires on their behalf. DQ: for a major/dangerous foul the opponent wins."
+    },
+    when: { tr: "Sporcu devam etmediğinde veya ciddi ihlalde.", en: "When an athlete won't continue, or on a serious foul." },
+    right: { tr: "Diskalifiye edilen sporcu o müsabakadan madalya/ödül/derece alamaz (30.5).", en: "A disqualified athlete gets no medal/award/grading from that competition (30.5)." },
+    wrong: { tr: "Köşenin havlu atmasını (RET) görmezden gelmek.", en: "Ignoring the corner throwing in the towel (RET)." },
+    related: ["FOUL_RSC", "REF_ENDMATCH"],
+    tags: ["ret", "dq", "çekilme", "diskalifiye", "30.4", "30.5"]
+  },
+  {
+    id: "FOUL_WONC", module: "faul", subtopic: "wonc", label: "ifma",
+    rule: "30.6", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Hükmen (WO) ve Geçersiz maç (NC)", en: "Walk-over (WO) & No Contest (NC)" },
+    quick: {
+      tr: "WO: sporcu hazır ama rakibi anons + gong sonrası 2 dk içinde ringe çıkmazsa hükmen galip. NC: ring/ışık/hava gibi dış nedenle 10 dk içinde çözülemezse geçersiz maç.",
+      en: "WO: an athlete is ready but the opponent doesn't enter within 2 min of the announcement and gong. NC: if an external cause (ring/lights/weather) isn't resolved within 10 min → no contest."
+    },
+    when: { tr: "Rakip çıkmaz veya dış etken olursa.", en: "When an opponent fails to appear, or an external cause arises." },
+    right: { tr: "WO'da önce Jüriye bildir, sporcuyu ringin ortasına çağır (30.6).", en: "For a WO, inform the jury first and call the athlete to the ring centre (30.6)." },
+    wrong: { tr: "2 dk / 10 dk sürelerini beklemeden karar vermek.", en: "Deciding before the 2 min / 10 min periods elapse." },
+    related: ["FOUL_RETDQ", "REF_ENDMATCH"],
+    tags: ["wo", "nc", "hükmen", "geçersiz", "walkover", "no contest", "30.6", "30.7"]
+  },
+  {
+    id: "FOUL_DOWNED", module: "faul", subtopic: "faultur", label: "ifma",
+    rule: "31.2.13", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Yerdeki/kalkan rakibe vurmak", en: "Striking a downed or rising opponent" },
+    quick: {
+      tr: "Yerde olan veya ayağa kalkmakta olan rakibe vurmak fauldür.",
+      en: "Striking an opponent who is down or in the act of rising is a foul."
+    },
+    when: { tr: "Rakip yerde veya kalkarken.", en: "When the opponent is down or rising." },
+    right: { tr: "Rakip düşünce vuruşu kes, Hakemin komutunu bekle.", en: "When the opponent goes down, stop striking and await the referee's command." },
+    wrong: { tr: "Düşen rakibe ek vuruş yapmak → İhtar/DQ.", en: "Adding a strike on a downed opponent → Warning/DQ." },
+    related: ["FOUL_CLASS", "FOUL_KNOCKDOWN"],
+    tags: ["yerde vurmak", "downed", "31.2.13"]
+  },
+  {
+    id: "FOUL_ROUND_END", module: "faul", subtopic: "faultur", label: "ifma",
+    rule: "31.2.20", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Raund bittikten sonra vurmak", en: "Striking after the round ends" },
+    quick: {
+      tr: "Gong/zil çaldıktan (raund bittikten) sonra rakibe vurmak fauldür.",
+      en: "Striking the opponent after the bell (round end) is a foul."
+    },
+    when: { tr: "Raund bitiminde.", en: "At the end of the round." },
+    right: { tr: "Gong sesinde vuruşu derhal kes.", en: "Stop striking immediately on the bell." },
+    wrong: { tr: "Gong sonrası son bir vuruş → İkaz/İhtar.", en: "A last strike after the bell → Caution/Warning." },
+    related: ["FOUL_CLASS"],
+    tags: ["raund sonu", "gong", "31.2.20"]
+  },
+  {
+    id: "FOUL_PASSIVE", module: "faul", subtopic: "faultur", label: "ifma",
+    rule: "31.2.16", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Pasif savunma / çift blok", en: "Passive defence / double cover" },
+    quick: {
+      tr: "Çift blok (kapanma) ile tamamen pasif savunma yapmak veya darbe almamak için kasıtlı yere düşmek fauldür.",
+      en: "Completely passive defence by double cover, or deliberately going down to avoid a hit, is a foul."
+    },
+    when: { tr: "Sürekli kapanıp dövüşmeme durumunda.", en: "When an athlete keeps covering up and won't fight." },
+    right: { tr: "Aktif savunma + karşılık; Hakem pasifliği İkaz/İhtar ile yaptırır.", en: "Active defence and countering; the referee penalises passivity with a Caution/Warning." },
+    wrong: { tr: "Sürekli kapanıp darbe vermemek.", en: "Constantly covering up and not striking." },
+    related: ["FOUL_CLASS"],
+    tags: ["pasif savunma", "çift blok", "double cover", "31.2.16"]
+  },
+  {
+    id: "FOUL_POSTSANCTION", module: "faul", subtopic: "faulsinif", label: "ifma",
+    rule: "31.6", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Maç sonrası yaptırımlar", en: "Post-competition sanctions" },
+    quick: {
+      tr: "Isırma, kafa atma veya yerdeki sporcuya vurma gibi ciddi/tehlikeli faullerde, maç içi cezaya ek olarak maç sonrası yaptırım uygulanabilir.",
+      en: "For serious/dangerous fouls such as biting, headbutting or striking a downed athlete, sanctions may follow after the contest in addition to in-bout penalties."
+    },
+    when: { tr: "Ciddi/tehlikeli faul sonrası.", en: "After a serious/dangerous foul." },
+    right: { tr: "Yaptırımlar: 6–9 ay men, 1.000–5.000 USD para cezası, unvan/derece kaybı, zorunlu yeniden eğitim (31.6.2).", en: "Sanctions: 6–9 month ban, USD 1,000–5,000 fine, loss of ranking/title, mandatory re-education (31.6.2)." },
+    wrong: { tr: "Ciddi faulü sadece maç içi cezayla kapatmak.", en: "Treating a serious foul with in-bout penalties only." },
+    related: ["FOUL_CLASS", "FOUL_APPEAL"],
+    tags: ["yaptırım", "sanction", "ban", "para cezası", "31.6"]
+  },
 
   /* ===================== KATEGORİ KURALLARI ===================== */
   {

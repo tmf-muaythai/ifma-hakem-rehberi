@@ -204,6 +204,7 @@ window.IFMA = window.IFMA || {};
     REF_SAYIMREF: "count-flow", FOUL_COUNT_THAI: "thai-count", FOUL_RULE8: "count-flow",
     FOUL_KO: "count-flow", FOUL_KNOCKDOWN: "count-flow",
     REF_RSC_POWER: "decision-tree", FOUL_RSC: "decision-tree", REF_ENDMATCH: "decision-tree",
+    FOUL_DOUBLE_KD: "count-flow", FOUL_RETDQ: "decision-tree", FOUL_WONC: "decision-tree",
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
     FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table", CAT_ROUNDS: "category-table", CAT_REST: "category-table",
     JUDGE_10PT: "scoring-scale", JUDGE_TARGET: "target-zones", AREA_FOP: "fop-layout"
