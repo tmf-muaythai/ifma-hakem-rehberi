@@ -1,0 +1,19 @@
+{
+  "name": "IFMA Hakem Rehberi",
+  "short_name": "IFMA Hakem",
+  "description": "IFMA 2026 kurallarını hızlı, görsel ve kaynağı açık bir dijital rehbere dönüştüren hakem uygulaması.",
+  "lang": "tr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#12263A",
+  "theme_color": "#12263A",
+  "categories": ["sports", "education", "reference"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
