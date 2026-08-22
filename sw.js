@@ -23,7 +23,16 @@ var ASSETS = [
   "assets/icons/icon-512-maskable.png",
   "assets/img/fop-ring.png",
   "assets/img/fop-tatami.png",
-  "assets/img/ring-dimensions.png"
+  "assets/img/ring-dimensions.png",
+  "assets/img/head-guard.jpg",
+  "assets/img/elbow-guard.jpg",
+  "assets/img/shin-guard.jpg",
+  "assets/img/gum-shield.jpg",
+  "assets/img/groin-guard-male.jpg",
+  "assets/img/groin-guard-female.jpg",
+  "assets/img/chest-guard.jpg",
+  "assets/img/body-protector.jpg",
+  "assets/img/wraps.jpg"
 ];
 
 self.addEventListener("install", function (e) {

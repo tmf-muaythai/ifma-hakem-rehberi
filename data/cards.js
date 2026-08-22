@@ -1081,6 +1081,9 @@ window.IFMA.cards = [
     rule: "15", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["ref", "corner"],
     media: { photo: true, video: true, animation: false },
+    imgs: [
+      { src: "assets/img/wraps.jpg", cap: { tr: "Bandaj / el sargısı — yumuşak cerrahi sargı veya Velcro, ≤5 m", en: "Wraps / hand bandage — soft surgical or Velcro, ≤5 m" } }
+    ],
     title: { tr: "Zorunlu koruyucu ekipman", en: "Mandatory protective equipment" },
     quick: {
       tr: "Zorunlu ekipman: eldiven, dişlik (gum shield), kasık koruyucu ve disipline özgü diğer gereksinimler.",
@@ -1135,6 +1138,11 @@ window.IFMA.cards = [
     rule: "15.3", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["ref", "corner"],
     media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/head-guard.jpg", cap: { tr: "Kask — yanak/çene/yüz siperi olmadan", en: "Head guard — no cheek/chin/face shield" } },
+      { src: "assets/img/elbow-guard.jpg", cap: { tr: "Dirseklik", en: "Elbow guard" } },
+      { src: "assets/img/shin-guard.jpg", cap: { tr: "Kaval koruyucu", en: "Shin guard" } }
+    ],
     title: { tr: "Kask, kaval ve dirseklik", en: "Head, shin & elbow guards" },
     quick: {
       tr: "Kask, kaval koruyucu ve dirseklik zorunludur ve Organizasyon Kurulu tarafından sağlanır (yalnızca IFMA onaylı). Kaskın yanak/çene/yüz siperi olamaz.",
@@ -1151,6 +1159,9 @@ window.IFMA.cards = [
     rule: "15.4", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["ref"],
     media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/body-protector.jpg", cap: { tr: "Gövde koruyucu — köşe rengine göre (kırmızı/mavi)", en: "Body protector — by corner colour (red/blue)" } }
+    ],
     title: { tr: "Gövde koruyucu", en: "Body protector" },
     quick: {
       tr: "Köşe rengiyle uyumlu gövde koruyucu U8–U24 ve Masters 40+/45+ için zorunludur; Elite ve Masters 35+ kategorilerinde giyilmez.",
@@ -1167,6 +1178,9 @@ window.IFMA.cards = [
     rule: "15.5", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["ref", "corner"],
     media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/gum-shield.jpg", cap: { tr: "Dişlik — forma uygun, kırmızı/pembe olamaz", en: "Gum shield — form-fitted, not red/pink" } }
+    ],
     title: { tr: "Dişlik", en: "Gum shield" },
     quick: {
       tr: "Tüm sporcular her raund başlamadan önce dişlik takar. Dişlik forma uygun olmalı ve kırmızı/pembe olmamalıdır.",
@@ -1183,6 +1197,11 @@ window.IFMA.cards = [
     rule: "15.7", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["ref", "weigh"],
     media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/groin-guard-male.jpg", cap: { tr: "Erkek kasık koruyucu (metal/polikarbonat + suspansuar)", en: "Male groin guard (metal/polycarbonate + jock strap)" } },
+      { src: "assets/img/groin-guard-female.jpg", cap: { tr: "Kadın kasık koruyucu (polikarbonat/köpük)", en: "Female groin guard (polycarbonate/foam)" } },
+      { src: "assets/img/chest-guard.jpg", cap: { tr: "Kadın göğüs koruyucu — Senior kategoride zorunlu", en: "Female chest guard — mandatory in Senior" } }
+    ],
     title: { tr: "Kasık ve göğüs koruyucu", en: "Groin & chest guard" },
     quick: {
       tr: "Kasık koruyucu zorunludur (erkek: metal veya polikarbonat + suspansuar; kadın: polikarbonat veya köpük). Kadın göğüs koruyucu Senior (35+/Elite) kategorilerde zorunludur.",
