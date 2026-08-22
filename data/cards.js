@@ -978,7 +978,7 @@ window.IFMA.cards = [
   /* ===================== MÜSABAKA ALANI & EKİPMAN ===================== */
   {
     id: "AREA_FOP", module: "alan", subtopic: "fop", label: "ifma",
-    rule: "13", revision: "2026-05-11", status: AD,
+    rule: "13", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: [],
     media: { photo: true, video: false, animation: false },
     title: { tr: "Müsabaka alanı (FOP) yerleşimi", en: "Field of Play (FOP) layout" },
@@ -994,7 +994,7 @@ window.IFMA.cards = [
   },
   {
     id: "AREA_EQUIP", module: "alan", subtopic: "eldiven", label: "ifma",
-    rule: "15", revision: "2026-05-11", status: AD,
+    rule: "15", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["ref", "corner"],
     media: { photo: true, video: true, animation: false },
     title: { tr: "Zorunlu koruyucu ekipman", en: "Mandatory protective equipment" },
@@ -1007,6 +1007,134 @@ window.IFMA.cards = [
     wrong: { tr: "Dişlik veya kasık koruyucu olmadan ringe almak.", en: "Allowing entry without gum shield or groin guard." },
     related: ["AREA_FOP"],
     tags: ["ekipman", "eldiven", "dişlik", "kasık koruyucu", "kural 15"]
+  },
+  {
+    id: "AREA_RINGSIZE", module: "alan", subtopic: "ringolcu", label: "ifma",
+    rule: "14.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: [],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Ring ölçüleri", en: "Ring dimensions" },
+    quick: {
+      tr: "Ring iplerin içinden asgari 6 m, azami 6.5 m; yerden 1.2–1.5 m yükseklikte. 4 ip: 45 / 80 / 115 / 150 cm. Platform iplerin dışına en az 90 cm taşar.",
+      en: "The ring is min 6 m, max 6.5 m inside the ropes; 1.2–1.5 m above the ground. 4 ropes at 45 / 80 / 115 / 150 cm. The platform extends at least 90 cm beyond the ropes."
+    },
+    when: { tr: "Tüm müsabakalar (yalnızca IFMA onaylı ring).", en: "All competitions (IFMA-approved rings only)." },
+    right: { tr: "Köşe renkleri: Kırmızı (jüri masasının yakın solu), Beyaz (uzak sol), Mavi (uzak sağ), Beyaz (yakın sağ) (14.1.2).", en: "Corner colours: Red (near-left of the jury), White (far-left), Blue (far-right), White (near-right) (14.1.2)." },
+    wrong: { tr: "Zemin yastığı 2.5–3.75 cm dışında; ipleri gergin ve doğru yükseklikte olmayan ring.", en: "Floor padding outside 2.5–3.75 cm; ropes not taut or at the wrong heights." },
+    related: ["AREA_FOP", "AREA_TABLES"],
+    tags: ["ring", "ölçü", "ip", "köşe rengi", "14.1"]
+  },
+  {
+    id: "AREA_TABLES", module: "alan", subtopic: "masalar", label: "ifma",
+    rule: "14.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: [],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Resmi görevli masaları ve ring ekipmanı", en: "Officials' tables & ring equipment" },
+    quick: {
+      tr: "Ringde bulunması gerekenler: 3 set merdiven, sandalye ve tepsiler; masalar (5 Yan Hakem = 5 masa; TD/COJ; Jüri 3 sandalye; skor; zaman/anons; doktor); gong, hakemler için beyaz eldiven, seyirciye en az 1.5 m bariyer.",
+      en: "Required at the ring: 3 sets of steps, seats and trays; tables (5 judges = 5 tables; TD/COJ; jury with 3 chairs; scorekeepers; timekeeper/announcer; doctor); a gong, white gloves for referees, and a barrier at least 1.5 m from the spectators."
+    },
+    when: { tr: "FOP kurulumunda.", en: "In the FOP setup." },
+    right: { tr: "Tarafsız köşelerde kan/tampon için plastik torba; kırmızı/mavi bant ruloları hazır (14.2).", en: "Plastic bags in the neutral corners for blood/pads; red/blue tape rolls ready (14.2)." },
+    wrong: { tr: "Medyanın Jürinin arkasında/önünde durması veya görüşü kapatması (13.3).", en: "Media standing behind or in front of the jury, or blocking the line of sight (13.3)." },
+    related: ["AREA_FOP", "AREA_RINGSIZE"],
+    tags: ["masalar", "ring ekipmanı", "gong", "14.2"]
+  },
+  {
+    id: "AREA_KASK", module: "alan", subtopic: "kask", label: "ifma",
+    rule: "15.3", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref", "corner"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Kask, kaval ve dirseklik", en: "Head, shin & elbow guards" },
+    quick: {
+      tr: "Kask, kaval koruyucu ve dirseklik zorunludur ve Organizasyon Kurulu tarafından sağlanır (yalnızca IFMA onaylı). Kaskın yanak/çene/yüz siperi olamaz.",
+      en: "The head guard, shin guard and elbow guards are mandatory and provided by the Organising Committee (IFMA-approved only). The head guard has no cheek/chin/face shield."
+    },
+    when: { tr: "Tüm dövüş kategorileri.", en: "All combat categories." },
+    right: { tr: "Kask, Wai Kru ve selamlaşmadan SONRA takılır; maç bitince karar açıklanmadan hemen çıkarılır (15.3.1).", en: "The head guard is put on AFTER the Wai Kru and handshake; removed immediately after the contest, before the decision (15.3.1)." },
+    wrong: { tr: "Maç sırasında kaskı Jüri/Hakem izni olmadan çıkarmak.", en: "Removing the head guard during the contest without jury/referee supervision." },
+    related: ["AREA_EQUIP", "REF_RINGGIRIS"],
+    tags: ["kask", "kaval", "dirseklik", "head guard", "15.3"]
+  },
+  {
+    id: "AREA_GOVDE", module: "alan", subtopic: "govde", label: "ifma",
+    rule: "15.4", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Gövde koruyucu", en: "Body protector" },
+    quick: {
+      tr: "Köşe rengiyle uyumlu gövde koruyucu U8–U24 ve Masters 40+/45+ için zorunludur; Elite ve Masters 35+ kategorilerinde giyilmez.",
+      en: "A corner-colour coordinated body protector is mandatory for U8–U24 and Masters 40+/45+; it is not worn in Elite and Masters 35+."
+    },
+    when: { tr: "Kategoriye göre değişir.", en: "Varies by category." },
+    right: { tr: "Kategoriyi kontrol et; zorunlu olduğu yerlerde eksikse ringe alma.", en: "Check the category; where mandatory, don't allow entry without it." },
+    wrong: { tr: "Elite/35+ sporcuya gövde koruyucu giydirmek ya da genç sporcuda eksik bırakmak.", en: "Putting a body protector on an Elite/35+ athlete, or missing it on a youth athlete." },
+    related: ["AREA_KASK", "AREA_KASIK"],
+    tags: ["gövde koruyucu", "body protector", "15.4"]
+  },
+  {
+    id: "AREA_DISLIK", module: "alan", subtopic: "dislik", label: "ifma",
+    rule: "15.5", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref", "corner"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Dişlik", en: "Gum shield" },
+    quick: {
+      tr: "Tüm sporcular her raund başlamadan önce dişlik takar. Dişlik forma uygun olmalı ve kırmızı/pembe olmamalıdır.",
+      en: "All athletes wear a gum shield before each round starts. It must be form-fitted and not red or pink."
+    },
+    when: { tr: "Her raund öncesi.", en: "Before every round." },
+    right: { tr: "Dişlik ağızdan çıkarsa köşe durular ve geri takar.", en: "If the gum shield comes out, the corner rinses it and puts it back." },
+    wrong: { tr: "Dişliği kasıtlı çıkarmak → İkaz / İhtar / DQ (15.5).", en: "Intentionally removing the gum shield → Caution / Warning / DQ (15.5)." },
+    related: ["AREA_EQUIP", "FOUL_CLASS"],
+    tags: ["dişlik", "gum shield", "15.5"]
+  },
+  {
+    id: "AREA_KASIK", module: "alan", subtopic: "kasik", label: "ifma",
+    rule: "15.7", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref", "weigh"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Kasık ve göğüs koruyucu", en: "Groin & chest guard" },
+    quick: {
+      tr: "Kasık koruyucu zorunludur (erkek: metal veya polikarbonat + suspansuar; kadın: polikarbonat veya köpük). Kadın göğüs koruyucu Senior (35+/Elite) kategorilerde zorunludur.",
+      en: "A groin guard is mandatory (male: metal or polycarbonate + jock strap; female: polycarbonate or foam). A female chest guard is mandatory in Senior (35+/Elite) divisions."
+    },
+    when: { tr: "Tüm sporcular; göğüs koruyucu kadın Senior kategoride.", en: "All athletes; chest guard for Senior female divisions." },
+    right: { tr: "Her koruyucu müsabaka öncesi kontrolden geçer (15.7, 15.8).", en: "Each guard passes inspection before competition (15.7, 15.8)." },
+    wrong: { tr: "Ayak bileği koruması (bileklik/bant) giymek — yasaktır (15.6).", en: "Wearing ankle protection (anklet/tape) — it is prohibited (15.6)." },
+    related: ["AREA_GOVDE", "AREA_EQUIP"],
+    tags: ["kasık koruyucu", "göğüs koruyucu", "groin", "chest", "15.7", "15.8"]
+  },
+  {
+    id: "AREA_KIYAFET", module: "alan", subtopic: "kiyafet", label: "ifma",
+    rule: "15.9", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Giyim, mongkon ve prajiad", en: "Attire, mongkon & prajiad" },
+    quick: {
+      tr: "Muaythai şortu (önünde “Muaythai” yazar), köşe rengine göre kırmızı/mavi atlet (şorta sokulu). Wai Kru için mongkon takılır; prajiad amuletli ve düzgün örtülü olur.",
+      en: "Muaythai shorts (with “Muaythai” on the front) and a red/blue singlet by corner colour (tucked in). A mongkon is worn for the Wai Kru; the prajiad carries an amulet and is neatly covered."
+    },
+    when: { tr: "Tüm müsabakalar.", en: "All competitions." },
+    right: { tr: "Saç toplanır ve file içinde tutulur; toka yasak. Prajiad ipleri 7–10 cm'den (gençlerde 5–7 cm) uzunsa çıkarılması istenebilir (15.9.3–15.9.4).", en: "Hair is tied and kept in a hairnet; clips are prohibited. The prajiad may be removed if its strings exceed 7–10 cm (5–7 cm for youth) (15.9.3–15.9.4)." },
+    wrong: { tr: "Yalnızca IFMA onaylı kıyafet giyilebilir; onaysız kıyafetle ringe çıkmak.", en: "Only IFMA-approved attire is allowed; entering with non-approved dress." },
+    related: ["AREA_KASK", "WAI_WHAT"],
+    tags: ["şort", "atlet", "mongkon", "prajiad", "saç", "15.9"]
+  },
+  {
+    id: "AREA_CHECK", module: "alan", subtopic: "kontrolakis", label: "ifma",
+    rule: "15.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: false, video: true, animation: false },
+    title: { tr: "Ekipman kontrol akışı", en: "Equipment check flow" },
+    quick: {
+      tr: "Ringe girişte Orta Hakem eldiven ve kıyafeti kontrol eder; bandaj/sargılar Eldiven Sorumlusu gözetiminde takılır, banda imza atılır; kask Wai Kru sonrası takılır.",
+      en: "On ring entry the referee checks gloves and dress; wraps/bandages are fitted under the Glove Supervisor and signed; the head guard goes on after the Wai Kru."
+    },
+    when: { tr: "Maç öncesi kontrolde.", en: "At the pre-match check." },
+    right: { tr: "Bandaj: yumuşak cerrahi sargı ≤5 m / ≤5 cm veya Velcro sargı ≤5 m; başka bandaj kabul edilmez. Bant, bandaj olarak yasaktır (15.2, 15.2.1).", en: "Wraps: soft surgical bandage ≤5 m / ≤5 cm, or Velcro wraps ≤5 m; no other bandage. Tape as a bandage is forbidden (15.2, 15.2.1)." },
+    wrong: { tr: "Sargısız veya kural dışı bantlı sporcuyu ringe almak → Baş Jüriye bildirilir (15.2.2).", en: "Letting an athlete in without wraps or with illegal taping → reported to the Head of Jury (15.2.2)." },
+    related: ["REF_RINGGIRIS", "AREA_EQUIP"],
+    tags: ["ekipman kontrolü", "bandaj", "sargı", "15.2", "19.1"]
   },
 
   /* ===================== ZAMAN & RESMİ GÖREVLİLER ===================== */

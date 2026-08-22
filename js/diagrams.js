@@ -237,6 +237,24 @@ window.IFMA = window.IFMA || {};
       '</div></div>';
   };
 
+  // Gövde koruyucu — kategoriye göre zorunluluk
+  DG["bodyprotector-table"] = function (lang) {
+    var rows = [
+      [tr(lang, "U8 – U24", "U8 – U24"), tr(lang, "Zorunlu", "Mandatory"), "ok"],
+      [tr(lang, "Elite", "Elite"), tr(lang, "Giyilmez", "Not worn"), "no"],
+      [tr(lang, "Masters 35+", "Masters 35+"), tr(lang, "Giyilmez", "Not worn"), "no"],
+      [tr(lang, "Masters 40+ & 45+", "Masters 40+ & 45+"), tr(lang, "Zorunlu", "Mandatory"), "ok"]
+    ];
+    var body = rows.map(function (r) {
+      var st = r[2] === "ok" ? ' style="color:var(--right-ink);font-weight:700"' : ' style="color:var(--wrong-ink)"';
+      return '<tr><td class="k">' + r[0] + '</td><td' + st + '>' + r[1] + '</td></tr>';
+    }).join("");
+    return '<div class="diagram dg-scroll"><table class="dg-table"><thead><tr><th>' +
+      tr(lang, "Kategori", "Category") + '</th><th>' + tr(lang, "Gövde koruyucu", "Body protector") +
+      '</th></tr></thead><tbody>' + body + '</tbody></table><div class="dg-cap">' +
+      tr(lang, "Köşe rengiyle uyumlu • Kural 15.4", "Corner-colour coordinated • Rule 15.4") + '</div></div>';
+  };
+
   IFMA.diagrams = DG;
   IFMA.hasDiagram = function (name) { return !!(name && DG[name]); };
   IFMA.renderDiagram = function (name, lang) { return DG[name] ? DG[name](lang) : ""; };
@@ -253,6 +271,7 @@ window.IFMA = window.IFMA || {};
     FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table", CAT_ROUNDS: "category-table", CAT_REST: "category-table",
     JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-scale", JUDGE_RBR: "scoring-scale",
     JUDGE_SBS: "sbs-accept", JUDGE_BUTON: "sbs-accept",
-    JUDGE_TARGET: "target-zones", AREA_FOP: "fop-layout"
+    JUDGE_TARGET: "target-zones",
+    AREA_FOP: "fop-layout", AREA_RINGSIZE: "fop-layout", AREA_TABLES: "fop-layout", AREA_GOVDE: "bodyprotector-table"
   };
 })();
