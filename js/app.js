@@ -373,6 +373,14 @@
 
   function mediaBox(c) {
     var m = c.media || {};
+    // Gerçek görsel (resmî şema / fotoğraf) varsa önce onu göster
+    if (c.imgs && c.imgs.length) {
+      return c.imgs.map(function (im) {
+        var cap = L(im.cap);
+        return '<figure class="card-img"><img src="' + im.src + '" alt="' + esc(cap) + '" loading="lazy">' +
+          (cap ? '<figcaption>' + esc(cap) + '</figcaption>' : "") + '</figure>';
+      }).join("");
+    }
     // Diyagram varsa görsel anlatım kutusunda onu göster
     var dg = window.IFMA.cardDiagram && window.IFMA.cardDiagram[c.id];
     if (dg && window.IFMA.hasDiagram && window.IFMA.hasDiagram(dg)) {
@@ -417,6 +425,7 @@
   }
 
   function filterGroup(dim, title, icon) {
+    if (dim === "weight") return weightGroup(title, icon);
     var opts = D.filters[dim] || [];
     var chips = opts.map(function (o) {
       var on = state.sel[dim] === o.id;
@@ -425,6 +434,24 @@
         (o.icon ? ic(o.icon) : "") + esc(L(o)) + sub + '</button>';
     }).join("");
     return '<div class="filter-group"><div class="filter-title">' + ic(icon) + esc(title) + '</div><div class="chips">' + chips + '</div></div>';
+  }
+
+  // Sıklet: yaş+cinsiyete göre dinamik liste (TMF 2026 sıklet tablosu)
+  function weightGroup(title, icon) {
+    var a = state.sel.age, g = state.sel.gender;
+    var ws = (a && g) ? window.IFMA.weightsFor(a, g) : null;
+    var inner;
+    if (!ws) {
+      inner = '<div class="when-text" style="margin:0 2px">' +
+        esc(lang() === "tr" ? "Önce yaş ve cinsiyet seç — o kategorinin sıkletleri otomatik gelir."
+                            : "Pick age and gender first — that category's weights load automatically.") + '</div>';
+    } else {
+      inner = '<div class="chips">' + ws.map(function (w) {
+        var on = state.sel.weight === w;
+        return '<button class="chip ' + (on ? "on teal" : "") + '" data-act="filter" data-dim="weight" data-val="' + esc(w) + '">' + esc(w) + ' kg</button>';
+      }).join("") + '</div>';
+    }
+    return '<div class="filter-group"><div class="filter-title">' + ic(icon) + esc(title) + '</div>' + inner + '</div>';
   }
 
   /* ---------- Kategori özeti ---------- */
@@ -469,7 +496,7 @@
         : "Pick an age category: time, limits and count vary by age.") + '</span></div>';
     }
     // Sıklet
-    if (sel.weight) items += sumItem("scale", t("catWeight"), esc(optLabel("weight", sel.weight)) + '<small>' + (lang() === "tr" ? "Kural 4 — yaş+cinsiyete göre" : "Rule 4 — by age+gender") + '</small>');
+    if (sel.weight) items += sumItem("scale", t("catWeight"), '<span class="big">' + esc(sel.weight) + ' kg</span><small>' + (lang() === "tr" ? "Kural 4 — yaş+cinsiyete göre" : "Rule 4 — by age+gender") + '</small>');
 
     items += sumItem("doc", t("catSources"), sourceChips(["CAT_ROUNDS", "CAT_REST", "CAT_LIMIT", "FOUL_CCL", "AREA_EQUIP"]));
 
@@ -732,6 +759,11 @@
       case "filter": {
         var dim = el.getAttribute("data-dim"), val = el.getAttribute("data-val");
         state.sel[dim] = (state.sel[dim] === val ? null : val);
+        // yaş/cinsiyet değişince geçersiz kalan sıkleti temizle
+        if (dim === "age" || dim === "gender") {
+          var ws = window.IFMA.weightsFor(state.sel.age, state.sel.gender);
+          if (!ws || ws.indexOf(state.sel.weight) < 0) state.sel.weight = null;
+        }
         render(); break;
       }
       case "cat-apply": {

@@ -20,7 +20,10 @@ var ASSETS = [
   "data/flows.js",
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
-  "assets/icons/icon-512-maskable.png"
+  "assets/icons/icon-512-maskable.png",
+  "assets/img/fop-ring.png",
+  "assets/img/fop-tatami.png",
+  "assets/img/ring-dimensions.png"
 ];
 
 self.addEventListener("install", function (e) {

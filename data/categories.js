@@ -114,3 +114,58 @@ window.IFMA.disciplineProfiles = {
     duration: { tr: "Performans süresi 5–6 dk (Kural 38.2)", en: "Performance 5–6 min (Rule 38.2)" }
   }
 };
+
+/* ---- Doğum yılı bazlı kategoriler (2026 sezonu) — TMF referans tablosu ---- */
+window.IFMA.birthYearRefDate = "11.06.2026";
+window.IFMA.birthYears2026 = [
+  { id: "V45",   tr: "Veteranlar 45+", en: "Masters 45+", ageLo: 45, ageHi: 50, yrLo: 1976, yrHi: 1981 },
+  { id: "V40",   tr: "Veteranlar 40+", en: "Masters 40+", ageLo: 40, ageHi: 44, yrLo: 1982, yrHi: 1986 },
+  { id: "M35",   tr: "Büyükler 35+",   en: "Masters 35+", ageLo: 35, ageHi: 39, yrLo: 1987, yrHi: 1991 },
+  { id: "ELITE", tr: "Elite",          en: "Elite",       ageLo: 18, ageHi: 40, yrLo: 1986, yrHi: 2008 },
+  { id: "U24",   tr: "U24",            en: "U24",         ageLo: 18, ageHi: 23, yrLo: 2003, yrHi: 2008 },
+  { id: "U18",   tr: "U18",            en: "U18",         ageLo: 16, ageHi: 17, yrLo: 2009, yrHi: 2010 },
+  { id: "U16",   tr: "U16",            en: "U16",         ageLo: 14, ageHi: 15, yrLo: 2011, yrHi: 2012 },
+  { id: "U14",   tr: "U14",            en: "U14",         ageLo: 12, ageHi: 13, yrLo: 2013, yrHi: 2014 },
+  { id: "U12",   tr: "U12",            en: "U12",         ageLo: 10, ageHi: 11, yrLo: 2015, yrHi: 2016 },
+  { id: "U10",   tr: "U10",            en: "U10",         ageLo: 8,  ageHi: 9,  yrLo: 2017, yrHi: 2018 },
+  { id: "U8",    tr: "U8",             en: "U8",          ageLo: 6,  ageHi: 7,  yrLo: 2019, yrHi: 2020 }
+];
+
+/* ---- Sıklet sınıfları (kg) — TMF 2026 özet tablosu; yaş+cinsiyete göre ----
+   NOT: Genç kategorilerin (özellikle U16) rakamları resmî tabloya göre doğrulanmalı. */
+window.IFMA.weightGroups = {
+  SENIOR: { // Elite / Büyükler 35+ / Veteran 40+ / Veteran 45+  (V40/V45 için +91 yok)
+    male:   ["45", "48", "51", "54", "57", "60", "63.5", "67", "71", "75", "81", "86", "91", "+91"],
+    female: ["45", "48", "51", "54", "57", "60", "63.5", "67", "71", "75", "+75"] },
+  U24: {
+    male:   ["45", "48", "51", "54", "57", "60", "63.5", "67", "71", "75", "81", "86", "91", "+91"],
+    female: ["45", "48", "51", "54", "57", "60", "63.5", "67", "71", "75", "+75"] },
+  U18: {
+    male:   ["45", "48", "51", "54", "57", "60", "63.5", "67", "71", "75", "81", "86", "91", "+91"],
+    female: ["42", "45", "48", "51", "54", "57", "60", "63.5", "67", "71", "75", "+75"] },
+  U16: {
+    male:   ["38", "40", "42", "45", "48", "51", "54", "57", "60", "63.5", "67", "71", "75", "81", "+81"],
+    female: ["36", "38", "40", "42", "45", "48", "51", "54", "57", "60", "63.5", "67", "71", "+71"] },
+  U14: {
+    male:   ["32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "63.5", "67", "71", "+71"],
+    female: ["32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "63.5", "+63.5"] },
+  U12: {
+    male:   ["30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "+60"],
+    female: ["30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "+60"] },
+  U10: { // *** yalnızca Muaythai Teknik (Tatami)
+    male:   ["20", "22", "24", "26", "28", "30", "32", "34", "36"],
+    female: ["18", "20", "22", "24", "26", "28", "30", "32"] },
+  U8: {  // *** yalnızca Muaythai Teknik (Tatami)
+    male:   ["16", "18", "20", "22", "24", "26", "28"],
+    female: ["16", "18", "20", "22", "24", "26"] }
+};
+window.IFMA.ageWeightGroup = {
+  ELITE: "SENIOR", M35: "SENIOR", V40: "SENIOR", V45: "SENIOR",
+  U24: "U24", U18: "U18", U16: "U16", U14: "U14", U12: "U12", U10: "U10", U8: "U8"
+};
+window.IFMA.weightsFor = function (ageId, genderId) {
+  var g = window.IFMA.ageWeightGroup[ageId];
+  if (!g || !(genderId === "male" || genderId === "female")) return null;
+  var w = window.IFMA.weightGroups[g];
+  return w ? w[genderId] : null;
+};

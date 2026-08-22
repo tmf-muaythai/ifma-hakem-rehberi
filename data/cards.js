@@ -1061,6 +1061,10 @@ window.IFMA.cards = [
     rule: "13", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: [],
     media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/fop-ring.png", cap: { tr: "Şekil 1 — Ring düzeni (3 Yan Hakem)", en: "Figure 1 — Ring layout (3 judges)" } },
+      { src: "assets/img/fop-tatami.png", cap: { tr: "Müsabaka Alanı (Tatami) düzeni — kültürel/teknik", en: "Contest Area (Tatami) layout — cultural/technical" } }
+    ],
     title: { tr: "Müsabaka alanı (FOP) yerleşimi", en: "Field of Play (FOP) layout" },
     quick: {
       tr: "Müsabaka alanı Şekil 1 (3 Yan Hakem) veya Şekil 2 (5 Yan Hakem) düzenine göre kurulur. Asgari FOP 18×18 m.",
@@ -1092,7 +1096,10 @@ window.IFMA.cards = [
     id: "AREA_RINGSIZE", module: "alan", subtopic: "ringolcu", label: "ifma",
     rule: "14.1", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: [],
-    media: { photo: false, video: false, animation: false },
+    media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/ring-dimensions.png", cap: { tr: "Ring ölçüleri (Kural 14) — 600/650 cm iç, 90 cm apron, 285 cm yükseklik, 4 ip", en: "Ring dimensions (Rule 14) — 600/650 cm inside, 90 cm apron, 285 cm height, 4 ropes" } }
+    ],
     title: { tr: "Ring ölçüleri", en: "Ring dimensions" },
     quick: {
       tr: "Ring iplerin içinden asgari 6 m, azami 6.5 m; yerden 1.2–1.5 m yükseklikte. 4 ip: 45 / 80 / 115 / 150 cm. Platform iplerin dışına en az 90 cm taşar.",
@@ -1108,7 +1115,10 @@ window.IFMA.cards = [
     id: "AREA_TABLES", module: "alan", subtopic: "masalar", label: "ifma",
     rule: "14.2", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: [],
-    media: { photo: false, video: false, animation: false },
+    media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/fop-ring.png", cap: { tr: "Görevli yerleşimi: Jüri, TD & COJ, skor, zaman/anons, doktor, köşeler", en: "Officials layout: jury, TD & COJ, scoring, time/announcer, doctor, corners" } }
+    ],
     title: { tr: "Resmi görevli masaları ve ring ekipmanı", en: "Officials' tables & ring equipment" },
     quick: {
       tr: "Ringde bulunması gerekenler: 3 set merdiven, sandalye ve tepsiler; masalar (5 Yan Hakem = 5 masa; TD/COJ; Jüri 3 sandalye; skor; zaman/anons; doktor); gong, hakemler için beyaz eldiven, seyirciye en az 1.5 m bariyer.",

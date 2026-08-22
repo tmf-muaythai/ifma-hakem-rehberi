@@ -255,6 +255,54 @@ window.IFMA = window.IFMA || {};
       tr(lang, "Köşe rengiyle uyumlu • Kural 15.4", "Corner-colour coordinated • Rule 15.4") + '</div></div>';
   };
 
+  // Doğum yılı bazlı kategoriler (2026 sezonu)
+  DG["birthyear-table"] = function (lang) {
+    var rows = (window.IFMA.birthYears2026 || []);
+    var body = rows.map(function (r) {
+      return '<tr><td class="k">' + (lang === "en" ? r.en : r.tr) + '</td><td>' + r.ageLo + '–' + r.ageHi +
+        '</td><td>' + r.yrLo + '–' + r.yrHi + '</td></tr>';
+    }).join("");
+    return '<div class="diagram dg-scroll"><table class="dg-table"><thead><tr><th>' +
+      tr(lang, "Kategori", "Category") + '</th><th>' + tr(lang, "Yaş", "Age") + '</th><th>' +
+      tr(lang, "Doğum yılı", "Birth year") + '</th></tr></thead><tbody>' + body + '</tbody></table><div class="dg-cap">' +
+      tr(lang, "2026 sezonu • takvim yılı sistemi • ref. " + window.IFMA.birthYearRefDate,
+               "2026 season • calendar-year system • ref. " + window.IFMA.birthYearRefDate) + '</div></div>';
+  };
+
+  // Sıklet aralıkları (kategoriye göre özet)
+  DG["weight-table"] = function (lang) {
+    var order = [["SENIOR", tr(lang, "Büyükler / Elite", "Seniors / Elite")], ["U24", "U24"], ["U18", "U18"],
+                 ["U16", "U16"], ["U14", "U14"], ["U12", "U12"], ["U10", "U10 ***"], ["U8", "U8 ***"]];
+    var g = window.IFMA.weightGroups || {};
+    function rng(a) { return (a && a.length) ? (a[0] + "–" + a[a.length - 1] + " (" + a.length + ")") : "—"; }
+    var body = order.map(function (o) {
+      var w = g[o[0]] || {};
+      return '<tr><td class="k">' + o[1] + '</td><td>' + rng(w.male) + '</td><td>' + rng(w.female) + '</td></tr>';
+    }).join("");
+    return '<div class="diagram dg-scroll"><table class="dg-table"><thead><tr><th>' +
+      tr(lang, "Kategori", "Category") + '</th><th>' + tr(lang, "Erkek (kg)", "Male (kg)") + '</th><th>' +
+      tr(lang, "Kadın (kg)", "Female (kg)") + '</th></tr></thead><tbody>' + body + '</tbody></table><div class="dg-cap">' +
+      tr(lang, "Aralık (sınıf sayısı) • tam liste için Kategori Seç → yaş+cinsiyet • *** U8/U10 Tatami • Kural 4",
+               "Range (class count) • pick a category for the full list • *** U8/U10 Tatami • Rule 4") + '</div></div>';
+  };
+
+  // Puan verme basamakları (raund eşitse sırasıyla)
+  DG["scoring-steps"] = function (lang) {
+    var steps = [
+      tr(lang, "Daha çok sayı teknik vuruş yapan", "More scoring techniques landed"),
+      tr(lang, "Daha güçlü teknik vuruşları olan", "Stronger technical strikes"),
+      tr(lang, "Etki ve bulgu oluşturan hırpalayıcı vuruşlar", "Strikes that mark or take effect"),
+      tr(lang, "Daha baskın ve atak olan", "More dominant and aggressive"),
+      tr(lang, "Daha iyi Muaythai stili kullanan", "Better Muaythai style"),
+      tr(lang, "Daha az faul yapan", "Fewer fouls")
+    ];
+    var body = steps.map(function (s, i) {
+      return '<div class="dg-step-row"><span class="dg-step-n">' + (i + 1) + '</span><span>' + s + '</span></div>';
+    }).join("");
+    return '<div class="diagram">' + body + '<div class="dg-cap">' +
+      tr(lang, "Raund eşitse sırasıyla değerlendirilir • Kural 29", "Applied in order when a round is tied • Rule 29") + '</div></div>';
+  };
+
   IFMA.diagrams = DG;
   IFMA.hasDiagram = function (name) { return !!(name && DG[name]); };
   IFMA.renderDiagram = function (name, lang) { return DG[name] ? DG[name](lang) : ""; };
@@ -269,8 +317,8 @@ window.IFMA = window.IFMA || {};
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
     MED_KOH: "rest-table", WEIGH_ROOM: "weigh-staffing",
     FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table", CAT_ROUNDS: "category-table", CAT_REST: "category-table",
-    CAT_AGE: "category-table", CAT_EQUIP: "bodyprotector-table",
-    JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-scale", JUDGE_RBR: "scoring-scale",
+    CAT_AGE: "birthyear-table", CAT_WEIGHT: "weight-table", CAT_EQUIP: "bodyprotector-table",
+    JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-steps", JUDGE_RBR: "scoring-scale",
     JUDGE_SBS: "sbs-accept", JUDGE_BUTON: "sbs-accept",
     JUDGE_TARGET: "target-zones",
     AREA_FOP: "fop-layout", AREA_RINGSIZE: "fop-layout", AREA_TABLES: "fop-layout", AREA_GOVDE: "bodyprotector-table"
