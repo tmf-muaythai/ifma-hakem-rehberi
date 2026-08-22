@@ -682,6 +682,86 @@ window.IFMA.cards = [
     related: ["FOUL_CCL"],
     tags: ["ccl", "sayma limiti", "30.2.5"]
   },
+  {
+    id: "CAT_AGE", module: "kategori", subtopic: "yas", label: "ifma",
+    rule: "5", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: [],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Yaş kategorileri", en: "Age categories" },
+    quick: {
+      tr: "Yaş uygunluğu takvim yılı sistemine göre belirlenir. Dövüş: U8, U10, U12, U14, U16, U18, U24, Elite, Büyükler 35+, Veteranlar 40+, Veteranlar 45+. Kültürel kategorilerde ayrıca Veteranlar 50+ ve 60+ vardır.",
+      en: "Age eligibility is set by the calendar-year system. Combat: U8, U10, U12, U14, U16, U18, U24, Elite, Masters 35+, Masters 40+, Masters 45+. Cultural categories also add Masters 50+ and 60+."
+    },
+    when: { tr: "Kayıt ve kategori belirlemede.", en: "At registration and category assignment." },
+    right: { tr: "Sporcu, müsabaka yılı içinde asgari veya azami yaşa ulaşırsa o kategoriye uygundur (Kural 5).", en: "An athlete is eligible if they reach the minimum or maximum age during the competition year (Rule 5)." },
+    wrong: { tr: "Yaşı doğum tarihiyle değil, yılla değerlendirmemek.", en: "Judging age by exact date rather than by year." },
+    related: ["CAT_ROUNDS", "CAT_LIMIT"],
+    tags: ["yaş", "kategori", "takvim yılı", "5", "35"]
+  },
+  {
+    id: "CAT_WEIGHT", module: "kategori", subtopic: "siklet", label: "ifma",
+    rule: "4", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Sıkletler", en: "Weight classes" },
+    quick: {
+      tr: "Sıklet, yaş ve cinsiyete göre belirlenir. Elite/U24 erkek sıkletleri 45–91+ kg; kadın 45–75+ kg arasındadır. Genç kategorilerde alt sınırlar farklıdır (tam tablo Kural 4).",
+      en: "Weight classes are set by age and gender. Elite/U24 male classes run 45–91+ kg; female 45–75+ kg. Youth categories have different lower bounds (full table in Rule 4)."
+    },
+    when: { tr: "Kategori ve tartıda.", en: "At category and weigh-in." },
+    right: { tr: "Sporcu yalnızca tartıda hak kazandığı siklette yarışır (11.3.1).", en: "An athlete may only compete in the class for which they qualified at the weigh-in (11.3.1)." },
+    wrong: { tr: "Yaş+cinsiyete uygun olmayan sıklet tablosunu kullanmak.", en: "Using a weight table not matching the age+gender." },
+    related: ["WEIGH_5PCT", "CAT_AGE"],
+    tags: ["sıklet", "weight class", "kural 4"]
+  },
+  {
+    id: "CAT_EQUIP", module: "kategori", subtopic: "ekipman", label: "ifma",
+    rule: "15", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Zorunlu ekipman", en: "Mandatory equipment" },
+    quick: {
+      tr: "Zorunlu ekipman: eldiven (10 oz), dişlik, kaval ve dirseklik, kasık koruyucu ve kask. Gövde koruyucu kategoriye göre değişir; kadın göğüs koruyucu Senior kategoride zorunludur.",
+      en: "Mandatory: gloves (10 oz), gum shield, shin and elbow guards, groin guard and head guard. The body protector varies by category; a female chest guard is mandatory in Senior divisions."
+    },
+    when: { tr: "Kategori seçimine göre.", en: "By category selection." },
+    right: { tr: "Ekipman koddan değil kategoriden çıkar; kontrol akışı için Ekipman modülüne bak.", en: "Equipment follows the category; see the Equipment module for the check flow." },
+    wrong: { tr: "Kategoriye özel ekipmanı (gövde/göğüs) atlamak.", en: "Skipping category-specific equipment (body/chest)." },
+    related: ["AREA_EQUIP", "AREA_GOVDE"],
+    tags: ["zorunlu ekipman", "kural 15"]
+  },
+  {
+    id: "CAT_GENDEREQUIP", module: "kategori", subtopic: "cinsiyetekip", label: "ifma",
+    rule: "15.7", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref", "weigh"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Cinsiyete göre ekipman", en: "Gender-specific equipment" },
+    quick: {
+      tr: "Erkek: metal veya polikarbonat kasık koruyucu (+ suspansuar). Kadın: polikarbonat veya köpük kasık koruyucu ve Senior (35+/Elite) kategoride zorunlu göğüs koruyucu. Kadın tartısı ayrı yürütülür.",
+      en: "Male: metal or polycarbonate groin guard (+ jock strap). Female: polycarbonate or foam groin guard and, in Senior (35+/Elite) divisions, a mandatory chest guard. Female weigh-ins are conducted separately."
+    },
+    when: { tr: "Cinsiyet ve kategoriye göre.", en: "By gender and category." },
+    right: { tr: "Her koruyucu müsabaka öncesi kontrolden geçer (15.7, 15.8).", en: "Each guard passes inspection before competition (15.7, 15.8)." },
+    wrong: { tr: "Kadın Senior sporcuda göğüs koruyucuyu eksik bırakmak.", en: "Missing the chest guard on a Senior female athlete." },
+    related: ["AREA_KASIK", "WEIGH_STANDARD"],
+    tags: ["cinsiyet", "kasık", "göğüs koruyucu", "15.7", "15.8"]
+  },
+  {
+    id: "CAT_DISCIPLINE", module: "kategori", subtopic: "disiplinfark", label: "ifma",
+    rule: "2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: [],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Disiplin farkları", en: "Discipline differences" },
+    quick: {
+      tr: "Full Contact (tam temas, IFMA kuralları tam uygulanır), Semi Contact (kontrollü hafif temas, sert vuruş yasak), Wai Kru (bireysel kültürel) ve Mai Muay (ikili kültürel).",
+      en: "Full Contact (full contact, IFMA rules apply in full), Semi Contact (controlled light contact, hard strikes forbidden), Wai Kru (solo cultural) and Mai Muay (duo cultural)."
+    },
+    when: { tr: "Kategori seçiminde.", en: "At category selection." },
+    right: { tr: "Bir sporcu en fazla bir kültürel (Wai Kru veya Mai Muay) ve bir dövüş/teknik kategorisine girebilir (34.1).", en: "An athlete may enter at most one cultural (Wai Kru or Mai Muay) and one combat/technical division (34.1)." },
+    wrong: { tr: "Semi Contact'ta tam güçle vurmak — bu fauldür (31.3.1).", en: "Striking at full power in Semi Contact — that is a foul (31.3.1)." },
+    related: ["CAT_LIMIT", "WAI_LIMIT"],
+    tags: ["disiplin", "full contact", "semi contact", "wai kru", "mai muay", "kural 2"]
+  },
 
   /* ===================== YAN HAKEM & PUANLAMA ===================== */
   {
@@ -1286,7 +1366,7 @@ window.IFMA.cards = [
   /* ===================== WAI KRU & MAI MUAY ===================== */
   {
     id: "WAI_WHAT", module: "waikru", subtopic: "wainedir", label: "ifma",
-    rule: "20", revision: "2026-05-11", status: AD,
+    rule: "20", revision: "2026-05-11", status: A,
     discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge"],
     media: { photo: true, video: true, animation: false },
     title: { tr: "Wai Kru nedir?", en: "What is Wai Kru?" },
@@ -1302,7 +1382,7 @@ window.IFMA.cards = [
   },
   {
     id: "WAI_LIMIT", module: "waikru", subtopic: "muziksure", label: "ifma",
-    rule: "34.1", revision: "2026-05-11", status: AD,
+    rule: "34.1", revision: "2026-05-11", status: A,
     discipline: ["waikru", "maimuay"], age: [], gender: [], role: [],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Kültürel katılım limiti", en: "Cultural participation limit" },
@@ -1315,6 +1395,118 @@ window.IFMA.cards = [
     wrong: { tr: "Aynı sporcuyu her iki kültürel kategoriye yazmak.", en: "Entering the same athlete in both cultural categories." },
     related: ["WAI_WHAT"],
     tags: ["katılım limiti", "wai kru", "mai muay", "34.1"]
+  },
+  {
+    id: "WAI_OPENING", module: "waikru", subtopic: "baslangicdur", label: "ifma",
+    rule: "49.2", revision: "2026-05-11", status: A,
+    discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge"],
+    media: { photo: true, video: true, animation: false },
+    title: { tr: "Başlangıç Duruşları (6 duruş)", en: "Starting Postures (6 postures)" },
+    quick: {
+      tr: "Tüm sporcular 6 Wai Kru Başlangıç Duruşunun tamamını yapmalıdır: Thep Pa Nom, Kom Krab, Kob Pramae Thoranee, Tha Wai Bangkom, Pathom ve Prom. Azami 20 puan (bireysel) / 5 (ikili).",
+      en: "All athletes must perform all 6 Wai Kru Starting Postures: Thep Pa Nom, Kom Krab, Kob Pramae Thoranee, Tha Wai Bangkom, Pathom and Prom. Max 20 points (individual) / 5 (duo)."
+    },
+    when: { tr: "Her Wai Kru performansının başında.", en: "At the start of every Wai Kru performance." },
+    right: { tr: "Kutsal Mongkon takılıyken 3 kez yere kapanılır (20.2).", en: "Prostrate to the canvas three times while wearing the sacred Mongkon (20.2)." },
+    wrong: { tr: "Muaythai geleneğine ait olmayan başka bir ritüel eklemek.", en: "Adding a ritual that is not part of the Muaythai tradition." },
+    related: ["WAI_WHAT", "WAI_PROMNANG"],
+    tags: ["başlangıç duruşları", "thep pa nom", "kom krab", "49.2", "20.2"]
+  },
+  {
+    id: "WAI_PROMNANG", module: "waikru", subtopic: "promnang", label: "ifma",
+    rule: "49.3", revision: "2026-05-11", status: A,
+    discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge"],
+    media: { photo: true, video: true, animation: false },
+    title: { tr: "Prom Nang (oturarak duruşlar)", en: "Prom Nang (sitting postures)" },
+    quick: {
+      tr: "7 Prom Nang (oturarak) duruşundan 4'ü icra edilir. İkili formatta Kırmızı köşedeki sporcu oturarak duruşları yapar (49.10.1). Azami 20 puan (bireysel) / 10 (ikili).",
+      en: "Athletes perform 4 of the 7 Prom Nang (sitting) postures. In duo format the Red-corner athlete does the sitting postures (49.10.1). Max 20 (individual) / 10 (duo)."
+    },
+    when: { tr: "Wai Kru'nun oturarak bölümünde.", en: "In the sitting section of the Wai Kru." },
+    right: { tr: "7 duruş: Lab Hok Mokkasak, Mekkala Loah Kaew, Song Mek, Mae Pra Thoranee Beeb Muay Phom, Sue Lak Hang, Paya Krut Yut Naka, Sao Noi Pa Paeng.", en: "The 7: Lab Hok Mokkasak, Mekkala Loah Kaew, Song Mek, Mae Pra Thoranee Beeb Muay Phom, Sue Lak Hang, Paya Krut Yut Naka, Sao Noi Pa Paeng." },
+    wrong: { tr: "Duruşları dört yöne yapmamak (49.10.3).", en: "Not performing the postures to all four directions (49.10.3)." },
+    related: ["WAI_PROMYUEN", "WAI_KRITER"],
+    tags: ["prom nang", "oturarak", "sitting", "49.3"]
+  },
+  {
+    id: "WAI_PROMYUEN", module: "waikru", subtopic: "promyuen", label: "ifma",
+    rule: "49.4", revision: "2026-05-11", status: A,
+    discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge"],
+    media: { photo: true, video: true, animation: false },
+    title: { tr: "Prom Yuen (ayakta duruşlar)", en: "Prom Yuen (standing postures)" },
+    quick: {
+      tr: "7 Prom Yuen (ayakta) duruşundan 4'ü icra edilir. İkili formatta Mavi köşedeki sporcu ayakta duruşları yapar. Azami 20 puan (bireysel) / 10 (ikili).",
+      en: "Athletes perform 4 of the 7 Prom Yuen (standing) postures. In duo format the Blue-corner athlete does the standing postures. Max 20 (individual) / 10 (duo)."
+    },
+    when: { tr: "Wai Kru'nun ayakta bölümünde.", en: "In the standing section of the Wai Kru." },
+    right: { tr: "7 duruş: Yoong Ram Paen, Na Rai Kwang Jak, Chang Choo Nguang, Pra Ram Plaeong Sorn, Kum Pa Kan Poung Hok, Kun Paen Fun Mahn, Hong Hoen.", en: "The 7: Yoong Ram Paen, Na Rai Kwang Jak, Chang Choo Nguang, Pra Ram Plaeong Sorn, Kum Pa Kan Poung Hok, Kun Paen Fun Mahn, Hong Hoen." },
+    wrong: { tr: "Kırmızı/Mavi köşe duruş dağılımını karıştırmak.", en: "Confusing the Red/Blue corner posture split." },
+    related: ["WAI_PROMNANG", "WAI_CLOSING"],
+    tags: ["prom yuen", "ayakta", "standing", "49.4"]
+  },
+  {
+    id: "WAI_CLOSING", module: "waikru", subtopic: "bitirisdur", label: "ifma",
+    rule: "49.5", revision: "2026-05-11", status: A,
+    discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Bitiriş ve Bağlantı Duruşları", en: "Finishing & Joining Postures" },
+    quick: {
+      tr: "5 Bitiriş (hareket) duruşunun tamamı yapılır: Yang Sam Khum, Payak Dom Kwang, Kwang Liaw Lang, Tad Mai Kom Nam, Yang Suk Ka Sem. Ayrıca 9 Bağlantı (Joining) duruşu icra edilebilir.",
+      en: "All 5 Finishing (movement) postures are performed: Yang Sam Khum, Payak Dom Kwang, Kwang Liaw Lang, Tad Mai Kom Nam, Yang Suk Ka Sem. The 9 Joining (connection) postures may also be performed."
+    },
+    when: { tr: "Wai Kru'nun kapanışında.", en: "In the closing of the Wai Kru." },
+    right: { tr: "Bitiriş azami 20/5, Bağlantı azami 20/5 puan (49.5, 49.6).", en: "Finishing max 20/5, Joining max 20/5 points (49.5, 49.6)." },
+    wrong: { tr: "5 bitiriş duruşunun bir kısmını atlamak.", en: "Skipping some of the 5 finishing postures." },
+    related: ["WAI_PROMYUEN", "WAI_MAIMUAY"],
+    tags: ["bitiriş", "bağlantı", "finishing", "joining", "49.5", "49.6"]
+  },
+  {
+    id: "WAI_MAIMUAY", module: "waikru", subtopic: "maimuayteknik", label: "ifma",
+    rule: "49.7", revision: "2026-05-11", status: A,
+    discipline: ["maimuay"], age: [], gender: [], role: ["judge"],
+    media: { photo: true, video: true, animation: false },
+    title: { tr: "Mai Muay teknik duruşları", en: "Mai Muay technical postures" },
+    quick: {
+      tr: "Mai Muay azami 65 puan. Duruşlar Khan müfredatından alınır: Temel Beceri (Duruş/Hareket, Silahlar, Savunma), Muay Sanatı (2 gruptan en az 10 teknik) ve Üst Düzey (17 yaş altı 3, 17+ 5 duruş).",
+      en: "Mai Muay is worth up to 65 points. Postures come from the Khan syllabus: Basic Skill (Stance/Moving, Weapons, Defence), Art of Muay (min 10 from 2 groups) and High Level (under 17: 3, 17+: 5)."
+    },
+    when: { tr: "İkili Mai Muay performansında.", en: "In the duo Mai Muay performance." },
+    right: { tr: "Mai Muay, Wai Kru bittikten hemen sonra yapılır; sporcular mongkonu boyunlarına indirir (47.2.2, 49.10.4).", en: "Mai Muay is performed immediately after the Wai Kru; athletes pull the mongkon down around the neck (47.2.2, 49.10.4)." },
+    wrong: { tr: "Duruşları Khan müfredatı dışından seçmek.", en: "Choosing postures outside the Khan syllabus." },
+    related: ["WAI_CLOSING", "WAI_KRITER"],
+    tags: ["mai muay", "teknik duruş", "khan müfredatı", "49.7", "49.8"]
+  },
+  {
+    id: "WAI_KRITER", module: "waikru", subtopic: "waikrukriter", label: "ifma",
+    rule: "49.1", revision: "2026-05-11", status: A,
+    discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Puanlama kriterleri (Yüz Puan Sistemi)", en: "Scoring criteria (Hundred-Point System)" },
+    quick: {
+      tr: "Wai Kru/Mai Muay 100 puan üzerinden değerlendirilir (küsurat yok). Kriterler: Otantiklik (doğru duruş), Tamamlanmış Duruşlar, Ritim, Akıcılık, Karakter ve Kostüm. Süre aşımı/eksiği her 10 sn için −1 (azami −5).",
+      en: "Wai Kru/Mai Muay is scored out of 100 (no fractions). Criteria: Authentic (correct postures), Completed Postures, Rhythmic, Fluidity, Personality and Costume. Over/under-run of time is −1 per 10 s (max −5)."
+    },
+    when: { tr: "Kültürel puanlamada.", en: "In cultural scoring." },
+    right: { tr: "Final skor: en yüksek ve en düşük atılır, kalan 3 hakem toplanır, süre kesintisi düşülür, /10 ve /3 → 2 ondalık (49.9.1).", en: "Final score: drop highest and lowest, add the remaining 3 judges, subtract time deductions, /10 then /3 → 2 decimals (49.9.1)." },
+    wrong: { tr: "Küsuratlı puan vermek veya raundu puanlamadan bırakmak.", en: "Giving fractional points, or leaving a round unscored." },
+    related: ["WAI_POSELIST", "JUDGE_10PT"],
+    tags: ["puanlama", "100 puan", "otantiklik", "kostüm", "49.1", "49.9"]
+  },
+  {
+    id: "WAI_POSELIST", module: "waikru", subtopic: "duruslist", label: "ifma",
+    rule: "49.7", revision: "2026-05-11", status: A,
+    discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Duruş listesi ve onay", en: "Posture list & approval" },
+    quick: {
+      tr: "Takımlar performanslarını, müsabakadan en az 60 dakika önce Yönetim Jürisine “Duruş Listesi” formuyla bildirir; jüri listeyi inceler ve maçları programa göre denetler.",
+      en: "Teams submit their performance on the “Posture List” form to the Administration Jury at least 60 minutes before the competition; the jury inspects the list and checks bouts against the schedule."
+    },
+    when: { tr: "Müsabaka öncesi hazırlıkta.", en: "In pre-competition preparation." },
+    right: { tr: "Kırmızı köşe oturarak (Prom Nang), Mavi köşe ayakta (Prom Yuen); duruşlar dört yöne yapılır (49.10.1, 49.10.3).", en: "Red corner sits (Prom Nang), Blue corner stands (Prom Yuen); postures are done to all four directions (49.10.1, 49.10.3)." },
+    wrong: { tr: "Listeyi 60 dk kuralına uymadan teslim etmek.", en: "Submitting the list past the 60-minute rule." },
+    related: ["WAI_KRITER", "OFF_JURY"],
+    tags: ["duruş listesi", "posture list", "jüri", "49.7", "48.2.2"]
   }
 
 ];

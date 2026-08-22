@@ -269,6 +269,7 @@ window.IFMA = window.IFMA || {};
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
     MED_KOH: "rest-table", WEIGH_ROOM: "weigh-staffing",
     FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table", CAT_ROUNDS: "category-table", CAT_REST: "category-table",
+    CAT_AGE: "category-table", CAT_EQUIP: "bodyprotector-table",
     JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-scale", JUDGE_RBR: "scoring-scale",
     JUDGE_SBS: "sbs-accept", JUDGE_BUTON: "sbs-accept",
     JUDGE_TARGET: "target-zones",
