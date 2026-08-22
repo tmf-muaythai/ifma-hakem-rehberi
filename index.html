@@ -1,16 +1,19 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>IFMA Yönetmelik ve Kurallar Hakem Kılavuzu</title>
+  <title>Muaythai Hakem Rehberi — IFMA 2026 Kuralları</title>
   <meta name="description" content="IFMA 2026 kurallarını hızlı, görsel ve kaynağı açık bir dijital rehbere dönüştüren hakem uygulaması." />
-  <meta name="theme-color" content="#12263A" />
+  <meta name="theme-color" content="#103A61" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="IFMA Hakem" />
+  <meta name="apple-mobile-web-app-title" content="Hakem Rehberi" />
   <link rel="manifest" href="manifest.webmanifest" />
+  <link id="altTr" rel="alternate" hreflang="tr" href="https://tmf-muaythai.github.io/ifma-hakem-rehberi/tr/" />
+  <link id="altEn" rel="alternate" hreflang="en" href="https://tmf-muaythai.github.io/ifma-hakem-rehberi/en/" />
+  <link id="altDefault" rel="alternate" hreflang="x-default" href="https://tmf-muaythai.github.io/ifma-hakem-rehberi/tr/" />
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -18,10 +21,20 @@
 <body>
   <div id="app" class="app" data-lang="tr">
     <header id="appHeader" class="app-header"></header>
+    <div id="modeBanner" class="mode-banner" hidden></div>
     <main id="main" class="main" tabindex="-1"></main>
     <nav id="tabbar" class="tabbar" aria-label="Ana navigasyon"></nav>
   </div>
   <div id="sheet" class="sheet" hidden></div>
+
+  <script>
+    (function () {
+      try {
+        var target = sessionStorage.getItem("ifma_redirect");
+        if (target) { sessionStorage.removeItem("ifma_redirect"); history.replaceState(null, "", target); }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- İçerik (koddan ayrı) -->
   <script src="data/meta.js"></script>

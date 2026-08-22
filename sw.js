@@ -3,7 +3,7 @@
    Temel kabuk + içerik çevrimdışı açılsın diye önbelleğe alınır.
    İçerik güncellenince CACHE sürümünü artır (v1 -> v2).
    ========================================================================= */
-var CACHE = "ifma-hakem-v1";
+var CACHE = "ifma-hakem-v4";
 var ASSETS = [
   "./",
   "index.html",
@@ -56,12 +56,16 @@ self.addEventListener("activate", function (e) {
 self.addEventListener("fetch", function (e) {
   var req = e.request;
   if (req.method !== "GET") return;
-  // Gezinme istekleri: önbellek -> ağ -> index.html
+  // Gezinme istekleri: ağ varsa güncel sayfa, yoksa uygulama kabuğu.
+  // Pretty URL'ler (/tr/kurallar/, /en/rule/...) GitHub Pages'te de offline açılır.
   if (req.mode === "navigate") {
     e.respondWith(
-      caches.match(req).then(function (r) {
-        return r || fetch(req).catch(function () { return caches.match("index.html"); });
-      })
+      fetch(req).then(function (res) {
+        if (!res || !res.ok) return caches.match("index.html");
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+        return res;
+      }).catch(function () { return caches.match(req).then(function (r) { return r || caches.match("index.html"); }); })
     );
     return;
   }

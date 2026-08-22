@@ -14,9 +14,13 @@ window.IFMA.meta = {
   revision: "2026-05-11",           // kaynak yönetmelik revizyonu
   revisionLabel: { tr: "Revizyon: 11.05.2026", en: "Revision: 11 May 2026" },
   defaultLang: "tr",
+  defaultTheme: "dark",
+  ruleset: "2026",
+  approval: { by: null, authority: "IFMA Rules and Regulations 2026", date: "2026-05-11" },
   languages: ["tr", "en"],
   // Bir içerik henüz o dilde uzman onayından geçmediyse "taslak" rozeti gösterilir.
-  langNames: { tr: "Türkçe", en: "English" }
+  langNames: { tr: "Türkçe", en: "English" },
+  rtlLanguages: ["ar", "fa", "he", "ur"]
 };
 
 /* ---- İçerik türü etiketleri (planın 3 etiketi) ---- */
@@ -38,8 +42,7 @@ window.IFMA.tabs = [
   { id: "home",     icon: "home",   tr: "Ana Sayfa", en: "Home" },
   { id: "rules",    icon: "book",   tr: "Kurallar",  en: "Rules" },
   { id: "task",     icon: "whistle",tr: "Görev Modu",en: "Task Mode" },
-  { id: "training", icon: "cap",    tr: "Eğitim",    en: "Training" },
-  { id: "search",   icon: "search", tr: "Arama",     en: "Search" }
+  { id: "training", icon: "cap",    tr: "Eğitim",    en: "Training" }
 ];
 
 /* ---- Arayüz metinleri ---- */
@@ -49,6 +52,23 @@ window.IFMA.ui = {
     tagline: "Hızlı • Görsel • Kaynağı açık kural rehberi",
     // Ana sayfa
     homeHello: "Bugün hangi bilgiye ihtiyacın var?",
+    homeTitle: "Yönetmelik ve Kurallar Hakem Kılavuzu",
+    globalSearch: "Global arama",
+    rulesetLabel: "Ruleset 2026",
+    activeFilters: "Aktif filtreler",
+    roleViewing: "olarak görüntülüyorsun",
+    change: "Değiştir",
+    sourceVerified: "Resmî kaynakla doğrulandı",
+    approverMissing: "Onaylayan kişi kaydı yok",
+    printPdf: "Yazdır / PDF",
+    copyLink: "Kalıcı linki kopyala",
+    copied: "Kopyalandı",
+    showOriginal: "Kuralın orijinal metnini göster",
+    hideOriginal: "Orijinal metni gizle",
+    originalUnavailable: "Bu kart için birebir orijinal kural metni veri setinde ayrı saklanmıyor. Resmî IFMA 2026 kaynağını açarak maddeyi doğrulayabilirsin.",
+    openOfficialSource: "Resmî IFMA kaynağını aç",
+    offline: "Çevrimdışı",
+    online: "Çevrimiçi",
     quickSearchPlaceholder: "Kural, komut, madde veya durum ara…",
     searchExamples: "Örnek: “U14 kafa diz”, “YOOT”, “RSC”, “31.2.18”, “20 sayımı”",
     todaysTaskTitle: "Bugünkü görevin nedir?",
@@ -137,6 +157,23 @@ window.IFMA.ui = {
     appName: "IFMA R&J Rules and Regulations Referee Guide",
     tagline: "Fast • Visual • Source-linked rule guide",
     homeHello: "What do you need to know right now?",
+    homeTitle: "Rules & Regulations Referee Guide",
+    globalSearch: "Global search",
+    rulesetLabel: "Ruleset 2026",
+    activeFilters: "Active filters",
+    roleViewing: "view",
+    change: "Change",
+    sourceVerified: "Verified against official source",
+    approverMissing: "No named approver recorded",
+    printPdf: "Print / PDF",
+    copyLink: "Copy permanent link",
+    copied: "Copied",
+    showOriginal: "Show original rule text",
+    hideOriginal: "Hide original text",
+    originalUnavailable: "The verbatim source text is not stored separately for this card. Open the official IFMA 2026 source to verify the article.",
+    openOfficialSource: "Open official IFMA source",
+    offline: "Offline",
+    online: "Online",
     quickSearchPlaceholder: "Search a rule, command, article or situation…",
     searchExamples: "e.g. “U14 knee to head”, “YOOT”, “RSC”, “31.2.18”, “20 count”",
     todaysTaskTitle: "What is your role today?",

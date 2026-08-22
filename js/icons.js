@@ -46,7 +46,10 @@ window.IFMA = window.IFMA || {};
     moon:   '<path d="M20 14.2A8 8 0 1 1 9.8 4 6.3 6.3 0 0 0 20 14.2z"/>',
     lock:   '<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
     qr:     '<rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1"/><path d="M14 14h3.2v3.2M20.5 14v.01M14 20.5v.01M17.2 20.5h3.3v-3.3"/>',
-    mail:   '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 12.5l8.5-6"/>'
+    mail:   '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 12.5l8.5-6"/>',
+    print:  '<path d="M7 8V3h10v5"/><rect x="6" y="14" width="12" height="7" rx="1"/><path d="M6 17H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/>',
+    link:   '<path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.1 1.1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1"/>',
+    translate:'<path d="M4 5h9M8.5 3v2M6 5c.6 3.6 2.8 6.1 6 7.5M11 5c-.5 3.2-2.6 6-6.5 8"/><path d="m14 20 3-8 3 8M15.2 17h3.6"/>'
   };
 
   IFMA.icon = function (name, cls) {
