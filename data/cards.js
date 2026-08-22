@@ -1140,7 +1140,7 @@ window.IFMA.cards = [
   /* ===================== ZAMAN & RESMİ GÖREVLİLER ===================== */
   {
     id: "OFF_CORNER", module: "zaman", subtopic: "kose", label: "ifma",
-    rule: "17", revision: "2026-05-11", status: AD,
+    rule: "17", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["corner"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Köşe Görevlisi davranış kuralları", en: "Corner (Second) conduct" },
@@ -1169,6 +1169,118 @@ window.IFMA.cards = [
     wrong: { tr: "Yetki dışı bireysel karara müdahale.", en: "Intervening in decisions outside its authority." },
     related: ["FOUL_APPEAL"],
     tags: ["jüri", "jury", "karar değiştirme", "25.3.2"]
+  },
+  {
+    id: "OFF_TIMEKEEPER", module: "zaman", subtopic: "zamanhakem", label: "ifma",
+    rule: "18.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["time"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Zaman Hakemi görevleri", en: "Timekeeper duties" },
+    quick: {
+      tr: "Ring kenarında oturan 1 Zaman Hakemi: Wai Kru süresini, raund sayısı/süresini ve araları düzenler, gong ile raundu başlatıp bitirir, her raund öncesi 10 sn “ring boşalsın” sinyali verir ve Hakem talimatıyla süreyi durdurur.",
+      en: "One ringside Timekeeper: regulates the Wai Kru duration, round number/duration and intervals, starts/ends each round by gong, signals 10 seconds to clear the ring before each round, and takes off time when instructed by the referee."
+    },
+    when: { tr: "Her maçta.", en: "In every contest." },
+    right: { tr: "Raund sonunda sporcu “down” ve Hakem sayıyorsa raund gongu ÇALINMAZ; gong yalnızca Hakem “CHOCK” komutundan sonra çalınır (18.1).", en: "If an athlete is “down” at round end and the referee is counting, the round-end gong is NOT sounded; the gong sounds only after the referee's “CHOCK” (18.1)." },
+    wrong: { tr: "Sayım sürerken raund bitiş gongunu çalmak.", en: "Sounding the round-end gong while a count is in progress." },
+    related: ["REF_TIME", "CAT_ROUNDS"],
+    tags: ["zaman hakemi", "gong", "timekeeper", "18.1"]
+  },
+  {
+    id: "OFF_ANNOUNCER", module: "zaman", subtopic: "anons", label: "ifma",
+    rule: "18.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: [],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Anons Hakemi görevleri", en: "Announcer duties" },
+    quick: {
+      tr: "1 Anons Hakemi: Jüriyi (günün ilk maçından önce), Orta/Yan Hakemleri ve sporcuları (ad/ülke/kategori/sıklet/köşe) anons eder; her raund öncesi 10 sn “Seconds out” der; sonuç ve kazananı duyurur.",
+      en: "One Announcer: announces the jury (before the day's first contest), the referee/judges and the athletes (name/country/division/weight/corner); calls “Seconds out” 10 s before each round; announces the result and the winner."
+    },
+    when: { tr: "Her maçta (gerekirse 1 tercüman).", en: "In every contest (a translator if needed)." },
+    right: { tr: "Anonslar sporcular ringe çıktığında ve raund başında yapılır (18.2).", en: "Announcements are made as athletes enter the ring and at the start of each round (18.2)." },
+    wrong: { tr: "Sonucu Orta Hakemin kartları teslim ve kontrolünden önce açıklamak.", en: "Announcing the result before the referee has collected and checked the cards." },
+    related: ["OFF_TIMEKEEPER", "REF_ENDMATCH"],
+    tags: ["anons hakemi", "seconds out", "announcer", "18.2"]
+  },
+  {
+    id: "OFF_TD", module: "zaman", subtopic: "td", label: "ifma",
+    rule: "21.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Teknik Delege (TD)", en: "Technical Delegate (TD)" },
+    quick: {
+      tr: "Teknik Delege müsabaka/şampiyonanın tüm yönlerinden sorumludur ve doğrudan Yönetim Kuruluna rapor verir; ring(ler)e yakın, ayrı bir yerde oturur.",
+      en: "The Technical Delegate is responsible for all aspects of the competition/championship and reports directly to the Executive Committee; seated separately, close to the ring(s)."
+    },
+    when: { tr: "Tüm müsabaka boyunca.", en: "Throughout the competition." },
+    right: { tr: "Tüm ilgili taraflarla gözetim ve koordinasyon sağlar; yorum konusunda nihai yetki TD ve/veya Başhakemdedir (22.2, 1.8.1).", en: "Observes and liaises with all parties; final authority on interpretation rests with the TD and/or COJ (22.2, 1.8.1)." },
+    wrong: { tr: "TD onayı olmadan format/ring düzeninde değişiklik yapmak.", en: "Changing the format/ring setup without the TD's approval." },
+    related: ["OFF_COJ", "OFF_JURY"],
+    tags: ["teknik delege", "td", "21.1", "22"]
+  },
+  {
+    id: "OFF_COJ", module: "zaman", subtopic: "coj", label: "ifma",
+    rule: "21.3", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Başhakem (COJ)", en: "Chairman of the Jury (COJ)" },
+    quick: {
+      tr: "Başhakem (COJ) tüm görevlileri ve müsabaka alanını (FOP) denetler ve doğrudan Teknik Delegeye rapor verir.",
+      en: "The Chairman of the Jury (COJ) oversees all officials and the field of play (FOP) and reports directly to the Technical Delegate."
+    },
+    when: { tr: "Tüm müsabaka boyunca.", en: "Throughout the competition." },
+    right: { tr: "FOP içindeki tüm taraflarla gözetim ve koordinasyon sağlar (24.2).", en: "Observes and liaises with all parties within the FOP (24.2)." },
+    wrong: { tr: "Görevli performansını gözetmeden bırakmak.", en: "Leaving official performance unsupervised." },
+    related: ["OFF_TD", "OFF_JURY"],
+    tags: ["başhakem", "coj", "21.3", "24"]
+  },
+  {
+    id: "OFF_MCM", module: "zaman", subtopic: "mcm", label: "ifma",
+    rule: "21.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Sağlık Kurulu Üyesi (MCM)", en: "Medical Commission Member (MCM)" },
+    quick: {
+      tr: "Sağlık Kurulu Üyesi (MCM), Kıta/Dünya şampiyonalarında sağlık ekibini denetler ve TD'ye rapor verir; ring doktorlarıyla günlük brifing yapar ve olay anında doktora tavsiye verir.",
+      en: "The Medical Commission Member (MCM) oversees the medical team at Continental/World championships and reports to the TD; holds a daily briefing with the ring doctors and advises the doctor during an incident."
+    },
+    when: { tr: "Kıta/Dünya şampiyonalarında.", en: "At Continental/World championships." },
+    right: { tr: "Takım doktoru dahil tüm tıbbi konularda nihai yetki MCM'dedir (28.3).", en: "The MCM has final authority on all medical matters, including over the team doctor (28.3)." },
+    wrong: { tr: "Tıbbi kararı MCM gözetimi dışında vermek.", en: "Taking a medical decision outside the MCM's authority." },
+    related: ["OFF_DOCTOR", "REF_DOKTOR"],
+    tags: ["mcm", "sağlık kurulu", "medical commission", "21.2", "23"]
+  },
+  {
+    id: "OFF_DOCTOR", module: "zaman", subtopic: "doktortakim", label: "ifma",
+    rule: "28", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: [],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Takım Doktoru", en: "Team Doctor" },
+    quick: {
+      tr: "Her Ulusal Federasyon sporcularına destek için bir Takım Doktoru görevlendirebilir; doktor federasyon sporcularının sağlık ve tıbbi gözetiminden sorumludur ve MCM yetkisi altındadır.",
+      en: "Each National Federation may appoint a Team Doctor to support its athletes; the doctor is responsible for their medical care and supervision and is under the MCM's authority."
+    },
+    when: { tr: "Müsabaka/şampiyona süresince.", en: "During the competition/championship." },
+    right: { tr: "Ring doktorunun görevleri Kural 33'te ayrıdır; maç durdurma tavsiyesi bağlayıcıdır.", en: "The ring doctor's duties are separate (Rule 33); a recommendation to stop is binding." },
+    wrong: { tr: "Takım doktorunu ring doktoruyla karıştırmak.", en: "Confusing the team doctor with the ring doctor." },
+    related: ["OFF_MCM", "REF_DOKTOR"],
+    tags: ["takım doktoru", "team doctor", "28"]
+  },
+  {
+    id: "OFF_IMPARTIAL", module: "zaman", subtopic: "tarafsizlik", label: "ifma",
+    rule: "21.8", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Görev değişimi ve tarafsızlık", en: "Rotation & impartiality" },
+    quick: {
+      tr: "Her maçta Orta ve Yan Hakemler; birbirinden ve sporculardan farklı ülke ve dernekten olmalıdır. Bir maçta aynı kıtadan en fazla 2 görevli bulunabilir.",
+      en: "For each contest the referee and judges must be from a different country and association from each other and from the athletes. No more than 2 officials in one contest may be from the same continent."
+    },
+    when: { tr: "Görevli atamasında.", en: "In official assignment." },
+    right: { tr: "Birden fazla ring varsa ITO görevlileri RSportz ile ringlere rastgele atanır (21.8.1). Çıkar çatışması olan görevli çekilir (21.9).", en: "With more than one ring, ITOs are randomly allocated to rings by RSportz (21.8.1). An official with a conflict of interest must recuse themselves (21.9)." },
+    wrong: { tr: "Sporcunun ülkesinden bir hakemi o maça atamak.", en: "Assigning a referee from an athlete's own country to that contest." },
+    related: ["OFF_JURY", "OFF_TD"],
+    tags: ["tarafsızlık", "rotasyon", "ito", "neutrality", "21.8"]
   },
 
   /* ===================== WAI KRU & MAI MUAY ===================== */
