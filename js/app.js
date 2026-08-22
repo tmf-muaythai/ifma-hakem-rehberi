@@ -21,6 +21,22 @@
   function loadJSON(k, def) { try { return JSON.parse(store.get(k)) || def; } catch (e) { return def; } }
   function saveJSON(k, v) { store.set(k, JSON.stringify(v)); }
 
+  /* ---------- Sabitler + tema (gece/gündüz) ---------- */
+  var APP_URL = "https://tmf-muaythai.github.io/ifma-hakem-rehberi/";
+  var RULES_PDF = "https://muaythai.sport/wp-content/uploads/2026/05/IFMA-Rules-and-Regulations-v3.057_110526.pdf";
+  var REFEREE_APP_URL = "https://tmf-muaythai.github.io/tmf-referee/";
+  function currentTheme() {
+    var th = store.get("ifma_theme");
+    if (th === "dark" || th === "light") return th;
+    return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+  }
+  function applyTheme() {
+    var th = store.get("ifma_theme");
+    if (th === "dark" || th === "light") document.documentElement.setAttribute("data-theme", th);
+    else document.documentElement.removeAttribute("data-theme");
+  }
+  function toggleTheme() { store.set("ifma_theme", currentTheme() === "dark" ? "light" : "dark"); applyTheme(); render(); }
+
   /* ---------- Durum ---------- */
   var state = {
     lang: (store.get("ifma_lang") === "en" ? "en" : (D.meta.defaultLang || "tr")),
@@ -94,18 +110,24 @@
       ctx = '<button class="ctx-btn" data-act="open-cat">' + ic("filter") + esc(t("pickCategory")) + '</button>';
     }
 
+    // Marka kilidi: logo görseli yerine tipografik amblem. Ad ilk boşluktan
+    // ayrılır -> "IFMA" büyük marka, kalanı alt başlık. (TR ve EN uyumlu.)
+    var full = t("appName");
+    var sp = full.indexOf(" ");
+    var mark = sp > 0 ? full.slice(0, sp) : full;
+    var desc = sp > 0 ? full.slice(sp + 1) : "";
+    var wordmark =
+      '<div class="hd-wordmark">' +
+        '<span class="hd-brand-mark">' + esc(mark) + '</span>' +
+        (desc ? '<span class="hd-brand-desc">' + esc(desc) + '</span>' : '') +
+      '</div>';
+
     h.innerHTML =
-      '<div class="hd-row">' +
-        '<div class="hd-brand">' +
-          '<div class="hd-logo">IFMA</div>' +
-          '<div class="hd-titles">' +
-            '<div class="hd-title">' + esc(t("appName")) + '</div>' +
-            '<div class="hd-sub">' + esc(L(D.meta.revisionLabel)) + '</div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="hd-spacer"></div>' +
+      '<div class="hd-toprow">' +
+        '<button class="hd-icon-btn" data-act="theme" aria-label="' + esc(t("themeLabel")) + '">' + ic(currentTheme() === "dark" ? "sun" : "moon") + '</button>' +
         '<div class="lang-toggle">' + langBtns + '</div>' +
       '</div>' +
+      '<div class="hd-brand-c">' + wordmark + '</div>' +
       '<div class="hd-context">' + ctx + '</div>';
   }
 
@@ -174,6 +196,8 @@
       '<div class="source-body"><b>' + esc(t("whatsChangedTitle")) + '</b> — ' + esc(t("whatsChangedDesc")) +
       '<br>' + esc(t("phaseNote")) + '</div></div></div>';
 
+    html += footerHtml();
+
     html += '</div>';
     return html;
   }
@@ -181,6 +205,32 @@
   function emptyBox(msg, icon) {
     return '<div class="empty-state">' + ic(icon || "info") + '<div>' + esc(msg) + '</div></div>';
   }
+
+  function footerHtml() {
+    return '<footer class="app-footer">' +
+      '<div class="ft-credit">Designed &amp; Developed by <b>Afra UZ</b> · TMF Muaythai</div>' +
+      '<div class="ft-feedback">' + esc(t("footerFeedback")) + ' <a href="mailto:afrauz@outlook.com">afrauz@outlook.com</a></div>' +
+      '<div class="ft-btns">' +
+        '<a class="ft-btn" href="privacy.html" target="_blank" rel="noopener">' + ic("lock") + '<span>' + esc(t("btnPrivacy")) + '</span></a>' +
+        '<a class="ft-btn" href="' + RULES_PDF + '" target="_blank" rel="noopener">' + ic("doc") + '<span>' + esc(t("btnRules")) + '</span></a>' +
+        '<button class="ft-btn" data-act="qr">' + ic("qr") + '<span>' + esc(t("btnQR")) + '</span></button>' +
+        '<a class="ft-btn ft-btn-app" href="' + REFEREE_APP_URL + '" target="_blank" rel="noopener">' + ic("cap") + '<span>' + esc(t("btnRefEng")) + '</span></a>' +
+      '</div>' +
+      '<div class="ft-fed">' + esc(t("footerFed")) + '</div>' +
+    '</footer>';
+  }
+  function openQR() {
+    var s = document.getElementById("sheet");
+    s.innerHTML = '<div class="sheet-back" data-act="sheet-close"></div>' +
+      '<div class="sheet-card">' +
+        '<button class="sheet-x" data-act="sheet-close" aria-label="Kapat">' + ic("x") + '</button>' +
+        '<div class="sheet-title">' + esc(t("btnQR")) + '</div>' +
+        '<img class="qr-img" src="assets/img/qr.png" alt="QR" />' +
+        '<div class="qr-url">' + esc(APP_URL) + '</div>' +
+      '</div>';
+    s.hidden = false;
+  }
+  function closeSheet() { var s = document.getElementById("sheet"); if (s) { s.hidden = true; s.innerHTML = ""; } }
 
   /* ================= KURALLAR (modül ızgarası) ================= */
   function viewRules() {
@@ -329,19 +379,15 @@
     html += '<div class="block quick-block"><div class="block-label">' + ic("bolt") + esc(t("cardQuickAnswer")) + '</div>' +
       '<div class="quick-text">' + esc(L(c.quick)) + '</div></div>';
 
-    // Ne zaman geçerli
-    html += '<div class="block"><div class="block-label">' + ic("filter") + esc(t("cardWhenValid")) + '</div>' +
-      '<div class="when-text">' + esc(L(c.when)) + whenChips(c) + '</div></div>';
+    // "Ne zaman geçerli?" bloğu istek üzerine kaldırıldı.
 
     // Görsel anlatım (yer tutucu)
     html += '<div class="block"><div class="block-label">' + ic("camera") + esc(t("cardVisual")) + '</div>' + mediaBox(c) + '</div>';
 
-    // Doğru / yanlış
-    if (c.right || c.wrong) {
-      html += '<div class="rw-grid">';
-      if (c.right) html += '<div class="rw ok"><div class="rw-head">' + ic("check") + esc(t("cardRight")) + '</div><div class="rw-text">' + esc(L(c.right)) + '</div></div>';
-      if (c.wrong) html += '<div class="rw no"><div class="rw-head">' + ic("x") + esc(t("cardWrong")) + '</div><div class="rw-text">' + esc(L(c.wrong)) + '</div></div>';
-      html += '</div>';
+    // Doğru uygulama ("Sık yapılan hata" bloğu istek üzerine kaldırıldı)
+    if (c.right) {
+      html += '<div class="rw-grid"><div class="rw ok"><div class="rw-head">' + ic("check") + esc(t("cardRight")) +
+        '</div><div class="rw-text">' + esc(L(c.right)) + '</div></div></div>';
     }
 
     // Kaynak
@@ -349,6 +395,15 @@
       '<b>' + esc(t("cardSource")) + ':</b> ' + esc(D.meta.source) +
       (c.rule && c.rule !== "—" ? ' • <b>' + esc(t("cardRuleNo")) + '</b> ' + esc(c.rule) : "") +
       ' • ' + esc(L(D.meta.revisionLabel)) + '</div></div>';
+
+    // Belge / bağlantı
+    if (c.links && c.links.length) {
+      html += '<div><div class="section-title">' + esc(t("cardLinks")) + '</div><div class="related-row">' +
+        c.links.map(function (lk) {
+          return '<a class="doc-link" href="' + esc(lk.url) + '" target="_blank" rel="noopener noreferrer">' +
+            ic("doc") + '<span>' + esc(L(lk.label)) + '</span>' + ic("chevron") + '</a>';
+        }).join("") + '</div></div>';
+    }
 
     // İlgili içerikler
     var rel = (c.related || []).map(function (rid) { return cardIndex[rid]; }).filter(Boolean);
@@ -735,6 +790,12 @@
     switch (act) {
       case "lang":
         state.lang = el.getAttribute("data-lang"); store.set("ifma_lang", state.lang); render(); break;
+      case "theme":
+        toggleTheme(); break;
+      case "qr":
+        openQR(); break;
+      case "sheet-close":
+        closeSheet(); break;
       case "tab":
         go(el.getAttribute("data-tab")); break;
       case "open-cat":
@@ -793,5 +854,6 @@
   });
 
   /* ================= BAŞLAT ================= */
+  applyTheme();
   render();
 })();

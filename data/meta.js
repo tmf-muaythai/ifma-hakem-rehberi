@@ -45,7 +45,7 @@ window.IFMA.tabs = [
 /* ---- Arayüz metinleri ---- */
 window.IFMA.ui = {
   tr: {
-    appName: "IFMA Hakem Rehberi",
+    appName: "IFMA Yönetmelik ve Kurallar Hakem Kılavuzu",
     tagline: "Hızlı • Görsel • Kaynağı açık kural rehberi",
     // Ana sayfa
     homeHello: "Bugün hangi bilgiye ihtiyacın var?",
@@ -123,10 +123,18 @@ window.IFMA.ui = {
     draftNote: "Bu içeriğin bu dildeki çevirisi henüz uzman onayından geçmedi.",
     seeAll: "Tümünü gör",
     inThisModule: "Bu modülde",
-    phaseNote: "1. faz: arayüz + örnek içerik. Fotoğraf ve videolar sonra eklenecek."
+    phaseNote: "1. faz: arayüz + örnek içerik. Fotoğraf ve videolar sonra eklenecek.",
+    cardLinks: "Belge / bağlantı",
+    footerFeedback: "Görüş ve öneriler için:",
+    btnPrivacy: "Gizlilik Politikası",
+    btnRules: "Güncel Talimat",
+    btnQR: "QR Kod ile Paylaş",
+    footerFed: "Türkiye Muaythai Federasyonu",
+    btnRefEng: "Muaythai Hakem İngilizcesi",
+    themeLabel: "Tema (gece/gündüz)"
   },
   en: {
-    appName: "IFMA Referee Guide",
+    appName: "IFMA R&J Rules and Regulations Referee Guide",
     tagline: "Fast • Visual • Source-linked rule guide",
     homeHello: "What do you need to know right now?",
     quickSearchPlaceholder: "Search a rule, command, article or situation…",
@@ -197,6 +205,14 @@ window.IFMA.ui = {
     draftNote: "The translation of this content has not yet been approved by an expert.",
     seeAll: "See all",
     inThisModule: "In this module",
-    phaseNote: "Phase 1: interface + sample content. Photos and videos come later."
+    phaseNote: "Phase 1: interface + sample content. Photos and videos come later.",
+    cardLinks: "Document / link",
+    footerFeedback: "For feedback and suggestions:",
+    btnPrivacy: "Privacy Policy",
+    btnRules: "Current Rules",
+    btnQR: "Share via QR",
+    footerFed: "Türkiye Muaythai Federasyonu",
+    btnRefEng: "Muaythai Referee English",
+    themeLabel: "Theme (day/night)"
   }
 };

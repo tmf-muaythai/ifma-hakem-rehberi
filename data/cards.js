@@ -959,6 +959,26 @@ window.IFMA.cards = [
     tags: ["koh", "rsch", "dinlenme", "30 gün", "9.1"]
   },
   {
+    id: "MED_FORM", module: "kayit", subtopic: "saglik", label: "ifma",
+    rule: "10.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: true, video: false, animation: false },
+    imgs: [
+      { src: "assets/img/form-medical-declaration.jpg", cap: { tr: "Bölüm 1 — Sağlık durumu beyanı", en: "Section 1 — Medical conditions" } },
+      { src: "assets/img/form-pregnancy-declaration.jpg", cap: { tr: "Bölüm 4 — Kadın sporcular için Hamile Olmama Beyanı", en: "Section 4 — Female Non-Pregnancy Declaration" } }
+    ],
+    links: [ { url: "https://muaythai.sport/wp-content/uploads/2020/06/IFMA-Medical-Declaration-for-Athletes-V.9.pdf", label: { tr: "Tam formu aç / indir (PDF, 4 sayfa)", en: "Open / download full form (PDF, 4 pages)" } } ],
+    title: { tr: "IFMA Tıbbi Beyan Formu", en: "IFMA Medical Declaration Form" },
+    quick: {
+      tr: "Sporcunun sağlık durumunu beyan ettiği, yetkili bir tıp doktoru tarafından imzalanan resmî IFMA formu (İngilizce, 4 bölüm: sağlık durumu, doktor onayı, kilo kontrolü ve kadın sporcular için hamile olmama beyanı). Kayıt/akreditasyonda ibraz edilir.",
+      en: "The official IFMA form declaring the athlete's health, signed by a licensed doctor (in English, 4 sections: medical conditions, physician approval, weight-cut control and a female non-pregnancy declaration). Presented at registration/accreditation."
+    },
+    when: { tr: "Kayıt/akreditasyonda (Kural 10.1).", en: "At registration/accreditation (Rule 10.1)." },
+    right: { tr: "18 yaş altı için veli/vasi imzası gerekir; 16+ için HIV/HBV/HCV kan testleri eklenir. Hamile olmama beyanı tüm kadın sporcular için doldurulur (10.1.1, 10.2).", en: "Under-18s need a parent/guardian signature; ages 16+ add HIV/HBV/HCV blood tests. The non-pregnancy declaration is completed by all female athletes (10.1.1, 10.2)." },
+    related: ["REG_DOCS", "DOPING_FORM"],
+    tags: ["tıbbi beyan formu", "medical declaration", "sağlık formu", "hamile olmama beyanı", "gebelik", "non-pregnancy", "10.1"]
+  },
+  {
     id: "TMF_ACCRED", module: "kayit", subtopic: "kimlik", label: "tmf",
     rule: "Ek IX / TMF", revision: "2026-05-11", status: P,
     discipline: [], age: [], gender: [], role: ["weigh"],
@@ -987,8 +1007,25 @@ window.IFMA.cards = [
     when: { tr: "Kayıt/akreditasyon aşamasında.", en: "At registration/accreditation." },
     right: { tr: "18 yaş altı için tıbbi ve anti-doping formları veli/vasi ek imzası gerektirir (10.1.1, 12.1.1).", en: "For under-18s, the medical and anti-doping forms need a parent/guardian's extra signature (10.1.1, 12.1.1)." },
     wrong: { tr: "Eksik belge veya süresi geçmiş kan testiyle akredite etmek.", en: "Accrediting with missing documents or expired blood tests." },
-    related: ["REG_KHAN", "WEIGH_OFFICIAL"],
+    related: ["REG_KHAN", "WEIGH_OFFICIAL", "MED_FORM", "DOPING_FORM"],
     tags: ["evrak", "belge", "kan testi", "tıbbi beyan", "anti-doping", "10.1", "10.2", "12.1"]
+  },
+  {
+    id: "DOPING_FORM", module: "kayit", subtopic: "belgeler", label: "ifma",
+    rule: "12.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: true, video: false, animation: false },
+    imgs: [ { src: "assets/img/form-consent.jpg", cap: { tr: "Anti-Doping Onay Formu (2020) — 1. sayfa (tamamı 2 sayfa)", en: "Athlete Consent Form (2020) — page 1 (2 pages total)" } } ],
+    links: [ { url: "https://muaythai.sport/wp-content/uploads/2020/06/Athlete-Consent-Form-IFMA-Events-and-Anti-Doping_2020.pdf", label: { tr: "Formu aç / indir (PDF)", en: "Open / download form (PDF)" } } ],
+    title: { tr: "Anti-Doping Onay Formu", en: "Athlete Consent Form (Anti-Doping)" },
+    quick: {
+      tr: "Sporcunun IFMA etkinlikleri ve anti-doping kurallarını kabul ettiği resmî onay formu. Kayıtta imzalanır.",
+      en: "The official consent form by which the athlete accepts IFMA events and the anti-doping rules. Signed at registration."
+    },
+    when: { tr: "Kayıtta (Kural 12.1.1).", en: "At registration (Rule 12.1.1)." },
+    right: { tr: "18 yaş altı sporcular için veli/vasi imzası zorunludur (12.1.1).", en: "For under-18 athletes a parent/guardian signature is required (12.1.1)." },
+    related: ["REG_DOCS", "MED_FORM"],
+    tags: ["anti-doping onay formu", "consent form", "doping", "onay formu", "12.1"]
   },
   {
     id: "REG_KHAN", module: "kayit", subtopic: "khanbelge", label: "ifma",

@@ -7,6 +7,7 @@ var CACHE = "ifma-hakem-v1";
 var ASSETS = [
   "./",
   "index.html",
+  "privacy.html",
   "manifest.webmanifest",
   "css/styles.css",
   "js/icons.js",
@@ -21,6 +22,8 @@ var ASSETS = [
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
   "assets/icons/icon-512-maskable.png",
+  "assets/img/logo.png",
+  "assets/img/qr.png",
   "assets/img/fop-ring.png",
   "assets/img/fop-tatami.png",
   "assets/img/ring-dimensions.png",
@@ -32,7 +35,10 @@ var ASSETS = [
   "assets/img/groin-guard-female.jpg",
   "assets/img/chest-guard.jpg",
   "assets/img/body-protector.jpg",
-  "assets/img/wraps.jpg"
+  "assets/img/wraps.jpg",
+  "assets/img/form-medical-declaration.jpg",
+  "assets/img/form-pregnancy-declaration.jpg",
+  "assets/img/form-consent.jpg"
 ];
 
 self.addEventListener("install", function (e) {
