@@ -832,7 +832,7 @@ window.IFMA.cards = [
   /* ===================== SPORCU KAYIT & TARTI ===================== */
   {
     id: "WEIGH_5PCT", module: "kayit", subtopic: "gunluktarti", label: "ifma",
-    rule: "11.1.2", revision: "2026-05-11", status: AD,
+    rule: "11.1.2", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Maç öncesi tartı: %5 / bir üst sıklet", en: "Pre-contest weigh-in: 5% / one class up" },
@@ -848,7 +848,7 @@ window.IFMA.cards = [
   },
   {
     id: "WEIGH_ONCE", module: "kayit", subtopic: "tektarti", label: "ifma",
-    rule: "11.3.3", revision: "2026-05-11", status: AD,
+    rule: "11.3.3", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Tek tartı hakkı", en: "One weigh-in attempt" },
@@ -864,7 +864,7 @@ window.IFMA.cards = [
   },
   {
     id: "MED_KOH", module: "kayit", subtopic: "saglik", label: "ifma",
-    rule: "9.1", revision: "2026-05-11", status: AD,
+    rule: "9.1", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["jury", "weigh"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "KOH/RSCH sonrası zorunlu dinlenme", en: "Mandatory rest after KOH/RSCH" },
@@ -893,6 +893,86 @@ window.IFMA.cards = [
     wrong: { tr: "Belge doğrulaması olmadan akredite etmek.", en: "Accrediting without document verification." },
     related: ["MED_KOH"],
     tags: ["akreditasyon", "sporcu kitabı", "khan", "tmf", "kayıt"]
+  },
+  {
+    id: "REG_DOCS", module: "kayit", subtopic: "belgeler", label: "ifma",
+    rule: "10, 12", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Kayıt için gerekli evraklar", en: "Documents required for registration" },
+    quick: {
+      tr: "Kayıt/akreditasyonda gerekenler: IFMA Tıbbi Beyan Formu (doktor imzalı), 16+ için HIV/HBV/HCV kan testleri (son 6 ay), Sporcu Kitabı, geçerli Khan sertifikası ve Anti-Doping Onay Formu.",
+      en: "Required at registration/accreditation: the IFMA Medical Declaration Form (doctor-signed), HIV/HBV/HCV blood tests for ages 16+ (within 6 months), the Athletes Book, a valid Khan certificate and the Anti-Doping Consent Form."
+    },
+    when: { tr: "Kayıt/akreditasyon aşamasında.", en: "At registration/accreditation." },
+    right: { tr: "18 yaş altı için tıbbi ve anti-doping formları veli/vasi ek imzası gerektirir (10.1.1, 12.1.1).", en: "For under-18s, the medical and anti-doping forms need a parent/guardian's extra signature (10.1.1, 12.1.1)." },
+    wrong: { tr: "Eksik belge veya süresi geçmiş kan testiyle akredite etmek.", en: "Accrediting with missing documents or expired blood tests." },
+    related: ["REG_KHAN", "WEIGH_OFFICIAL"],
+    tags: ["evrak", "belge", "kan testi", "tıbbi beyan", "anti-doping", "10.1", "10.2", "12.1"]
+  },
+  {
+    id: "REG_KHAN", module: "kayit", subtopic: "khanbelge", label: "ifma",
+    rule: "6", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Khan derecesi şartı", en: "Khan level requirement" },
+    quick: {
+      tr: "IFMA etkinliklerinde asgari Khan derecesi şarttır. Sporcular: Elite/U24/35+/40+/45+ = 6, U18 = 5, U16 = 4, U14 = 3, U12 = 2, U10/U8 = 1.",
+      en: "A minimum Khan level is required at IFMA events. Athletes: Elite/U24/Masters 35+/40+/45+ = 6, U18 = 5, U16 = 4, U14 = 3, U12 = 2, U10/U8 = 1."
+    },
+    when: { tr: "Kayıt/akreditasyonda geçerli Khan sertifikası ibraz edilir.", en: "A valid Khan certificate is presented at registration/accreditation." },
+    right: { tr: "Antrenörler: Menajer/Kıdemli Antrenör = 10, Antrenör/Köşe = 7, Teknik Görevliler = 7 (6.2).", en: "Officials: Manager/Senior Coach = 10, Coach/Seconds = 7, Technical Officials = 7 (6.2)." },
+    wrong: { tr: "Geçerli Khan sertifikası olmadan katılıma izin vermek.", en: "Allowing participation without a valid Khan certificate." },
+    related: ["REG_DOCS"],
+    tags: ["khan", "derece", "6", "6.1", "6.2"]
+  },
+  {
+    id: "WEIGH_OFFICIAL", module: "kayit", subtopic: "resmitarti", label: "ifma",
+    rule: "11.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Resmi, günlük ve maç öncesi tartı", en: "Official, daily & pre-contest weigh-in" },
+    quick: {
+      tr: "Üç tartı zamanı: Resmi Kayıt Tartısı (1 gün önce), Günlük Müsabaka Tartısı (her sabah) ve Maç Öncesi Tartı (maçtan önce herhangi bir zaman). Müsabaka, günlük tartıdan en az 3 saat sonra başlar.",
+      en: "Three weigh-in times: Official Weigh-In (1 day before), Competition Weigh-In (each morning) and Pre-Contest Weigh-In (any time before the bout). Competition starts at least 3 hours after the Competition Weigh-In."
+    },
+    when: { tr: "Müsabaka öncesi ve günlerinde.", en: "Before and on competition days." },
+    right: { tr: "Tartıya katılmayan sporcu otomatik diskalifiye (DSQ); sıkleti tutturamayan veya sağlık kontrolünü geçemeyen mağlup sayılır ve rakibe WO verilir (11.3.1, 11.4).", en: "Not attending = automatic DSQ; failing to make weight or the medical = a loss, and a WO to the opponent (11.3.1, 11.4)." },
+    wrong: { tr: "Günlük tartı ile maç arasındaki 3 saatlik süreye uymamak.", en: "Not observing the 3-hour gap between the daily weigh-in and the bout." },
+    related: ["WEIGH_5PCT", "WEIGH_STANDARD"],
+    tags: ["resmi tartı", "günlük tartı", "maç öncesi tartı", "official weigh-in", "11.1"]
+  },
+  {
+    id: "WEIGH_STANDARD", module: "kayit", subtopic: "tartistandart", label: "ifma",
+    rule: "11.3.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Tartı görünüm standardı", en: "Weigh-in appearance standard" },
+    quick: {
+      tr: "Sporcular tartıya uygun hafif iç çamaşırıyla ve müsabakaya tamamen hazır halde çıkar (çorapsız, sakal tıraşı olmuş, ayak tırnakları kesilmiş vb.).",
+      en: "Athletes weigh in wearing suitable lightweight undergarments, fully prepared for competition (no socks, facial hair shaved, toenails trimmed, etc.)."
+    },
+    when: { tr: "Her tartıda.", en: "At every weigh-in." },
+    right: { tr: "Kadın sporcuların tartısı aynı yapı ve modelle ayrı yürütülür (11.3.5–11.3.6).", en: "Female weigh-ins are conducted separately using the same structure (11.3.5–11.3.6)." },
+    wrong: { tr: "Uygun olmayan kıyafetle veya hazırlıksız tartıya çıkmak.", en: "Weighing in with unsuitable clothing or unprepared." },
+    related: ["WEIGH_OFFICIAL", "WEIGH_ROOM"],
+    tags: ["tartı görünüm", "iç çamaşırı", "11.3.2"]
+  },
+  {
+    id: "WEIGH_ROOM", module: "kayit", subtopic: "tartiodasi", label: "ifma",
+    rule: "11.3.6", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Tartı odası görev dağılımı", en: "Weigh-in room staffing" },
+    quick: {
+      tr: "Bir Tartı Noktası 3 Teknik Görevliden oluşur: giriş kontrolü, kilo ölçümü ve belgelendirme. Bir Jüri üyesi Tartı Baş Sorumlusu olarak atanır.",
+      en: "A Weigh-in Station has 3 Technical Officials: entry control, weight measurement and documentation. One Jury member is appointed Head of Weigh-ins."
+    },
+    when: { tr: "Tartı organizasyonunda.", en: "In organising the weigh-in." },
+    right: { tr: "Bir nokta saatte ~20 sporcu işler. Ölçek: 60 sporcu = 3 görevli + 1 jüri; 120 = 6+1; 180 = 9+1; 300 = 15+1 (11.3.6).", en: "One station processes ~20 athletes/hour. Scaling: 60 athletes = 3 officials + 1 jury; 120 = 6+1; 180 = 9+1; 300 = 15+1 (11.3.6)." },
+    wrong: { tr: "Görevli sayısını sporcu sayısına göre planlamamak.", en: "Not scaling official numbers to the athlete count." },
+    related: ["WEIGH_STANDARD", "WEIGH_OFFICIAL"],
+    tags: ["tartı odası", "görevli", "staffing", "11.3.6"]
   },
 
   /* ===================== MÜSABAKA ALANI & EKİPMAN ===================== */

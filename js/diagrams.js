@@ -207,6 +207,36 @@ window.IFMA = window.IFMA || {};
                                    "Accepted score: majority within 1 s of the first button • Rule 29.4.2") + '</div></div>';
   };
 
+  // Maç sonrası zorunlu dinlenme (raund sayısına göre)
+  DG["rest-table"] = function (lang) {
+    var rows = [["1", tr(lang, "7 gün", "7 days")], ["2–4", tr(lang, "14 gün", "14 days")],
+                ["4–9", tr(lang, "21 gün", "21 days")], ["10+", tr(lang, "28 gün", "28 days")],
+                ["KOH/RSCH", tr(lang, "30 gün", "30 days")]];
+    var body = rows.map(function (r) {
+      var hl = r[0] === "KOH/RSCH" ? ' class="lim"' : "";
+      return '<tr><td class="k">' + r[0] + '</td><td' + hl + '>' + r[1] + '</td></tr>';
+    }).join("");
+    return '<div class="diagram dg-scroll"><table class="dg-table"><thead><tr><th>' +
+      tr(lang, "Raund sayısı", "Rounds") + '</th><th>' + tr(lang, "Zorunlu dinlenme", "Mandatory rest") +
+      '</th></tr></thead><tbody>' + body + '</tbody></table><div class="dg-cap">' +
+      tr(lang, "Maç sonrası zorunlu dinlenme • Kural 10.6 (KOH/RSCH önceliklidir)",
+               "Mandatory rest after a bout • Rule 10.6 (KOH/RSCH takes priority)") + '</div></div>';
+  };
+
+  // Tartı görevli ölçeği (sporcu sayısına göre)
+  DG["weigh-staffing"] = function (lang) {
+    var rows = [["60", "3 + 1", "1"], ["120", "6 + 1", "2"], ["180", "9 + 1", "3"], ["300", "15 + 1", "5"]];
+    var body = rows.map(function (r) {
+      return '<tr><td class="k">' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td></tr>';
+    }).join("");
+    return '<div class="diagram dg-scroll"><table class="dg-table"><thead><tr><th>' +
+      tr(lang, "Sporcu", "Athletes") + '</th><th>' + tr(lang, "Görevli + Jüri", "Officials + Jury") +
+      '</th><th>' + tr(lang, "İstasyon", "Stations") + '</th></tr></thead><tbody>' + body +
+      '</tbody></table><div class="dg-cap">' +
+      tr(lang, "Bir tartı noktası ~20 sporcu/saat • Kural 11.3.6", "One station ~20 athletes/hour • Rule 11.3.6") +
+      '</div></div>';
+  };
+
   IFMA.diagrams = DG;
   IFMA.hasDiagram = function (name) { return !!(name && DG[name]); };
   IFMA.renderDiagram = function (name, lang) { return DG[name] ? DG[name](lang) : ""; };
@@ -219,6 +249,7 @@ window.IFMA = window.IFMA || {};
     REF_RSC_POWER: "decision-tree", FOUL_RSC: "decision-tree", REF_ENDMATCH: "decision-tree",
     FOUL_DOUBLE_KD: "count-flow", FOUL_RETDQ: "decision-tree", FOUL_WONC: "decision-tree",
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
+    MED_KOH: "rest-table", WEIGH_ROOM: "weigh-staffing",
     FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table", CAT_ROUNDS: "category-table", CAT_REST: "category-table",
     JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-scale", JUDGE_RBR: "scoring-scale",
     JUDGE_SBS: "sbs-accept", JUDGE_BUTON: "sbs-accept",
