@@ -9,8 +9,10 @@
    ========================================================================= */
 window.IFMA = window.IFMA || {};
 
-var A = { tr: "approved", en: "draft" };   // TR resmi çeviri = onaylı, EN taslak
-var P = { tr: "pending",  en: "pending" }; // kaynak bekliyor
+// EN artık resmî İngilizce IFMA metninden (v3.057) alınıyor → doğrulanan modüllerde onaylı.
+var A  = { tr: "approved", en: "approved" }; // TR + EN onaylı (resmî kaynaktan doğrulandı)
+var AD = { tr: "approved", en: "draft" };    // EN henüz kaynaktan doğrulanmadı (taslak)
+var P  = { tr: "pending",  en: "pending" };  // kaynak bekliyor
 
 window.IFMA.cards = [
 
@@ -58,7 +60,7 @@ window.IFMA.cards = [
     title: { tr: "CHOCK (Dövüş)", en: "CHOCK (Fight)" },
     quick: {
       tr: "Sporcuların (yeniden) dövüşmeye başlaması için “CHOCK” (Dövüş) komutu verilir.",
-      en: "“CHOCK” (Fight) tells the athletes to (re)start fighting."
+      en: "“CHOCK” (Fight) is the command for athletes to (re)start fighting."
     },
     when: { tr: "Maç/raund başlangıcı ve her duraklamadan sonra.", en: "At match/round start and after every stoppage." },
     right: { tr: "Yalnızca “CHOCK” komutundan sonra dövüşe devam edilir.", en: "Fighting resumes only after the “CHOCK” command." },
@@ -161,6 +163,136 @@ window.IFMA.cards = [
     wrong: { tr: "Komutu mırıldanmak; işaretsiz durdurmak.", en: "Mumbling the command; stopping without a signal." },
     related: ["REF_YOOT", "REF_CHOCK"],
     tags: ["eğitim", "training", "komut", "drill", "yoot", "chock"]
+  },
+  {
+    id: "REF_RINGGIRIS", module: "orta", subtopic: "ringgiris", label: "ifma",
+    rule: "19.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Ringe giriş ve ekipman kontrolü", en: "Ring entry & equipment check" },
+    quick: {
+      tr: "Sporcu ekipmanı hazır ringe gelir; mongkon köşe tarafından takılır ve Orta Hakem sporcunun köşesinde ekipman kontrolü yapar.",
+      en: "The athlete enters ready-equipped; the corner places the mongkon, and the referee checks the equipment at the athlete's corner."
+    },
+    when: { tr: "Maç öncesi, ringe girişte.", en: "Pre-match, on ring entry." },
+    right: { tr: "Bandaj/el sargısı, eldiven, dirseklik, kaval ve kasık koruyucu kontrol edilir; mongkon, kask ve dişlik köşe tarafından tutulur (19.1).",
+             en: "Wraps, gloves, elbow guard, shin and groin guards are checked; the mongkon, headguard and gum shield are held by the corner (19.1)." },
+    wrong: { tr: "Kontrol tamamlanmadan Wai Kru'ya veya maça geçmek.", en: "Moving to Wai Kru or the match before the check is complete." },
+    related: ["AREA_EQUIP", "REF_BASLATMA"],
+    tags: ["ringe giriş", "ekipman kontrolü", "mongkon", "19.1"]
+  },
+  {
+    id: "REF_BASLATMA", module: "orta", subtopic: "baslatma", label: "ifma",
+    rule: "19.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Maç başlatma sırası", en: "Starting sequence" },
+    quick: {
+      tr: "Ekipman kontrolü → Orta Hakem Wai Kru sinyali → selamlaşma (Wai) → gong → “CHOCK” ile başla.",
+      en: "Equipment check → referee signals Wai Kru → salute (Wai) → gong → start with “CHOCK”."
+    },
+    when: { tr: "Her maç başında.", en: "At the start of every match." },
+    right: { tr: "Selamlaşma yalnızca 1. raund öncesi ve maç sonu yapılır; raund arası selamlaşma yasaktır (19.3.1).",
+             en: "The salute is only before round 1 and after the result; saluting between rounds is prohibited (19.3.1)." },
+    wrong: { tr: "Wai Kru veya selamlaşma sırasını atlamak.", en: "Skipping the Wai Kru or salute sequence." },
+    related: ["REF_CHOCK", "WAI_WHAT"],
+    tags: ["başlangıç", "wai kru", "selamlaşma", "gong", "19"]
+  },
+  {
+    id: "REF_POZISYON", module: "orta", subtopic: "pozisyon", label: "ifma",
+    rule: "26.3", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Adımlama ve pozisyon", en: "Footwork & positioning" },
+    quick: {
+      tr: "Orta Hakem maçın tüm aşamalarında kontrolü sürdürür ve güçsüz düşmüş bir sporcunun gereksiz darbe almasını önleyecek şekilde konumlanır.",
+      en: "The referee maintains control at all stages and positions to prevent a weakened athlete from taking undue punishment."
+    },
+    when: { tr: "Maç boyunca.", en: "Throughout the match." },
+    right: { tr: "Sporculara net görüş açısı koruyan, hızlı müdahaleye hazır mesafe.", en: "A distance that keeps a clear view and allows quick intervention." },
+    wrong: { tr: "Görüşü kapatan ya da müdahaleye uzak konum.", en: "Blocking the view, or standing too far to intervene." },
+    related: ["REF_SAFETY", "REF_CLINCH"],
+    tags: ["pozisyon", "adımlama", "kontrol", "26"]
+  },
+  {
+    id: "REF_CLINCH", module: "orta", subtopic: "clinch", label: "ifma",
+    rule: "26.3", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: false, video: true, animation: false },
+    title: { tr: "Clinch ayırma", en: "Breaking the clinch" },
+    quick: {
+      tr: "Clinch Muaythai'nin bir parçasıdır; gerektiğinde Orta Hakem “YAEK” ile ayırır, sporcular geri çekilir ve “CHOCK” ile devam edilir.",
+      en: "The clinch is part of Muaythai; when needed the referee breaks it with “YAEK”, athletes step back, and play resumes on “CHOCK”."
+    },
+    when: { tr: "Clinch / kilitlenme durumlarında.", en: "In clinch / locking situations." },
+    right: { tr: "“YAEK” → geri adım → “CHOCK”.", en: "“YAEK” → step back → “CHOCK”." },
+    wrong: { tr: "Rakibin bacağını tutup 2 adımdan fazla ilerlemek (31.2.19) veya tamamen pasif clinch.", en: "Holding the opponent's leg and stepping more than 2 steps (31.2.19), or a fully passive clinch." },
+    related: ["REF_YAEK", "FOUL_CAT_LIMIT"],
+    tags: ["clinch", "yaek", "ayırma", "26.3", "31.2.19"]
+  },
+  {
+    id: "REF_IKAZIHTAR", module: "orta", subtopic: "ikazihtar", label: "ifma",
+    rule: "31.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "İkaz ve ihtar verme", en: "Giving a caution & a warning" },
+    quick: {
+      tr: "Küçük ihlalde fiziksel işaretle sözlü İkaz; ciddi/tekrar eden ihlalde maçı durdurup İhtar ver, Jüriye bildir ve işaretle.",
+      en: "A verbal Caution with a physical signal for minor infringements; for serious/repeated ones, stop the match, give a Warning, inform the jury and signal it."
+    },
+    when: { tr: "Faul değerlendirmesinde.", en: "When assessing a foul." },
+    right: { tr: "Aynı ihlalden 3 İkaz → 1 İhtar. Bir maçta 3 İhtar → Diskalifiye.", en: "3 Cautions for the same offence → 1 Warning. 3 Warnings in a contest → disqualification." },
+    wrong: { tr: "İhtarı sessizce vermek; İkaz için maçı gereksiz durdurmak.", en: "Giving a Warning silently; stopping the match unnecessarily for a Caution." },
+    related: ["FOUL_CLASS", "JUDGE_DEDUCT"],
+    tags: ["ikaz", "ihtar", "caution", "warning", "31.1"]
+  },
+  {
+    id: "REF_SAYIMREF", module: "orta", subtopic: "sayimref", label: "ifma",
+    rule: "32.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: false, video: true, animation: false },
+    title: { tr: "Sayım yapma", en: "Performing the count" },
+    quick: {
+      tr: "Knockdown'da Orta Hakem “YOOT” der ve Tayca yüksek sesle sayar (NUENG→SIB); darbeyle NUENG arasında en az 1 sn, her sayı 1 sn arayla ve elle gösterilir.",
+      en: "On a knockdown the referee commands “YOOT” and counts aloud in Thai (NUENG→SIB); at least 1 s between the blow and NUENG, each number 1 s apart, shown by hand."
+    },
+    when: { tr: "Her knockdown'da.", en: "At every knockdown." },
+    right: { tr: "8 (BAED)'e kadar zorunlu; 8'de hazırsa “CHOCK”, değilse 10 (SIB) = KO.", en: "Mandatory to 8 (BAED); if ready at 8 → “CHOCK”, otherwise 10 (SIB) = KO." },
+    wrong: { tr: "Çok hızlı saymak; sporcu erken kalktı diye 8'den önce başlatmak.", en: "Counting too fast; resuming before 8 because the athlete rose early." },
+    related: ["FOUL_COUNT_THAI", "FOUL_RULE8", "FOUL_KO"],
+    tags: ["sayım", "count", "nueng", "sib", "baed", "32.2"]
+  },
+  {
+    id: "REF_DOKTOR", module: "orta", subtopic: "doktor", label: "ifma",
+    rule: "30.2.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: true, video: false, animation: false },
+    title: { tr: "Doktor çağırma", en: "Calling the doctor" },
+    quick: {
+      tr: "Ciddi yaralanmada Orta Hakem doktoru tarafsız köşeye çağırır ve en fazla 1 dk danışır; doktor durdur derse Hakem uymak zorundadır.",
+      en: "For a serious injury the referee calls the doctor to the neutral corner and consults for no more than 1 min; if the doctor advises to stop, the referee must comply."
+    },
+    when: { tr: "Sakatlık / ciddi yaralanma durumunda.", en: "On injury / serious harm." },
+    right: { tr: "Doktor muayenesinde ringde yalnızca Hakem ve doktor bulunur; köşe giremez (30.2.2).", en: "During the exam only the referee and doctor are in the ring; no Second may enter (30.2.2)." },
+    wrong: { tr: "Köşenin ringe veya aprona girmesine izin vermek.", en: "Letting a Second enter the ring or apron." },
+    related: ["REF_RSC_POWER", "FOUL_RSC"],
+    tags: ["doktor", "rsci", "yaralanma", "30.2.2", "33"]
+  },
+  {
+    id: "REF_OUTRING", module: "orta", subtopic: "ringdisi", label: "ifma",
+    rule: "30.10", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["ref"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Ring dışına düşme (Hakem)", en: "Fall out of the ring (referee)" },
+    quick: {
+      tr: "Sporcu ring dışına düşerse Orta Hakem derhal “YOOT” der ve sayar; sporcu yardımsız 20 (Yee-Sib) sayımı içinde ringe dönmelidir.",
+      en: "If an athlete falls out, the referee immediately commands “YOOT” and counts; the athlete must return unaided within a count of 20 (Yee-Sib)."
+    },
+    when: { tr: "Sporcu ring dışına düştüğünde.", en: "When an athlete falls out of the ring." },
+    right: { tr: "20 içinde dönerse devam; dönemezse ringdeki sporcu RSC ile kazanır. Sporcuya yardım/engel olunmadığından emin ol.", en: "Returns within 20 → continue; if not, the athlete in the ring wins by RSC. Ensure the athlete is neither assisted nor hindered." },
+    wrong: { tr: "Süreyi durdurmadan saymak; sporcuya yardım edilmesine izin vermek.", en: "Counting without stopping time; allowing help to the athlete." },
+    related: ["FOUL_OUTRING", "REF_TIME"],
+    tags: ["ring dışı", "20", "yee-sib", "30.10"]
   },
 
   /* ===================== FAUL / SAYIM / KARARLAR ===================== */
@@ -492,7 +624,7 @@ window.IFMA.cards = [
   /* ===================== SPORCU KAYIT & TARTI ===================== */
   {
     id: "WEIGH_5PCT", module: "kayit", subtopic: "gunluktarti", label: "ifma",
-    rule: "11.1.2", revision: "2026-05-11", status: A,
+    rule: "11.1.2", revision: "2026-05-11", status: AD,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Maç öncesi tartı: %5 / bir üst sıklet", en: "Pre-contest weigh-in: 5% / one class up" },
@@ -508,7 +640,7 @@ window.IFMA.cards = [
   },
   {
     id: "WEIGH_ONCE", module: "kayit", subtopic: "tektarti", label: "ifma",
-    rule: "11.3.3", revision: "2026-05-11", status: A,
+    rule: "11.3.3", revision: "2026-05-11", status: AD,
     discipline: [], age: [], gender: [], role: ["weigh"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Tek tartı hakkı", en: "One weigh-in attempt" },
@@ -524,7 +656,7 @@ window.IFMA.cards = [
   },
   {
     id: "MED_KOH", module: "kayit", subtopic: "saglik", label: "ifma",
-    rule: "9.1", revision: "2026-05-11", status: A,
+    rule: "9.1", revision: "2026-05-11", status: AD,
     discipline: [], age: [], gender: [], role: ["jury", "weigh"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "KOH/RSCH sonrası zorunlu dinlenme", en: "Mandatory rest after KOH/RSCH" },
@@ -558,7 +690,7 @@ window.IFMA.cards = [
   /* ===================== MÜSABAKA ALANI & EKİPMAN ===================== */
   {
     id: "AREA_FOP", module: "alan", subtopic: "fop", label: "ifma",
-    rule: "13", revision: "2026-05-11", status: A,
+    rule: "13", revision: "2026-05-11", status: AD,
     discipline: [], age: [], gender: [], role: [],
     media: { photo: true, video: false, animation: false },
     title: { tr: "Müsabaka alanı (FOP) yerleşimi", en: "Field of Play (FOP) layout" },
@@ -574,7 +706,7 @@ window.IFMA.cards = [
   },
   {
     id: "AREA_EQUIP", module: "alan", subtopic: "eldiven", label: "ifma",
-    rule: "15", revision: "2026-05-11", status: A,
+    rule: "15", revision: "2026-05-11", status: AD,
     discipline: [], age: [], gender: [], role: ["ref", "corner"],
     media: { photo: true, video: true, animation: false },
     title: { tr: "Zorunlu koruyucu ekipman", en: "Mandatory protective equipment" },
@@ -592,7 +724,7 @@ window.IFMA.cards = [
   /* ===================== ZAMAN & RESMİ GÖREVLİLER ===================== */
   {
     id: "OFF_CORNER", module: "zaman", subtopic: "kose", label: "ifma",
-    rule: "17", revision: "2026-05-11", status: A,
+    rule: "17", revision: "2026-05-11", status: AD,
     discipline: [], age: [], gender: [], role: ["corner"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Köşe Görevlisi davranış kuralları", en: "Corner (Second) conduct" },
@@ -626,7 +758,7 @@ window.IFMA.cards = [
   /* ===================== WAI KRU & MAI MUAY ===================== */
   {
     id: "WAI_WHAT", module: "waikru", subtopic: "wainedir", label: "ifma",
-    rule: "20", revision: "2026-05-11", status: A,
+    rule: "20", revision: "2026-05-11", status: AD,
     discipline: ["waikru", "maimuay"], age: [], gender: [], role: ["judge"],
     media: { photo: true, video: true, animation: false },
     title: { tr: "Wai Kru nedir?", en: "What is Wai Kru?" },
@@ -642,7 +774,7 @@ window.IFMA.cards = [
   },
   {
     id: "WAI_LIMIT", module: "waikru", subtopic: "muziksure", label: "ifma",
-    rule: "34.1", revision: "2026-05-11", status: A,
+    rule: "34.1", revision: "2026-05-11", status: AD,
     discipline: ["waikru", "maimuay"], age: [], gender: [], role: [],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Kültürel katılım limiti", en: "Cultural participation limit" },

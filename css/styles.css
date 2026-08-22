@@ -473,3 +473,54 @@ svg.ic { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
 /* İnce kaydırma çubuğu */
 .main::-webkit-scrollbar { width: 8px; }
 .main::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 8px; }
+
+/* ---------- Diyagramlar ---------- */
+.diagram { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.dg-cap { font-size: 11px; color: var(--ink-3); margin-top: 10px; text-align: center; }
+.dg-title { font-weight: 800; font-size: 13px; color: var(--ink-2); margin-bottom: 10px; text-align: center; }
+.dg-flow { display: flex; flex-direction: column; gap: 0; }
+.dg-node { border-radius: 10px; padding: 10px 12px; text-align: center; border: 1px solid var(--line-2); background: var(--surface); }
+.dg-node-t { display: block; font-weight: 700; font-size: 13.5px; }
+.dg-node-s { display: block; font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+.dg-node.navy { background: var(--navy-2); border-color: var(--navy-2); }
+.dg-node.navy .dg-node-t { color: #fff; } .dg-node.navy .dg-node-s { color: #C7D6E5; }
+.dg-node.teal { background: var(--teal); border-color: var(--teal); }
+.dg-node.teal .dg-node-t { color: #fff; } .dg-node.teal .dg-node-s { color: #DAF3F5; }
+.dg-node.red { background: var(--wrong-bg); border-color: var(--wrong-line); }
+.dg-node.red .dg-node-t { color: var(--wrong-ink); } .dg-node.red .dg-node-s { color: var(--wrong-ink); }
+.dg-node.muted { background: var(--surface-3); }
+.dg-arrow { text-align: center; color: var(--ink-3); font-size: 15px; padding: 3px 0; }
+.dg-b-q { text-align: center; font-weight: 700; font-size: 12px; color: var(--ink-2); margin-bottom: 8px; }
+.dg-b-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dg-count-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.dg-cnt { border: 1px solid var(--line-2); border-radius: 8px; padding: 8px 4px; text-align: center; background: var(--surface); }
+.dg-cnt b { display: block; font-size: 15px; color: var(--ink); }
+.dg-cnt span { font-size: 9.5px; color: var(--ink-3); letter-spacing: .3px; }
+.dg-cnt.hi { background: var(--navy-2); border-color: var(--navy-2); }
+.dg-cnt.hi b, .dg-cnt.hi span { color: #fff; }
+.dg-out-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dg-out { border: 1px solid var(--line-2); border-left: 4px solid var(--ink-3); border-radius: 10px; padding: 9px 11px; background: var(--surface); }
+.dg-out b { font-size: 15px; font-weight: 800; }
+.dg-out span { display: block; font-size: 12px; color: var(--ink-2); margin-top: 1px; }
+.dg-out em { display: block; font-style: normal; font-size: 9.5px; color: var(--ink-3); margin-top: 4px; letter-spacing: .2px; }
+.dg-out.teal { border-left-color: var(--teal); } .dg-out.teal b { color: var(--teal-2); }
+.dg-out.navy { border-left-color: var(--navy-3); } .dg-out.navy b { color: var(--navy-3); }
+.dg-out.red { border-left-color: var(--wrong-ink); } .dg-out.red b { color: var(--wrong-ink); }
+.dg-out.amber { border-left-color: var(--amber); } .dg-out.amber b { color: var(--amber); }
+.dg-out.muted { border-left-color: var(--ink-3); }
+.dg-scale { display: flex; flex-direction: column; gap: 8px; }
+.dg-scale-row { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line-2); border-left: 5px solid var(--ink-3); border-radius: 10px; padding: 10px 12px; background: var(--surface); }
+.dg-scale-row b { font-size: 15px; font-weight: 800; min-width: 54px; }
+.dg-scale-row span { font-weight: 600; font-size: 13px; }
+.dg-scale-row em { margin-left: auto; font-style: normal; font-size: 11px; color: var(--ink-3); text-align: right; }
+.dg-scale-row.teal { border-left-color: var(--teal); } .dg-scale-row.navy { border-left-color: var(--navy-3); }
+.dg-scale-row.amber { border-left-color: var(--amber); } .dg-scale-row.red { border-left-color: var(--wrong-ink); }
+.dg-scroll { overflow-x: auto; }
+.dg-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.dg-table th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .3px; color: var(--ink-3); padding: 6px 8px; border-bottom: 2px solid var(--line-2); white-space: nowrap; }
+.dg-table td { padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.dg-table td.k { font-weight: 700; }
+.dg-table td.lim { color: var(--wrong-ink); font-size: 11px; }
+.dg-svg { width: 100%; height: auto; max-height: 230px; display: block; }
+.media-note { display: flex; gap: 7px; align-items: center; font-size: 11px; color: var(--ink-2); margin-top: 8px; padding: 7px 10px; background: var(--surface-3); border-radius: 8px; }
+.media-note .ic { width: 14px; height: 14px; color: var(--teal); }

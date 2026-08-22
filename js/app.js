@@ -294,6 +294,7 @@
   }
   function mediaTags(c) {
     var m = c.media || {}; var out = "";
+    if (window.IFMA.cardDiagram && window.IFMA.cardDiagram[c.id]) out += '<span class="media-tag">' + ic("grid") + (lang() === "tr" ? "Şema" : "Diagram") + '</span>';
     if (m.photo) out += '<span class="media-tag">' + ic("camera") + (lang() === "tr" ? "Foto" : "Photo") + '</span>';
     if (m.video) out += '<span class="media-tag">' + ic("film") + (lang() === "tr" ? "Video" : "Video") + '</span>';
     if (m.animation) out += '<span class="media-tag">' + ic("play") + (lang() === "tr" ? "Anim." : "Anim.") + '</span>';
@@ -372,6 +373,16 @@
 
   function mediaBox(c) {
     var m = c.media || {};
+    // Diyagram varsa görsel anlatım kutusunda onu göster
+    var dg = window.IFMA.cardDiagram && window.IFMA.cardDiagram[c.id];
+    if (dg && window.IFMA.hasDiagram && window.IFMA.hasDiagram(dg)) {
+      var note = "";
+      if (m.photo || m.video) {
+        note = '<div class="media-note">' + ic("info") + '<span>' +
+          (lang() === "tr" ? "Şema — fotoğraf/video sonraki fazda eklenecek." : "Diagram — photo/video added in a later phase.") + '</span></div>';
+      }
+      return window.IFMA.renderDiagram(dg, lang()) + note;
+    }
     var tags = "";
     if (m.photo) tags += '<span class="media-tag">' + ic("camera") + (lang() === "tr" ? "Fotoğraf" : "Photo") + '</span>';
     if (m.video) tags += '<span class="media-tag">' + ic("film") + "Video" + '</span>';

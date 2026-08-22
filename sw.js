@@ -11,6 +11,7 @@ var ASSETS = [
   "css/styles.css",
   "js/icons.js",
   "js/search.js",
+  "js/diagrams.js",
   "js/app.js",
   "data/meta.js",
   "data/categories.js",

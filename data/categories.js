@@ -24,8 +24,8 @@ window.IFMA.filters = {
     { id: "U24",   tr: "U24",          en: "U24" },
     { id: "ELITE", tr: "Elite",        en: "Elite" },
     { id: "M35",   tr: "Büyükler 35+", en: "Masters 35+" },
-    { id: "V40",   tr: "Veteranlar 40+", en: "Veterans 40+" },
-    { id: "V45",   tr: "Veteranlar 45+", en: "Veterans 45+" }
+    { id: "V40",   tr: "Veteranlar 40+", en: "Masters 40+" },
+    { id: "V45",   tr: "Veteranlar 45+", en: "Masters 45+" }
   ],
   gender: [
     { id: "female", tr: "Kadın", en: "Female" },
