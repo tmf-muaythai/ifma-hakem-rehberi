@@ -20,7 +20,7 @@ window.IFMA.taskModes = {
       { tr: "Clinch / ayırma / faul / ikaz / ihtar", en: "Clinch / break / foul / caution / warning", cards: ["FOUL_CLASS", "FOUL_CAT_LIMIT"] },
       { tr: "Knockdown ve sayım", en: "Knockdown & count", cards: ["FOUL_KNOCKDOWN", "FOUL_COUNT_THAI", "FOUL_RULE8"] },
       { tr: "Doktor gerektiren durum / RSC", en: "Doctor situation / RSC", cards: ["REF_RSC_POWER", "FOUL_RSC"] },
-      { tr: "Raund sonu ve dinlenme", en: "Round end & rest", cards: ["CAT_ROUNDS", "CAT_REST"] },
+      { tr: "Raund sonu ve dinlenme", en: "Round end & rest", cards: ["CAT_ROUNDS"] },
       { tr: "Maç sonu: skor kartları ve karar", en: "Match end: scorecards & decision", cards: ["REF_ENDMATCH"] },
       { tr: "Bir sonraki Orta Hakeme devir", en: "Handover to the next referee", cards: [] }
     ]
@@ -38,7 +38,7 @@ window.IFMA.taskModes = {
     focus: { tr: "Başlat / durdur • gong • ara süreleri • istisnalar", en: "Start / stop • gong • intervals • exceptions" },
     steps: [
       { tr: "Raund süresi ve gong", en: "Round time & gong", cards: ["CAT_ROUNDS"] },
-      { tr: "Ara (dinlenme) süreleri", en: "Rest intervals", cards: ["CAT_REST"] },
+      { tr: "Ara (dinlenme) süreleri", en: "Rest intervals", cards: ["CAT_ROUNDS"] },
       { tr: "“TIME” komutunda süreyi durdur", en: "Stop the clock on “TIME”", cards: ["REF_TIME"] }
     ]
   },
@@ -52,7 +52,7 @@ window.IFMA.taskModes = {
   weigh: {
     focus: { tr: "Belge • sağlık • tartı akışı • rapor • özel durumlar", en: "Documents • medical • weigh-in flow • report • special cases" },
     steps: [
-      { tr: "Akreditasyon ve belge kontrolü", en: "Accreditation & document check", cards: ["TMF_ACCRED"] },
+      { tr: "Akreditasyon ve belge kontrolü", en: "Accreditation & document check", cards: ["REG_ACCREDITATION", "REG_ATHLETES_BOOK"] },
       { tr: "Resmi / günlük / maç öncesi tartı", en: "Official / daily / pre-contest weigh-in", cards: ["WEIGH_5PCT", "WEIGH_ONCE"] },
       { tr: "KOH/RSCH dinlenme kontrolü", en: "KOH/RSCH rest check", cards: ["MED_KOH"] }
     ]

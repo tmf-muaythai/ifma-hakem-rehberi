@@ -549,6 +549,411 @@ svg.ic { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
 .card-img:last-child { margin-bottom: 0; }
 .card-img img { width: 100%; height: auto; display: block; border-radius: 6px; }
 .card-img figcaption { font-size: 11px; color: #55606b; text-align: center; margin-top: 7px; }
+
+/* Veriyle üretilen Khan derecesi tablosu */
+.khan-table-card {
+  overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--gold) 42%,var(--line));
+  border-radius:14px;
+  background:var(--surface);
+  box-shadow:0 12px 30px rgba(8,31,53,.14);
+}
+.registration-media .khan-table-card { margin-top:10px; }
+.khan-table-hero {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:12px;
+  padding:17px 18px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 92% 0,rgba(240,199,94,.24),transparent 32%),
+    linear-gradient(135deg,var(--navy-2),var(--navy-3));
+}
+.khan-table-mark {
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:12px;
+  color:var(--gold-2);
+  background:rgba(255,255,255,.09);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+.khan-table-mark .ic { width:23px;height:23px; }
+.khan-table-hero h3 { margin:0;font-size:17px;line-height:1.2;letter-spacing:-.01em; }
+.khan-table-hero p { margin:4px 0 0;color:rgba(255,255,255,.72);font-size:11.5px;line-height:1.35; }
+.khan-rule-chip {
+  align-self:start;
+  padding:5px 8px;
+  border:1px solid rgba(240,199,94,.48);
+  border-radius:999px;
+  color:var(--gold-2);
+  background:rgba(0,0,0,.13);
+  font-size:10.5px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.khan-table-layout {
+  display:grid;
+  grid-template-columns:minmax(330px,1.08fr) minmax(300px,.92fr);
+  gap:1px;
+  background:var(--line);
+}
+.khan-athlete-panel,.khan-official-panel { min-width:0;padding:15px;background:var(--surface); }
+.khan-section-title {
+  min-height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:9px;
+}
+.khan-section-title > span { color:var(--ink);font-size:12.5px;font-weight:850; }
+.khan-section-title > small { color:var(--ink-3);font-size:9.5px;font-weight:750;text-transform:uppercase;letter-spacing:.06em; }
+.khan-athlete-table { width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--line);border-radius:10px;font-size:12px; }
+.khan-athlete-table thead th {
+  padding:8px 10px;
+  color:var(--ink-2);
+  background:var(--surface-3);
+  font-size:9.5px;
+  font-weight:800;
+  text-align:left;
+  text-transform:uppercase;
+  letter-spacing:.055em;
+}
+.khan-athlete-table thead th:last-child { width:94px;text-align:center; }
+.khan-athlete-table tbody th,.khan-athlete-table tbody td { padding:7px 10px;border-top:1px solid var(--line);background:var(--surface); }
+.khan-athlete-table tbody th { color:var(--ink);font-weight:700;text-align:left; }
+.khan-athlete-table tbody td { text-align:center; }
+.khan-athlete-table tbody tr:nth-child(even) th,.khan-athlete-table tbody tr:nth-child(even) td { background:color-mix(in srgb,var(--surface-3) 40%,var(--surface)); }
+.khan-level {
+  min-width:58px;
+  display:inline-flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:5px;
+  padding:4px 8px;
+  border:1px solid transparent;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:900;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.khan-level small { font-size:8.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;opacity:.74; }
+.khan-level.is-foundation { color:var(--navy-3);background:color-mix(in srgb,var(--navy-3) 9%,var(--surface));border-color:color-mix(in srgb,var(--navy-3) 20%,var(--line)); }
+.khan-level.is-progress { color:var(--teal-2);background:color-mix(in srgb,var(--teal) 10%,var(--surface));border-color:color-mix(in srgb,var(--teal) 25%,var(--line)); }
+.khan-level.is-advanced { color:color-mix(in srgb,var(--gold) 78%,var(--ink));background:color-mix(in srgb,var(--gold) 12%,var(--surface));border-color:color-mix(in srgb,var(--gold) 34%,var(--line)); }
+.khan-level.is-instructor { color:#7A4CC2;background:color-mix(in srgb,#8D62CC 11%,var(--surface));border-color:color-mix(in srgb,#8D62CC 27%,var(--line)); }
+.khan-official-list { display:grid;gap:9px; }
+.khan-official-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px 12px;
+  padding:11px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:color-mix(in srgb,var(--surface-3) 34%,var(--surface));
+  box-shadow:var(--shadow-sm);
+}
+.khan-official-role span,.khan-official-definition span { display:block;margin-bottom:2px;color:var(--ink-3);font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.055em; }
+.khan-official-role strong { display:block;color:var(--ink);font-size:11.5px;line-height:1.35; }
+.khan-official-definition { grid-column:1 / -1;padding-top:8px;border-top:1px solid var(--line); }
+.khan-official-definition strong { color:var(--action);font-size:11px;line-height:1.3; }
+.khan-official-row .khan-level { align-self:start; }
+
+@media (max-width:740px) {
+  .khan-table-layout { grid-template-columns:1fr; }
+  .khan-table-hero { padding:14px; }
+}
+@media (max-width:420px) {
+  .khan-table-hero { grid-template-columns:auto minmax(0,1fr);gap:10px; }
+  .khan-rule-chip { grid-column:2;justify-self:start; }
+  .khan-athlete-panel,.khan-official-panel { padding:11px; }
+  .khan-section-title { align-items:flex-start;flex-direction:column;gap:2px; }
+  .khan-athlete-table thead th:last-child { width:86px; }
+}
+
+/* Tartı modülü: hiyerarşik içerik gezgini */
+.weighing-workspace { display:grid;grid-template-columns:minmax(250px,292px) minmax(0,1fr);align-items:start;gap:14px; }
+.weighing-outline {
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface);
+  box-shadow:var(--shadow-sm);
+}
+.weighing-outline-head { display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 14px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--navy-3) 7%,var(--surface)); }
+.weighing-outline-head span { color:var(--ink);font-size:12.5px;font-weight:850; }
+.weighing-outline-head small { color:var(--ink-3);font-size:10px;font-weight:750; }
+.weighing-outline-list { display:grid;gap:3px;padding:7px; }
+.weighing-outline-item {
+  width:100%;
+  min-height:49px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:9px;
+  border:1px solid transparent;
+  border-radius:9px;
+  padding:7px 8px;
+  color:var(--ink-2);
+  background:transparent;
+  text-align:left;
+}
+.weighing-outline-item:hover { background:var(--surface-3);color:var(--ink); }
+.weighing-outline-item.on { border-color:color-mix(in srgb,var(--action) 52%,var(--line));background:color-mix(in srgb,var(--action) 8%,var(--surface));color:var(--ink);box-shadow:inset 3px 0 0 var(--action); }
+.weighing-outline-item.depth-0 { margin-top:3px;border-top-color:var(--line);font-weight:800; }
+.weighing-outline-item.depth-1 { width:calc(100% - 12px);margin-left:12px; }
+.weighing-outline-item.depth-2 { width:calc(100% - 26px);margin-left:26px;min-height:45px; }
+.weighing-outline-number { min-width:32px;height:28px;display:grid;place-items:center;padding:0 6px;border-radius:8px;color:var(--navy-3);background:color-mix(in srgb,var(--navy-3) 9%,var(--surface));font-size:10.5px;font-weight:900;font-variant-numeric:tabular-nums; }
+.weighing-outline-item.on .weighing-outline-number { color:#fff;background:var(--action); }
+.weighing-outline-copy { min-width:0; }
+.weighing-outline-copy strong { display:block;overflow:hidden;color:inherit;font-size:11.5px;line-height:1.3;text-overflow:ellipsis; }
+.weighing-outline-copy small { display:block;margin-top:3px;color:var(--ink-3);font-size:9px;font-weight:700; }
+.weighing-outline-item > .ic { width:14px;height:14px;color:var(--ink-3); }
+.weighing-content { min-width:0; }
+
+/* Kategori Kuralları: ikinci bir liste ekranı olmadan doğrudan içerik */
+.category-direct-tabs {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:7px;
+  margin:0 0 13px;
+  padding:5px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface-3);
+}
+.category-direct-tab {
+  min-width:0;
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px;
+  border:1px solid transparent;
+  border-radius:10px;
+  color:var(--ink-2);
+  background:transparent;
+  text-align:left;
+}
+.category-direct-tab:hover { color:var(--ink);background:color-mix(in srgb,var(--navy-3) 6%,var(--surface)); }
+.category-direct-tab.on { color:var(--ink);border-color:color-mix(in srgb,var(--action) 55%,var(--line));background:var(--surface);box-shadow:var(--shadow-sm),inset 0 -3px 0 var(--action); }
+.category-tab-number { width:27px;height:27px;display:grid;place-items:center;flex:0 0 auto;border-radius:8px;color:var(--navy-3);background:color-mix(in srgb,var(--navy-3) 9%,var(--surface));font-size:11px;font-weight:900; }
+.category-direct-tab.on .category-tab-number { color:#fff;background:var(--action); }
+.category-tab-copy { min-width:0; }
+.category-tab-copy strong { display:block;font-size:10.5px;line-height:1.25; }
+.category-tab-copy small { display:block;margin-top:4px;color:var(--ink-3);font-size:8.5px;font-weight:750; }
+.category-direct-content { min-width:0; }
+
+/* Kural 7: kodla yönetilen kategori/raund tablosu */
+.rounds-table-card { overflow:hidden;margin:10px auto 0;border:1px solid color-mix(in srgb,var(--action) 35%,var(--line));border-radius:14px;background:var(--surface);box-shadow:0 12px 28px rgba(8,31,53,.13); }
+.rounds-table-card > header { display:flex;align-items:center;gap:11px;padding:15px 16px;color:#fff;background:radial-gradient(circle at 88% 0,rgba(239,193,73,.2),transparent 35%),linear-gradient(135deg,var(--navy-2),var(--navy-3)); }
+.rounds-table-mark { width:39px;height:39px;display:grid;place-items:center;flex:0 0 auto;border:1px solid rgba(255,255,255,.24);border-radius:11px;color:var(--gold-2);background:rgba(255,255,255,.08); }
+.rounds-table-mark .ic { width:21px;height:21px; }
+.rounds-table-card h3 { margin:0;font-size:15px;line-height:1.25; }
+.rounds-table-card header p { margin:4px 0 0;color:rgba(255,255,255,.7);font-size:10px;font-weight:700; }
+.rounds-table-wrap { overflow-x:auto; }
+.rounds-table-card table { width:100%;min-width:640px;border-collapse:collapse;font-size:11.5px; }
+.rounds-table-card thead th { padding:10px 13px;color:var(--ink-2);background:var(--surface-3);font-size:8.8px;font-weight:850;text-align:left;text-transform:uppercase;letter-spacing:.055em; }
+.rounds-table-card thead th:nth-child(3) { text-align:center; }
+.rounds-table-card tbody th,.rounds-table-card tbody td { padding:11px 13px;border-top:1px solid var(--line); }
+.rounds-table-card tbody th { color:var(--ink);font-weight:780;text-align:left; }
+.rounds-table-card tbody tr:nth-child(even) { background:color-mix(in srgb,var(--navy-3) 3%,var(--surface)); }
+.rounds-table-card tbody td { color:var(--ink-2); }
+.rounds-table-card tbody td:nth-child(3) { text-align:center; }
+.round-duration { display:inline-flex;padding:5px 9px;border-radius:999px;color:var(--action);background:color-mix(in srgb,var(--action) 10%,var(--surface));font-weight:850;white-space:nowrap; }
+.round-count { width:29px;height:29px;display:inline-grid;place-items:center;border-radius:9px;color:#fff;background:var(--navy-3);font-weight:900; }
+.rounds-table-card > footer { display:flex;align-items:flex-start;gap:7px;padding:10px 13px;border-top:1px solid var(--line);color:var(--ink-2);background:color-mix(in srgb,var(--gold) 7%,var(--surface));font-size:10.5px;line-height:1.45; }
+.rounds-table-card > footer .ic { width:14px;height:14px;flex:0 0 auto;color:var(--gold); }
+
+/* Federasyonun indirilebilir PDF ve yüksek çözünürlüklü resim tabloları */
+.category-resources { margin-top:18px;padding:16px;border:1px solid var(--line);border-radius:15px;background:color-mix(in srgb,var(--navy-3) 4%,var(--surface));box-shadow:var(--shadow-sm); }
+.category-resources-head { display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:13px; }
+.category-resources-kicker { color:var(--action);font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.08em; }
+.category-resources-head h2 { margin:4px 0 4px;color:var(--ink);font-size:17px;letter-spacing:-.015em; }
+.category-resources-head p { margin:0;color:var(--ink-2);font-size:11.5px;line-height:1.45; }
+.category-resource-count { width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;border-radius:10px;color:#fff;background:var(--action);font-size:13px;font-weight:900; }
+.category-resource-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+.category-resource-card { overflow:hidden;min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:var(--shadow-sm); }
+.category-resource-preview { height:148px;margin:0;padding:10px;border-bottom:1px solid var(--line);background:#fff; }
+.category-resource-preview img { width:100%;height:100%;display:block;object-fit:contain; }
+.category-resource-body { padding:13px; }
+.category-resource-body h3 { margin:0 0 6px;color:var(--ink);font-size:13px;line-height:1.3; }
+.category-resource-body p { min-height:34px;margin:0 0 12px;color:var(--ink-2);font-size:10.5px;line-height:1.5; }
+.category-resource-actions { display:grid;grid-template-columns:1fr 1fr;gap:7px; }
+.category-download { min-height:39px;display:flex;align-items:center;justify-content:center;gap:7px;padding:8px 9px;border:1px solid var(--line);border-radius:9px;color:var(--ink);background:var(--surface-3);font-size:10.5px;font-weight:800;text-align:center;text-decoration:none; }
+.category-download .ic { width:15px;height:15px;flex:0 0 auto; }
+.category-download.pdf { color:#fff;border-color:var(--action);background:var(--action); }
+.category-download.image:hover,.category-download.image:focus-visible { color:var(--action);border-color:var(--action); }
+.category-download.pdf:hover,.category-download.pdf:focus-visible { filter:brightness(1.08); }
+.registration-media > .diagram { margin-top:10px; }
+
+/* Kural 4: okunabilir kategori ve cinsiyet kartları */
+.weight-board { overflow:hidden;padding:0;background:var(--surface); }
+.weight-board-head { display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 16px;color:#fff;background:radial-gradient(circle at 88% 0,rgba(240,199,94,.2),transparent 36%),linear-gradient(135deg,var(--navy-2),var(--navy-3)); }
+.weight-board-head > div { display:flex;flex-direction:column;gap:3px; }
+.weight-board-head strong { font-size:15px;line-height:1.25; }
+.weight-board-head small { color:rgba(255,255,255,.7);font-size:10px; }
+.weight-board-head > span { width:42px;height:42px;display:grid;place-items:center;flex:0 0 auto;border:1px solid rgba(255,255,255,.25);border-radius:11px;color:var(--gold-2);background:rgba(255,255,255,.08);font-size:12px;font-weight:900; }
+.weight-category-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px;background:color-mix(in srgb,var(--navy-3) 3%,var(--surface)); }
+.weight-category-card { overflow:hidden;min-width:0;border:1px solid var(--line);border-radius:11px;background:var(--surface);box-shadow:var(--shadow-sm); }
+.weight-category-card > header { display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;border-bottom:1px solid var(--line);background:var(--surface-3); }
+.weight-category-card > header strong { color:var(--ink);font-size:12px; }
+.weight-category-card > header small { color:var(--ink-3);font-size:8.5px;font-weight:750; }
+.weight-gender-row { display:grid;grid-template-columns:74px minmax(0,1fr);gap:9px;align-items:start;padding:10px; }
+.weight-gender-row + .weight-gender-row { border-top:1px solid var(--line); }
+.weight-gender-label { display:grid;grid-template-columns:24px minmax(0,1fr);align-items:center;gap:6px; }
+.weight-gender-label > span { width:24px;height:24px;display:grid;place-items:center;grid-row:1 / 3;border-radius:8px;font-size:13px;font-weight:900; }
+.weight-gender-row.male .weight-gender-label > span { color:#2673B8;background:color-mix(in srgb,#2673B8 11%,var(--surface)); }
+.weight-gender-row.female .weight-gender-label > span { color:#B94C82;background:color-mix(in srgb,#B94C82 11%,var(--surface)); }
+.weight-gender-label strong { color:var(--ink);font-size:10px; }
+.weight-gender-label small { color:var(--ink-3);font-size:7.5px;font-weight:700; }
+.weight-class-list { display:flex;flex-wrap:wrap;gap:5px; }
+.weight-chip { min-width:39px;min-height:31px;display:inline-flex;align-items:baseline;justify-content:center;gap:2px;padding:5px 6px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:var(--surface);font-variant-numeric:tabular-nums; }
+.weight-chip b { font-size:10.5px;line-height:1; }
+.weight-chip small { color:var(--ink-3);font-size:6.5px;font-weight:750; }
+.weight-chip.is-note { border-color:color-mix(in srgb,var(--gold) 50%,var(--line));background:color-mix(in srgb,var(--gold) 7%,var(--surface)); }
+.weight-footnotes { display:grid;gap:4px;padding:10px 13px;border-top:1px solid var(--line);color:var(--ink-2);background:color-mix(in srgb,var(--gold) 5%,var(--surface));font-size:8.5px;line-height:1.4; }
+.weight-board > .dg-cap { margin:0;padding:9px 12px;border-top:1px solid var(--line); }
+
+/* Kural 31.3: yalnızca vuruş kısıtlarını gösteren matris */
+.restriction-matrix { overflow:hidden;padding:0;background:var(--surface); }
+.restriction-matrix > header,.ccl-limit-board > header { display:flex;align-items:center;gap:11px;padding:14px 15px;color:#fff;background:linear-gradient(135deg,var(--navy-2),var(--navy-3)); }
+.restriction-matrix > header > span,.ccl-limit-board > header > span { min-width:43px;height:36px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:10px;color:var(--gold-2);background:rgba(255,255,255,.08);font-size:11px;font-weight:900; }
+.restriction-matrix > header > div,.ccl-limit-board > header > div { display:flex;flex-direction:column;gap:3px; }
+.restriction-matrix > header strong,.ccl-limit-board > header strong { font-size:14px;line-height:1.2; }
+.restriction-matrix > header small,.ccl-limit-board > header small { color:rgba(255,255,255,.7);font-size:9.5px; }
+.restriction-row { display:grid;grid-template-columns:minmax(210px,42%) minmax(0,1fr);border-top:1px solid var(--line); }
+.restriction-categories,.restriction-rule { min-width:0;padding:13px 14px; }
+.restriction-categories { border-right:1px solid var(--line);background:color-mix(in srgb,var(--navy-3) 3%,var(--surface)); }
+.restriction-column-label { display:block;margin-bottom:7px;color:var(--ink-3);font-size:8px;font-weight:850;text-transform:uppercase;letter-spacing:.06em; }
+.restriction-categories > div { display:flex;flex-wrap:wrap;gap:5px; }
+.restriction-chip { display:inline-flex;padding:5px 8px;border:1px solid var(--line);border-radius:999px;color:var(--ink);background:var(--surface);font-size:9.5px;font-weight:780; }
+.restriction-rule { display:flex;flex-direction:column;justify-content:center; }
+.restriction-rule strong { font-size:13px;line-height:1.25; }
+.restriction-rule small { margin-top:5px;color:var(--ink-2);font-size:9.5px;line-height:1.4; }
+.restriction-row.is-free .restriction-rule { border-left:4px solid #3DA778; }
+.restriction-row.is-free .restriction-rule strong { color:#2D8B64; }
+.restriction-row.is-caution .restriction-rule { border-left:4px solid var(--gold); }
+.restriction-row.is-caution .restriction-rule strong { color:#B88015; }
+.restriction-row.is-blocked .restriction-rule { border-left:4px solid #C94B5F; }
+.restriction-row.is-blocked .restriction-rule strong { color:#C94B5F; }
+.restriction-matrix > .dg-cap { margin:0;padding:10px;border-top:1px solid var(--line); }
+
+/* Kural 30.2.5: raund ve toplam limitlerini ayrı gösteren CCL kartları */
+.ccl-limit-board { overflow:hidden;padding:0;background:var(--surface); }
+.ccl-limit-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:12px; }
+.ccl-limit-card { overflow:hidden;min-width:0;border:1px solid var(--line);border-top:4px solid var(--navy-3);border-radius:11px;background:var(--surface);box-shadow:var(--shadow-sm); }
+.ccl-limit-card.is-amber { border-top-color:var(--gold); }
+.ccl-limit-card.is-teal { border-top-color:var(--action); }
+.ccl-limit-card h4 { min-height:47px;display:flex;align-items:center;margin:0;padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink);background:var(--surface-3);font-size:10.5px;line-height:1.35; }
+.ccl-limit-values { display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:5px;padding:11px 8px; }
+.ccl-limit-values > div { min-width:0;text-align:center; }
+.ccl-limit-values > div > span { min-height:25px;display:block;color:var(--ink-3);font-size:7.5px;font-weight:800;line-height:1.25;text-transform:uppercase; }
+.ccl-limit-values strong { display:block;margin:3px 0;color:var(--navy-3);font-size:28px;line-height:1;font-variant-numeric:tabular-nums; }
+html[data-theme="dark"] .ccl-limit-values strong { color:var(--gold-2); }
+.ccl-limit-values small { color:var(--ink-2);font-size:8px;font-weight:750; }
+.ccl-or { padding:4px 5px;border-radius:999px;color:var(--ink-3);background:var(--surface-3);font-size:7px;font-weight:800; }
+.ccl-skill-note { margin:0 12px 12px;padding:9px 11px;border-left:3px solid var(--gold);border-radius:8px;color:var(--ink-2);background:color-mix(in srgb,var(--gold) 7%,var(--surface));font-size:9.5px;line-height:1.4; }
+.ccl-limit-board > .dg-cap { margin:0;padding:9px 12px;border-top:1px solid var(--line); }
+
+/* Kural 10.6: uygulama içi zorunlu dinlenme tablosu */
+.rest-table-card { overflow:hidden;max-width:680px;margin:10px auto 0;border:1px solid color-mix(in srgb,var(--action) 30%,var(--line));border-radius:13px;background:var(--surface);box-shadow:0 10px 26px rgba(8,31,53,.12); }
+.rest-table-card > header { display:flex;align-items:center;gap:11px;padding:14px 16px;color:#fff;background:linear-gradient(135deg,var(--navy-2),var(--navy-3)); }
+.rest-table-card > header > .ic { width:26px;height:26px;padding:5px;border:1px solid rgba(255,255,255,.25);border-radius:8px;color:var(--gold-2); }
+.rest-table-card h3 { margin:0;font-size:14px;line-height:1.25; }
+.rest-table-card header p { margin:3px 0 0;color:rgba(255,255,255,.68);font-size:10px; }
+.rest-table-card table { width:100%;border-collapse:collapse;font-size:12px; }
+.rest-table-card thead th { padding:9px 14px;color:var(--ink-2);background:var(--surface-3);font-size:9.5px;font-weight:850;text-align:left;text-transform:uppercase;letter-spacing:.055em; }
+.rest-table-card thead th:last-child { text-align:right; }
+.rest-table-card tbody th,.rest-table-card tbody td { padding:9px 14px;border-top:1px solid var(--line); }
+.rest-table-card tbody th { color:var(--ink);font-weight:750;text-align:left; }
+.rest-table-card tbody td { text-align:right; }
+.rest-table-card tbody td span { display:inline-flex;min-width:72px;justify-content:center;padding:5px 9px;border-radius:999px;color:var(--teal-2);background:color-mix(in srgb,var(--teal) 10%,var(--surface));font-weight:850; }
+.rest-table-card tbody tr.is-alert th { color:var(--wrong-ink); }
+.rest-table-card tbody tr.is-alert td span { color:var(--wrong-ink);background:var(--wrong-bg); }
+.rest-table-note { display:flex;align-items:flex-start;gap:7px;margin:0;padding:10px 14px;border-top:1px solid var(--line);color:var(--ink-2);background:color-mix(in srgb,var(--gold) 7%,var(--surface));font-size:10.5px;line-height:1.45; }
+.rest-table-note .ic { width:14px;height:14px;flex:0 0 auto;color:var(--gold); }
+
+/* Kural 9: kafa darbesi sonrası görsel güvenlik tablosu */
+.head-injury-card { overflow:hidden;margin:10px auto 0;border:1px solid color-mix(in srgb,#C94B5F 40%,var(--line));border-radius:14px;background:var(--surface);box-shadow:0 12px 30px rgba(35,12,20,.15); }
+.head-injury-hero { display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:16px 17px;color:#fff;background:radial-gradient(circle at 86% 0,rgba(240,199,94,.18),transparent 34%),linear-gradient(135deg,var(--navy-2) 8%,#51273A 64%,#782C3D); }
+.head-injury-mark { width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:12px;color:#FFD0D7;background:rgba(255,255,255,.09); }
+.head-injury-mark .ic { width:23px;height:23px; }
+.head-injury-hero h3 { margin:0;font-size:16px;line-height:1.2; }
+.head-injury-hero p { margin:4px 0 0;color:rgba(255,255,255,.7);font-size:11px;line-height:1.35; }
+.head-rule-chip { align-self:start;padding:5px 8px;border:1px solid rgba(255,208,215,.4);border-radius:999px;color:#FFD0D7;background:rgba(0,0,0,.13);font-size:10px;font-weight:850;white-space:nowrap; }
+.head-table-wrap { overflow-x:auto; }
+.head-procedure-table { width:100%;border-collapse:collapse;font-size:11.5px; }
+.head-procedure-table thead th { padding:9px 13px;color:var(--ink-2);background:var(--surface-3);font-size:9px;font-weight:850;text-align:left;text-transform:uppercase;letter-spacing:.055em; }
+.head-procedure-table thead th:last-child { text-align:right; }
+.head-procedure-table tbody th,.head-procedure-table tbody td { padding:10px 13px;border-top:1px solid var(--line); }
+.head-procedure-table tbody th { display:flex;align-items:center;gap:9px;color:var(--ink);text-align:left; }
+.head-procedure-table tbody th strong { font-size:11.5px;line-height:1.25; }
+.head-procedure-table tbody td { color:var(--ink-2); }
+.head-procedure-table tbody td:last-child { text-align:right; }
+.head-step { width:27px;height:27px;display:grid;place-items:center;flex:0 0 auto;border-radius:8px;color:#fff;background:var(--amber);font-size:11px;font-weight:900; }
+.head-rest { display:inline-flex;min-width:96px;justify-content:center;padding:6px 9px;border:1px solid transparent;border-radius:999px;font-weight:900;white-space:nowrap; }
+.head-procedure-table tr.is-caution .head-rest { color:#B47316;background:color-mix(in srgb,var(--gold) 13%,var(--surface));border-color:color-mix(in srgb,var(--gold) 35%,var(--line)); }
+.head-procedure-table tr.is-warning .head-step { background:#D46B35; }
+.head-procedure-table tr.is-warning .head-rest { color:#C45B27;background:color-mix(in srgb,#D46B35 12%,var(--surface));border-color:color-mix(in srgb,#D46B35 34%,var(--line)); }
+.head-procedure-table tr.is-danger .head-step { background:#C43D55; }
+.head-procedure-table tr.is-danger .head-rest { color:#D44C63;background:color-mix(in srgb,#C43D55 12%,var(--surface));border-color:color-mix(in srgb,#C43D55 36%,var(--line)); }
+.head-mobile-label { display:none; }
+.head-action-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--surface-3) 36%,var(--surface)); }
+.head-action { min-width:0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow-sm); }
+.head-action.protective { border-left:3px solid var(--gold); }
+.head-action.clearance { border-left:3px solid var(--action); }
+.head-action-top { display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px; }
+.head-action-top > span { color:var(--ink-3);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.055em; }
+.head-action-top > strong { padding:4px 7px;border-radius:999px;color:#B47316;background:color-mix(in srgb,var(--gold) 12%,var(--surface));font-size:9.5px;white-space:nowrap; }
+.head-action h4 { margin:0 0 5px;color:var(--ink);font-size:12px; }
+.head-action p { margin:0;color:var(--ink-2);font-size:10.5px;line-height:1.5; }
+.head-action ul { display:grid;gap:6px;margin:0;padding:0;list-style:none; }
+.head-action li { display:flex;align-items:flex-start;gap:6px;color:var(--ink-2);font-size:10.5px;line-height:1.35; }
+.head-action li .ic { width:13px;height:13px;flex:0 0 auto;color:var(--action);margin-top:1px; }
+.head-record-note { display:flex;align-items:flex-start;gap:7px;padding:10px 13px;border-top:1px solid var(--line);color:var(--ink-2);background:color-mix(in srgb,var(--navy-3) 5%,var(--surface));font-size:10px;line-height:1.45; }
+.head-record-note .ic { width:14px;height:14px;flex:0 0 auto;color:var(--navy-3); }
+
+@media (max-width:860px) {
+  .weighing-workspace { grid-template-columns:1fr; }
+  .weighing-outline-list { max-height:330px;overflow-y:auto;overscroll-behavior:contain; }
+  .category-direct-tabs { display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin; }
+  .category-direct-tab { flex:0 0 min(70vw,235px);scroll-snap-align:start; }
+  .weight-category-grid { grid-template-columns:1fr; }
+  .ccl-limit-grid { grid-template-columns:1fr; }
+  .ccl-limit-card h4 { min-height:0; }
+  .head-action-grid { grid-template-columns:1fr; }
+}
+@media (max-width:480px) {
+  .weighing-outline-item.depth-1 { width:calc(100% - 8px);margin-left:8px; }
+  .weighing-outline-item.depth-2 { width:calc(100% - 18px);margin-left:18px; }
+  .category-resource-grid { grid-template-columns:1fr; }
+  .category-resource-preview { height:130px; }
+  .category-resource-body p { min-height:0; }
+  .category-resources { padding:12px; }
+  .weight-gender-row { grid-template-columns:1fr; }
+  .weight-gender-label { grid-template-columns:24px auto 1fr; }
+  .weight-gender-label > span { grid-row:auto; }
+  .restriction-row { grid-template-columns:1fr; }
+  .restriction-categories { border-right:0;border-bottom:1px solid var(--line); }
+  .rest-table-card thead th,.rest-table-card tbody th,.rest-table-card tbody td { padding-left:10px;padding-right:10px; }
+  .head-injury-hero { grid-template-columns:auto minmax(0,1fr);padding:14px; }
+  .head-rule-chip { grid-column:2;justify-self:start; }
+  .head-procedure-table thead { display:none; }
+  .head-procedure-table,.head-procedure-table tbody,.head-procedure-table tr,.head-procedure-table th,.head-procedure-table td { display:block;width:100%; }
+  .head-procedure-table tbody tr { display:grid;grid-template-columns:1fr 1fr;padding:10px 12px;border-top:1px solid var(--line); }
+  .head-procedure-table tbody th,.head-procedure-table tbody td { padding:5px 0;border:0; }
+  .head-procedure-table tbody th { grid-column:1 / -1; }
+  .head-procedure-table tbody td:last-child { text-align:right; }
+  .head-mobile-label { display:block;margin-bottom:3px;color:var(--ink-3);font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.05em; }
+  .head-rest { min-width:88px; }
+}
 .doc-link { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 13px; color: var(--teal-2); font-weight: 650; font-size: 13.5px; box-shadow: var(--shadow-sm); text-decoration: none; }
 .doc-link span { flex: 1; }
 .doc-link .ic { width: 17px; height: 17px; color: var(--teal); flex: 0 0 auto; }
@@ -1001,6 +1406,7 @@ html[data-theme="dark"] .role-ico {
 .inline-cta,.btn-primary { background:var(--action);color:#fff;box-shadow:0 4px 12px color-mix(in srgb,var(--action) 26%,transparent); }
 .pill.ifma { color:var(--ink-2);background:color-mix(in srgb,var(--ink-3) 7%,transparent);border-color:var(--line-2); }
 .pill.tmf { color:#D98730;background:rgba(217,135,48,.10);border-color:rgba(217,135,48,.46); }
+.pill.national { color:#D98730;background:rgba(217,135,48,.10);border-color:rgba(217,135,48,.46); }
 .badge.approved { color:var(--ink-2);background:color-mix(in srgb,var(--surface-3) 70%,transparent);border-color:var(--line-2); }
 
 /* Training-style highlighted callouts keep the reference app's energy */
@@ -1034,6 +1440,186 @@ html[data-theme="dark"] .tabbar { background:#1B2130;box-shadow:0 -8px 22px rgba
 .chip.on { color:var(--action);background:color-mix(in srgb,var(--action) 9%,var(--surface)); }
 .tool-btn:hover,.tool-btn:focus-visible { background:color-mix(in srgb,var(--action) 7%,var(--surface)); }
 .search-dialog { box-shadow:var(--shadow-lg); }
+
+/* Athlete registration: championship and required-document tabs */
+.championship-tabs {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin:0 0 18px;
+  padding:5px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--surface-3);
+}
+.championship-tab {
+  min-height:54px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:transparent;
+  color:var(--ink-2);
+  padding:9px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-align:center;
+  font-size:12.5px;
+  font-weight:720;
+  line-height:1.25;
+}
+.championship-tab .ic { width:18px;height:18px; }
+.championship-tab.on {
+  background:var(--surface);
+  color:var(--ink);
+  border-color:color-mix(in srgb,var(--gold) 62%,var(--line));
+  box-shadow:var(--shadow-sm),inset 0 -3px 0 var(--gold);
+}
+.registration-section-head { margin-bottom:10px; }
+.registration-section-head .section-title { margin:0; }
+.document-count { margin-top:2px;color:var(--ink-3);font-size:11px;font-weight:650; }
+.document-tabs {
+  display:flex;
+  gap:8px;
+  margin:0 -2px 12px;
+  padding:2px 2px 7px;
+  overflow-x:auto;
+  scroll-snap-type:x proximity;
+  scrollbar-width:thin;
+}
+.document-tab {
+  flex:0 0 min(76vw,250px);
+  min-height:58px;
+  scroll-snap-align:start;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:var(--surface);
+  color:var(--ink-2);
+  padding:9px 11px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  text-align:left;
+  font-size:12px;
+  font-weight:680;
+  line-height:1.25;
+  box-shadow:var(--shadow-sm);
+}
+.document-tab-number {
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  border-radius:8px;
+  display:grid;
+  place-items:center;
+  background:var(--surface-3);
+  color:var(--ink-3);
+  font-size:11px;
+  font-weight:800;
+}
+.document-tab.on { color:var(--ink);border-color:var(--action);background:color-mix(in srgb,var(--action) 6%,var(--surface)); }
+.document-tab.on .document-tab-number { background:var(--action);color:#fff; }
+.registration-document {
+  border:1px solid var(--line);
+  border-top:3px solid var(--gold);
+  border-radius:14px;
+  background:var(--surface);
+  padding:16px;
+  box-shadow:var(--shadow-sm);
+}
+.registration-document-head h2 { margin:12px 0 7px;font-size:20px;line-height:1.2;letter-spacing:-.02em; }
+.registration-document-head p { margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.55; }
+.registration-media {
+  margin-top:15px;
+  padding:14px;
+  border:1px solid color-mix(in srgb,var(--gold) 42%,var(--line));
+  border-radius:12px;
+  background:color-mix(in srgb,var(--gold) 5%,var(--surface));
+}
+.registration-media .card-img {
+  max-width:900px;
+  margin:10px auto 0;
+  border-color:color-mix(in srgb,var(--navy-3) 24%,var(--line));
+  box-shadow:0 8px 22px rgba(10,35,58,.12);
+}
+.registration-media .card-img figcaption { font-weight:650;line-height:1.45; }
+.registration-rule-text {
+  margin-top:15px;
+  padding:14px;
+  border:1px solid var(--line);
+  border-left:3px solid var(--navy-3);
+  border-radius:11px;
+  background:color-mix(in srgb,var(--surface-3) 54%,var(--surface));
+}
+.rule-text { font-size:13px;line-height:1.65;color:var(--ink); }
+.rule-text-heading {
+  display:block;
+  margin:15px 0 6px;
+  color:var(--action);
+  font-size:13px;
+  font-weight:850;
+  line-height:1.4;
+  letter-spacing:.01em;
+}
+.rule-text-heading:first-child { margin-top:0; }
+.rule-text-heading.is-main {
+  margin:0 0 12px;
+  padding:9px 11px;
+  border-left:3px solid var(--gold);
+  border-radius:7px;
+  background:color-mix(in srgb,var(--navy-3) 10%,var(--surface));
+  color:color-mix(in srgb,var(--gold) 72%,var(--ink));
+  font-size:13.5px;
+}
+.rule-text-line { display:block;margin-bottom:7px; }
+.rule-text-bullet { display:flex;gap:8px;margin:6px 0; }
+.rule-text-bullet-mark { flex:0 0 auto;color:var(--gold);font-weight:900; }
+.rule-text-space { display:block;height:5px; }
+.rule-text-block { border-left:3px solid var(--navy-3); }
+.registration-document-links { margin-top:16px; }
+.registration-detail-btn {
+  width:100%;
+  min-height:46px;
+  margin-top:16px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--surface-3);
+  color:var(--ink);
+  padding:9px 11px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12.5px;
+  font-weight:720;
+  text-align:left;
+}
+.registration-detail-btn span { flex:1; }
+.registration-detail-btn .ic { width:17px;height:17px;color:var(--ink-2); }
+.registration-detail-btn:hover,.registration-detail-btn:focus-visible { border-color:var(--action);color:var(--action); }
+.registration-empty {
+  min-height:230px;
+  border:1px dashed var(--line-2);
+  border-radius:14px;
+  background:var(--surface);
+  padding:32px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  text-align:center;
+}
+.registration-empty > .ic { width:34px;height:34px;color:var(--ink-3); }
+.registration-empty-title { color:var(--ink);font-size:16px;font-weight:760; }
+
+@media (min-width:860px) {
+  .championship-tabs { max-width:720px; }
+  .document-tabs { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible; }
+  .document-tab { width:auto;min-width:0;min-height:66px; }
+  .registration-document { padding:20px; }
+  .registration-media { padding:16px; }
+  .registration-rule-text { padding:16px; }
+}
 
 /* Responsive chrome */
 @media (max-width:860px) {

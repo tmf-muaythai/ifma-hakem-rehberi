@@ -623,42 +623,53 @@ window.IFMA.cards = [
     rule: "7", revision: "2026-05-11", status: A,
     discipline: ["full", "semi"], age: [], gender: [], role: [],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "Raund süreleri", en: "Round durations" },
+    title: { tr: "Muaythai Müsabakalarında Raundlar", en: "Rounds in Muaythai Competitions" },
     quick: {
-      tr: "Tüm kategorilerde 3 raund. Süre: Elite/U24/35+ 3 dk; U16/U18/V40+/V45+ 2 dk; U14 1.5 dk; U8/U10/U12 1 dk.",
-      en: "3 rounds in all categories. Time: Elite/U24/35+ 3 min; U16/U18/V40+/V45+ 2 min; U14 1.5 min; U8/U10/U12 1 min."
+      tr: "Tüm kategoriler 3 raund üzerinden oynanır. Raund süresi kategoriye göre 1–3 dakika; dinlenme Masters kategorilerinde 1,5 dakika, diğer kategorilerde 1 dakikadır.",
+      en: "All categories compete over 3 rounds. Round duration varies from 1 to 3 minutes; rest is 1.5 minutes for Masters divisions and 1 minute for all other divisions."
+    },
+    ruleText: {
+      tr: "KURAL 7: MUAYTHAI MÜSABAKALARINDA RAUNDLAR\nBir uyarı, ikaz, kıyafet veya ekipmanın düzeltilmesi ya da başka herhangi bir nedenle müsabakanın Orta Hakem tarafından durdurulması raund süresine dahil edilmez. Ek raund verilemez. Teknik Delege, yalnızca seçilmiş çoklu spor etkinliklerinde ve IFMA Yönetim Kurulunun onayına tabi olmak üzere bu formatları değiştirebilir.\nMasters 40+ ve 45+: 3 raund × 2 dakika; 1,5 dakika dinlenme.\nMasters 35+: 3 raund × 3 dakika; 1,5 dakika dinlenme.\nElite ve U24: 3 raund × 3 dakika; 1 dakika dinlenme.\nU18 ve U16: 3 raund × 2 dakika; 1 dakika dinlenme.\nU14: 3 raund × 1,5 dakika; 1 dakika dinlenme.\nU12, U10 ve U8: 3 raund × 1 dakika; 1 dakika dinlenme.",
+      en: "RULE 7: ROUNDS FOR MUAYTHAI COMPETITION\nStopping of the contest by the Referee for a Warning, Caution, putting clothing or equipment into order or for any other reason is not included in the period of the round. No additional round may be given. The Technical Delegate may adjust these formats for selected multi-sport events only, subject to approval by the IFMA Executive Committee.\nMasters 40+ and 45+: 3 rounds × 2 minutes; 1.5 minutes rest.\nMasters 35+: 3 rounds × 3 minutes; 1.5 minutes rest.\nElite and U24: 3 rounds × 3 minutes; 1 minute rest.\nU18 and U16: 3 rounds × 2 minutes; 1 minute rest.\nU14: 3 rounds × 1.5 minutes; 1 minute rest.\nU12, U10 and U8: 3 rounds × 1 minute; 1 minute rest."
     },
     when: { tr: "Kategori seçimine göre — Kategori Özeti tam değeri gösterir.", en: "By category — the Category Summary shows the exact value." },
     right: { tr: "Hakem duraklatmaları raund süresine eklenmez; ek raund verilmez.", en: "Referee stoppages are not added to round time; no extra round is given." },
     wrong: { tr: "Kategoriye göre süreyi karıştırmak.", en: "Confusing the round time for the category." },
-    related: ["CAT_REST", "REF_TIME"],
-    tags: ["raund", "round", "süre", "3 raund", "kural 7"]
-  },
-  {
-    id: "CAT_REST", module: "kategori", subtopic: "dinlenme", label: "ifma",
-    rule: "7", revision: "2026-05-11", status: A,
-    discipline: ["full", "semi"], age: [], gender: [], role: [],
-    media: { photo: false, video: false, animation: false },
-    title: { tr: "Dinlenme süreleri", en: "Rest periods" },
-    quick: {
-      tr: "Raund arası dinlenme: Veteranlar ve Büyükler 35+ için 1.5 dk; Elite ve altı için 1 dk.",
-      en: "Rest between rounds: 1.5 min for Veterans and Masters 35+; 1 min for Elite and below."
+    roundsTable: {
+      title: { tr: "Kategori Bazlı Raund Tablosu", en: "Category Round Table" },
+      categoryLabel: { tr: "Kategori", en: "Category" },
+      durationLabel: { tr: "Raund Süresi", en: "Round Duration" },
+      roundsLabel: { tr: "Raundlar", en: "Rounds" },
+      restLabel: { tr: "Dinlenme Süresi", en: "Rest Duration" },
+      rows: [
+        { categories: { tr: "Masters 40+ · Masters 45+", en: "Masters 40+ · Masters 45+" }, duration: { tr: "2 dakika", en: "2 minutes" }, rounds: 3, rest: { tr: "1,5 dakika", en: "1.5 minutes" } },
+        { categories: { tr: "Masters 35+", en: "Masters 35+" }, duration: { tr: "3 dakika", en: "3 minutes" }, rounds: 3, rest: { tr: "1,5 dakika", en: "1.5 minutes" } },
+        { categories: { tr: "Elite · U24", en: "Elite · U24" }, duration: { tr: "3 dakika", en: "3 minutes" }, rounds: 3, rest: { tr: "1 dakika", en: "1 minute" } },
+        { categories: { tr: "U18 · U16", en: "U18 · U16" }, duration: { tr: "2 dakika", en: "2 minutes" }, rounds: 3, rest: { tr: "1 dakika", en: "1 minute" } },
+        { categories: { tr: "U14", en: "U14" }, duration: { tr: "1,5 dakika", en: "1.5 minutes" }, rounds: 3, rest: { tr: "1 dakika", en: "1 minute" } },
+        { categories: { tr: "U12 · U10 · U8", en: "U12 · U10 · U8" }, duration: { tr: "1 dakika", en: "1 minute" }, rounds: 3, rest: { tr: "1 dakika", en: "1 minute" } }
+      ],
+      note: {
+        tr: "U8 ve U10 yaş kategorileri yalnızca Muaythai Teknik (Tatami) branşında uygulanır.",
+        en: "The U8 and U10 age categories apply only in the Muaythai Technical (Tatami) discipline."
+      }
     },
-    when: { tr: "Kategori seçimine göre.", en: "By category selection." },
-    right: { tr: "Dinlenme sonunda ilk vuruşla devam etmeyen sporcu için 32.9 uygulanır.", en: "If an athlete does not resume at the end of rest, Rule 32.9 applies." },
-    wrong: { tr: "Dinlenme süresini kategoriye göre yanlış vermek.", en: "Setting the wrong rest length for the category." },
-    related: ["CAT_ROUNDS"],
-    tags: ["dinlenme", "rest", "raund arası", "kural 7"]
+    related: ["REF_TIME"],
+    tags: ["raund", "round", "süre", "dinlenme", "3 raund", "kural 7"]
   },
   {
     id: "CAT_LIMIT", module: "kategori", subtopic: "kisitli", label: "ifma",
     rule: "31.3", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: [],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "Kısıtlı vuruşlar", en: "Restricted strikes" },
+    title: { tr: "Kategori Bazlı Kısıtlı Vuruşlar", en: "Category-based Restricted Strikes" },
     quick: {
-      tr: "Yaş kategorisine göre kafaya vuruş kısıtları vardır. Kategori Özetinde seçtiğin profil için tam kısıt görünür.",
-      en: "Head-strike restrictions vary by age category. The Category Summary shows the exact limit for your selection."
+      tr: "U16 ve üzeri kategorilerde kısıtlama yoktur. U14'te kafaya dirsek veya diz, U12 ve altındaysa kafaya her türlü vuruş yasaktır.",
+      en: "There are no restrictions in U16 and older divisions. Elbows and knees to the head are prohibited in U14; all head strikes are prohibited in U12 and below."
+    },
+    ruleText: {
+      tr: "31.3: KATEGORİLERE GÖRE KISITLANMIŞ VURUŞLAR\nBelirli bir kategoride kısıtlanmış veya yasaklanmış bir Muaythai tekniğinin kullanılması faul olarak kabul edilir.\nVeteranlar 40+ ve 45+, Büyükler 35+, Elite, U24, U18 ve U16: Kısıtlama yoktur.\nU14: Kafaya dirsek veya diz vuruşu yapılamaz.\nU12, U10 ve U8: Kafaya vuruş yapılamaz.",
+      en: "31.3: RESTRICTED STRIKES BY DIVISION\nUse of a restricted Muaythai skill in a given division is considered a foul.\nMasters 40+ and 45+, Masters 35+, Elite, U24, U18 and U16: No restrictions.\nU14: No elbow or knee strikes to the head.\nU12, U10 and U8: No strikes to the head."
     },
     when: { tr: "Kategori seçimine göre.", en: "By category selection." },
     right: { tr: "U14 kafaya diz/dirsek yok; U12 ve altı kafaya vuruş yok.", en: "U14 no knee/elbow to head; U12 and below no head strikes." },
@@ -671,10 +682,14 @@ window.IFMA.cards = [
     rule: "30.2.5", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: [],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "Zorunlu sayma limiti (CCL)", en: "Compulsory count limit (CCL)" },
+    title: { tr: "Zorunlu Sayma Limiti (CCL)", en: "Compulsory Count Limit (CCL)" },
     quick: {
-      tr: "Kategorine göre sayım limitine ulaşınca maç biter. Kategori Özeti senin seçimin için limiti gösterir.",
-      en: "The match ends when your category's count limit is reached. The Category Summary shows it for your selection."
+      tr: "Limitler kategoriye göre sırasıyla 3/4, 2/3 ve 2/2'dir. İlk sayı aynı raunddaki, ikinci sayı tüm müsabakadaki toplam sayım limitidir.",
+      en: "The limits are 3/4, 2/3 and 2/2 by division. The first number is the same-round limit; the second is the whole-contest limit."
+    },
+    ruleText: {
+      tr: "30.2.5: ZORUNLU SAYMA LİMİTİ (CCL)\nOrta Hakem, müsabaka kategorisine bağlı olarak belirlenen sayma limitine ulaşıldığında maçı bitirir.\nU24, Elite ve Büyükler 35+: Aynı raundda 3 veya müsabaka boyunca toplam 4 sayım.\nU18, Veteranlar 40+ ve Veteranlar 45+: Aynı raundda 2 veya müsabaka boyunca toplam 3 sayım.\nU8, U10, U12, U14 ve U16: Aynı raundda 2 veya müsabaka boyunca toplam 2 sayım.\nTüm kategorilerde bir sayımın CCL kapsamında değerlendirilebilmesi için bu sayımın bir Muaythai tekniği sonucunda başlamış olması zorunludur.",
+      en: "30.2.5: COMPULSORY COUNT LIMIT (CCL)\nThe Referee stops the contest when the prescribed limit of counts has been reached, depending on the division.\nU24, Elite and Masters 35+: 3 counts in the same round or 4 counts in the whole contest.\nU18, Masters 40+ and Masters 45+: 2 counts in the same round or 3 counts in the whole contest.\nU8, U10, U12, U14 and U16: 2 counts in the same round or 2 counts in the whole contest.\nIn all divisions, for a count to be considered part of the CCL, it must be initiated by a Muaythai skill."
     },
     when: { tr: "Kategori seçimine göre.", en: "By category selection." },
     right: { tr: "Sayımın CCL'e dahil olması için bir Muaythai vuruşu sonucu olmalı.", en: "A count counts toward CCL only if caused by a Muaythai strike." },
@@ -687,10 +702,14 @@ window.IFMA.cards = [
     rule: "5", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: [],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "Yaş kategorileri", en: "Age categories" },
+    title: { tr: "Yaş Kategorileri", en: "Age Categories" },
     quick: {
       tr: "Yaş uygunluğu takvim yılı sistemine göre belirlenir. Dövüş: U8, U10, U12, U14, U16, U18, U24, Elite, Büyükler 35+, Veteranlar 40+, Veteranlar 45+. Kültürel kategorilerde ayrıca Veteranlar 50+ ve 60+ vardır.",
       en: "Age eligibility is set by the calendar-year system. Combat: U8, U10, U12, U14, U16, U18, U24, Elite, Masters 35+, Masters 40+, Masters 45+. Cultural categories also add Masters 50+ and 60+."
+    },
+    ruleText: {
+      tr: "KURAL 5: SPORCULAR İÇİN ASGARİ VE AZAMİ YAŞ SINIRI\n5.1: YAŞ SINIRLARI\nTüm kategorilerde yaş uygunluğu takvim yılı sistemi kullanılarak belirlenir.\n5.1.1: Kesim Tarihi\nResmî kesim tarihi, müsabaka yılının 31 Aralık günüdür.\n5.1.2: Doğum Yılı\nSporcunun kategorisi yalnızca doğum yılına göre belirlenir.\n5.1.3: Müsabaka Yılı\nBu kurallar bakımından müsabaka yılı 1 Ocak'tan 31 Aralık'a kadar olan süreyi kapsar.\n5.2: MÜSABAKA GELİŞİM YOLLARI\nSporcular; Elite (Olimpik performans), Gelişim (U kategorileri) veya Masters (elit sonrası ya da müsabakaya dönüş) gelişim yollarından birine katılır. Bir sporcu her müsabakada yalnızca bir gelişim yoluna kayıt yaptırabilir.\n5.3: YAŞ KATEGORİLERİ\nVeteranlar 45+: 45–50; Veteranlar 40+: 40–44; Büyükler 35+: 35–39; Elite: 18–40; U24: 18–23; U18: 16–17; U16: 14–15; U14: 12–13; U12: 10–11; U10: 8–9; U8: 6–7.\nSporcular, müsabaka yılı içinde asgari veya azami yaşa ulaşmaları hâlinde ilgili yaş kategorisine uygundur.",
+      en: "RULE 5: MINIMUM AND MAXIMUM AGE LIMIT FOR ATHLETES\n5.1: AGE LIMITS\nAge eligibility for all divisions shall be determined using the calendar-year system.\n5.1.1: Cut-off Date\nThe official cut-off date shall be 31 December of the competition year.\n5.1.2: Year of Birth\nAn athlete's division shall be determined exclusively by their year of birth.\n5.1.3: Competition Year\nFor the purpose of these Rules, the competition year runs from 1 January to 31 December.\n5.2: COMPETITION PATHWAYS\nAthletes shall enter the Elite (Olympic performance), Development (U categories) or Masters (post-elite or return-to-competition) pathway. An athlete may only enter one pathway per competition.\n5.3: AGE CATEGORIES\nMasters 45+: 45–50; Masters 40+: 40–44; Masters 35+: 35–39; Elite: 18–40; U24: 18–23; U18: 16–17; U16: 14–15; U14: 12–13; U12: 10–11; U10: 8–9; U8: 6–7.\nAthletes are eligible for an age category if they reach the minimum or maximum age during the competition year."
     },
     when: { tr: "Kayıt ve kategori belirlemede.", en: "At registration and category assignment." },
     right: { tr: "Sporcu, müsabaka yılı içinde asgari veya azami yaşa ulaşırsa o kategoriye uygundur (Kural 5).", en: "An athlete is eligible if they reach the minimum or maximum age during the competition year (Rule 5)." },
@@ -703,10 +722,14 @@ window.IFMA.cards = [
     rule: "4", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh"],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "Sıkletler", en: "Weight classes" },
+    title: { tr: "Sıkletler", en: "Weight Classes" },
     quick: {
       tr: "Sıklet, yaş ve cinsiyete göre belirlenir. Elite/U24 erkek sıkletleri 45–91+ kg; kadın 45–75+ kg arasındadır. Genç kategorilerde alt sınırlar farklıdır (tam tablo Kural 4).",
       en: "Weight classes are set by age and gender. Elite/U24 male classes run 45–91+ kg; female 45–75+ kg. Youth categories have different lower bounds (full table in Rule 4)."
+    },
+    ruleText: {
+      tr: "KURAL 4: SIKLET SINIFLANDIRMALARI\nSıklet sınıflandırmaları yaş kategorisi ve cinsiyete göre yukarıdaki resmî tabloda gösterilir.\n* 45 kg erkek sıkleti yalnızca seçilmiş çoklu spor etkinliklerine dahil edilmek üzere IFMA Yönetim Kurulunun onayına tabidir.\n** Veteranlar 40+ ve Veteranlar 45+ kategorilerindeki sporcuların +91 kg sıkletine katılmasına izin verilmez.\nSporcular; IFMA Yönetim Kurulunca onaylanan ve uluslararası spor yönetimi standartlarıyla uyumlu, cinsiyete göre ayrılmış ve karma müsabakalara ilişkin IFMA uygunluk kurallarına göre yarışmalıdır.",
+      en: "RULE 4: WEIGHT CLASSIFICATIONS\nWeight classifications by age category and gender are shown in the official table above.\n* The 45 kg male class is for inclusion in selected multi-sport events only, subject to approval by the IFMA Executive Committee.\n** Masters 40+ and Masters 45+ athletes are not permitted to take part in the +91 kg class.\nAthletes must compete in accordance with the IFMA eligibility regulations for sex-segregated and mixed competitions, as approved by the IFMA Executive Committee and aligned with applicable international sport governance standards."
     },
     when: { tr: "Kategori ve tartıda.", en: "At category and weigh-in." },
     right: { tr: "Sporcu yalnızca tartıda hak kazandığı siklette yarışır (11.3.1).", en: "An athlete may only compete in the class for which they qualified at the weigh-in (11.3.1)." },
@@ -714,55 +737,6 @@ window.IFMA.cards = [
     related: ["WEIGH_5PCT", "CAT_AGE"],
     tags: ["sıklet", "weight class", "kural 4"]
   },
-  {
-    id: "CAT_EQUIP", module: "kategori", subtopic: "ekipman", label: "ifma",
-    rule: "15", revision: "2026-05-11", status: A,
-    discipline: [], age: [], gender: [], role: ["ref"],
-    media: { photo: false, video: false, animation: false },
-    title: { tr: "Zorunlu ekipman", en: "Mandatory equipment" },
-    quick: {
-      tr: "Zorunlu ekipman: eldiven (10 oz), dişlik, kaval ve dirseklik, kasık koruyucu ve kask. Gövde koruyucu kategoriye göre değişir; kadın göğüs koruyucu Senior kategoride zorunludur.",
-      en: "Mandatory: gloves (10 oz), gum shield, shin and elbow guards, groin guard and head guard. The body protector varies by category; a female chest guard is mandatory in Senior divisions."
-    },
-    when: { tr: "Kategori seçimine göre.", en: "By category selection." },
-    right: { tr: "Ekipman koddan değil kategoriden çıkar; kontrol akışı için Ekipman modülüne bak.", en: "Equipment follows the category; see the Equipment module for the check flow." },
-    wrong: { tr: "Kategoriye özel ekipmanı (gövde/göğüs) atlamak.", en: "Skipping category-specific equipment (body/chest)." },
-    related: ["AREA_EQUIP", "AREA_GOVDE"],
-    tags: ["zorunlu ekipman", "kural 15"]
-  },
-  {
-    id: "CAT_GENDEREQUIP", module: "kategori", subtopic: "cinsiyetekip", label: "ifma",
-    rule: "15.7", revision: "2026-05-11", status: A,
-    discipline: [], age: [], gender: [], role: ["ref", "weigh"],
-    media: { photo: false, video: false, animation: false },
-    title: { tr: "Cinsiyete göre ekipman", en: "Gender-specific equipment" },
-    quick: {
-      tr: "Erkek: metal veya polikarbonat kasık koruyucu (+ suspansuar). Kadın: polikarbonat veya köpük kasık koruyucu ve Senior (35+/Elite) kategoride zorunlu göğüs koruyucu. Kadın tartısı ayrı yürütülür.",
-      en: "Male: metal or polycarbonate groin guard (+ jock strap). Female: polycarbonate or foam groin guard and, in Senior (35+/Elite) divisions, a mandatory chest guard. Female weigh-ins are conducted separately."
-    },
-    when: { tr: "Cinsiyet ve kategoriye göre.", en: "By gender and category." },
-    right: { tr: "Her koruyucu müsabaka öncesi kontrolden geçer (15.7, 15.8).", en: "Each guard passes inspection before competition (15.7, 15.8)." },
-    wrong: { tr: "Kadın Senior sporcuda göğüs koruyucuyu eksik bırakmak.", en: "Missing the chest guard on a Senior female athlete." },
-    related: ["AREA_KASIK", "WEIGH_STANDARD"],
-    tags: ["cinsiyet", "kasık", "göğüs koruyucu", "15.7", "15.8"]
-  },
-  {
-    id: "CAT_DISCIPLINE", module: "kategori", subtopic: "disiplinfark", label: "ifma",
-    rule: "2", revision: "2026-05-11", status: A,
-    discipline: [], age: [], gender: [], role: [],
-    media: { photo: false, video: false, animation: false },
-    title: { tr: "Disiplin farkları", en: "Discipline differences" },
-    quick: {
-      tr: "Full Contact (tam temas, IFMA kuralları tam uygulanır), Semi Contact (kontrollü hafif temas, sert vuruş yasak), Wai Kru (bireysel kültürel) ve Mai Muay (ikili kültürel).",
-      en: "Full Contact (full contact, IFMA rules apply in full), Semi Contact (controlled light contact, hard strikes forbidden), Wai Kru (solo cultural) and Mai Muay (duo cultural)."
-    },
-    when: { tr: "Kategori seçiminde.", en: "At category selection." },
-    right: { tr: "Bir sporcu en fazla bir kültürel (Wai Kru veya Mai Muay) ve bir dövüş/teknik kategorisine girebilir (34.1).", en: "An athlete may enter at most one cultural (Wai Kru or Mai Muay) and one combat/technical division (34.1)." },
-    wrong: { tr: "Semi Contact'ta tam güçle vurmak — bu fauldür (31.3.1).", en: "Striking at full power in Semi Contact — that is a foul (31.3.1)." },
-    related: ["CAT_LIMIT", "WAI_LIMIT"],
-    tags: ["disiplin", "full contact", "semi contact", "wai kru", "mai muay", "kural 2"]
-  },
-
   /* ===================== YAN HAKEM & PUANLAMA ===================== */
   {
     id: "JUDGE_10PT", module: "yan", subtopic: "onpuan", label: "ifma",
@@ -911,14 +885,18 @@ window.IFMA.cards = [
 
   /* ===================== SPORCU KAYIT & TARTI ===================== */
   {
-    id: "WEIGH_5PCT", module: "kayit", subtopic: "gunluktarti", label: "ifma",
+    id: "WEIGH_5PCT", module: "tarti", subtopic: "mac-oncesi", label: "ifma",
     rule: "11.1.2", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "Maç öncesi tartı: %5 / bir üst sıklet", en: "Pre-contest weigh-in: 5% / one class up" },
+    title: { tr: "Maç Öncesi Tartı", en: "Pre-contest Weigh-in" },
     quick: {
       tr: "Sporcunun müsabaka öncesi kilosu, kayıtlı sıkletinin %5 üzerinde veya bir üst siklete eşit çıkarsa diskalifiye edilir.",
       en: "If the pre-contest weight exceeds the registered class by 5% or reaches one class up, the athlete is disqualified."
+    },
+    ruleText: {
+      tr: "11.1.2: MAÇ ÖNCESİ TARTI\nTeknik Delege veya Başhakem tarafından görevlendirilen ilgili maçın Jüri üyesi (İdari veya Protokol) tarafından, sporcunun maçından önce veya sonra herhangi bir zamanda gerçekleştirilecektir. Sporcunun müsabaka öncesi kilosu, kayıtlı olduğu sıkletin %5 üzerinde veya bir üst sıklete eşit çıkarsa sporcu diskalifiye edilir.",
+      en: "11.1.2: PRE-CONTEST WEIGH-IN\nWill be conducted at any time prior, or after the Athlete's contest by an appointed Jury member (Administration or Protocol) of the contest, as designated by the Technical Delegate or the Chairman of the Jury. If the Athlete's pre-contest weight is found 5% above their qualified weight classification, or equal to the next weight classification they will be disqualified."
     },
     when: { tr: "Maç öncesi tartıda (Pre-Contest Weigh-In).", en: "At the pre-contest weigh-in." },
     right: { tr: "Maç öncesi tartı, ilgili Jüri üyesi tarafından maçtan önce/sonra yapılabilir.", en: "The pre-contest weigh-in may be done by the jury member before or after the bout." },
@@ -927,7 +905,7 @@ window.IFMA.cards = [
     tags: ["tartı", "%5", "weigh-in", "diskalifiye", "11.1.2"]
   },
   {
-    id: "WEIGH_ONCE", module: "kayit", subtopic: "tektarti", label: "ifma",
+    id: "WEIGH_ONCE", module: "tarti", subtopic: "tek-hak", label: "ifma",
     rule: "11.3.3", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh"],
     media: { photo: false, video: false, animation: false },
@@ -936,6 +914,10 @@ window.IFMA.cards = [
       tr: "Sporcuya her gün yapılan tartıda yalnızca bir kez baskül hakkı verilir; kaydedilen kilo kesindir.",
       en: "The athlete gets one attempt on the scale each day; the recorded weight is final."
     },
+    ruleText: {
+      tr: "11.3.3: TEK TARTI HAKKI\nSporcuya her gün yapılan tartıda yalnızca bir kez basküle çıkma hakkı verilir. Bu tartıda kaydedilen kilo sonucu kesindir.",
+      en: "11.3.3: MAKING WEIGHT\nA competitor will be allowed to present himself/herself at the official scales only once at the weigh-in each day. The weight recorded on that presentation is final."
+    },
     when: { tr: "Her günkü tartıda.", en: "At each daily weigh-in." },
     right: { tr: "Tartıya katılmayan sporcu otomatik diskalifiye (DSQ).", en: "Not attending the weigh-in = automatic DSQ." },
     wrong: { tr: "İkinci baskül hakkı vermek.", en: "Allowing a second attempt." },
@@ -943,131 +925,454 @@ window.IFMA.cards = [
     tags: ["tartı", "tek hak", "weigh-in", "11.3.3"]
   },
   {
-    id: "MED_KOH", module: "kayit", subtopic: "saglik", label: "ifma",
-    rule: "9.1", revision: "2026-05-11", status: A,
+    id: "MED_KOH", module: "tarti", subtopic: "kafa-darbesi", label: "ifma",
+    rule: "9.1, 9.2, 9.3", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["jury", "weigh"],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "KOH/RSCH sonrası zorunlu dinlenme", en: "Mandatory rest after KOH/RSCH" },
+    title: { tr: "Kafaya Alınan Darbe Sonrası Prosedürler", en: "Procedures for Head Injuries" },
     quick: {
       tr: "1. KOH/RSCH: en az 30 gün; 2. (90 gün içinde): 90 gün; 3. (12 ay içinde): 12 ay müsabaka/sparring yasağı.",
       en: "1st KOH/RSCH: min 30 days; 2nd (within 90 days): 90 days; 3rd (within 12 months): 12 months no competition/sparring."
+    },
+    headInjuryTable: {
+      title: { tr: "KOH / RSCH Güvenlik Prosedürü", en: "KOH / RSCH Safety Procedure" },
+      subtitle: { tr: "Kafa darbesi sonrası zorunlu men ve güvenli dönüş özeti", en: "Mandatory suspension and safe-return summary after head strikes" },
+      eventLabel: { tr: "Durum", en: "Occurrence" },
+      windowLabel: { tr: "Tekrar aralığı", en: "Occurrence window" },
+      restLabel: { tr: "Zorunlu süre", en: "Mandatory period" },
+      rows: [
+        {
+          step: "1",
+          event: { tr: "İlk KOH / RSCH", en: "First KOH / RSCH" },
+          window: { tr: "Tek olay", en: "Single occurrence" },
+          rest: { tr: "En az 30 gün", en: "At least 30 days" },
+          tone: "caution"
+        },
+        {
+          step: "2",
+          event: { tr: "İkinci KOH / RSCH", en: "Second KOH / RSCH" },
+          window: { tr: "90 gün içinde", en: "Within 90 days" },
+          rest: { tr: "90 gün", en: "90 days" },
+          tone: "warning"
+        },
+        {
+          step: "3",
+          event: { tr: "Üçüncü KOH / RSCH", en: "Third KOH / RSCH" },
+          window: { tr: "12 ay içinde", en: "Within 12 months" },
+          rest: { tr: "12 ay", en: "12 months" },
+          tone: "danger"
+        }
+      ],
+      protective: {
+        rule: "9.2",
+        title: { tr: "Koruyucu Tedbir", en: "Protective Measure" },
+        duration: { tr: "En az 4 hafta", en: "At least 4 weeks" },
+        text: {
+          tr: "Çok sayıda kafa darbesi veya art arda Knockdown sonrası Sağlık Görevlisi gerekli görürse müsabaka ve antrenman durdurulabilir.",
+          en: "After numerous head strikes or repeated knockdowns, competition and training may be suspended when the Medical Officer considers it necessary."
+        }
+      },
+      clearance: {
+        rule: "9.3",
+        title: { tr: "Spora Dönüş Onayı", en: "Return-to-sport Clearance" },
+        items: [
+          { tr: "Nörolog tarafından uygunluk onayı", en: "Fitness clearance by a neurologist" },
+          { tr: "Mümkünse EEG; gerekirse CCT incelemesi", en: "EEG where possible; CCT when necessary" },
+          { tr: "Sonuçlar ve dönüş izni sağlık kaydına işlenir", en: "Results and return permission entered in the medical record" }
+        ]
+      },
+      recordNote: {
+        tr: "Her KOH/RSCH; sağlık kaydına ve RSportz sistemine işlenir, Ulusal Federasyona bildirilir.",
+        en: "Every KOH/RSCH is recorded in the medical record and RSportz, and reported to the National Federation."
+      }
+    },
+    ruleText: {
+      tr: "KURAL 9: KAFAYA ALINAN DARBE SONRASI PROSEDÜRLER (KOH/RSCH)\n\n9.1: ZORUNLU DİNLENME SÜRESİ\nBir sporcu, kafaya alınan darbeler sonucu Nakavt (KOH) veya Hakem Kararıyla Maçın Bitmesi (RSCH) durumunda zorunlu dinlenme süresine tabi tutulur.\n• Bir (1) KOH veya RSCH: Kafaya alınan sert darbeler sonucunda nakavt olan veya Orta Hakemin sporcuyu savunmasız ya da devam edemez durumda görmesi nedeniyle maçı bitirdiği bir sporcunun; en az otuz (30) gün süreyle Muaythai müsabakalarına veya sparring antrenmanlarına katılmasına izin verilmeyecektir.\n• İkinci (2) KOH veya RSCH: Doksan (90) günlük bir süre içinde, kafa darbeleri sonucu ikinci kez nakavt olan veya Orta Hakemin sporcuyu savunmasız ya da devam edemez durumda görmesi nedeniyle maçı bitirdiği bir sporcunun; ikinci KOH veya RSCH tarihinden itibaren doksan (90) gün süreyle Muaythai müsabakalarına veya sparring antrenmanlarına katılmasına izin verilmeyecektir.\n• Üçüncü (3) KOH veya RSCH: On iki (12) aylık bir süre içinde, kafa darbeleri sonucu üçüncü kez nakavt olan veya Orta Hakemin sporcuyu savunmasız ya da devam edemez durumda görmesi nedeniyle maçı bitirdiği bir sporcunun; üçüncü KOH veya RSCH tarihinden itibaren on iki (12) ay süreyle Muaythai müsabakalarına veya sparring antrenmanlarına katılmasına izin verilmeyecektir.\nKafa darbeleri sonucu yaşanan her KOH ve her RSCH durumu; sporcunun tıbbi kayıtlarına, IFMA etkinlik yönetim sistemine (RSportz) işlenmeli ve sporcunun bağlı olduğu Ulusal Federasyona bildirilmelidir.\n\n9.2: KORUYUCU TEDBİRLER\nKafa bölgesine çok sayıda darbe alarak zorlu bir maç geçiren ya da birbirini takip eden bazı müsabakalarda birden fazla kez Knockdown durumuna düşen bir sporcunun, Sağlık Görevlisinin gerekli görmesi ve tavsiyesi üzerine, son maçtan itibaren en az dört (4) hafta süreyle Muaythai müsabakalarına ve antrenmana katılmasına izin verilmeyebilir.\n\n9.3: TIBBİ MEN SONRASI DOKTOR ONAYI\nBir sporcu, herhangi bir tıbbi men sürecinin ardından Muaythai'ye geri dönmeden önce, bir nörolog tarafından Muaythai müsabakalarına katılmaya uygun olduğuna dair tıbbi onay almalıdır. Sporcu, mümkünse özel bir muayeneden, elektroensefalogram (EEG) ve gerektiğinde kontrastlı bilgisayarlı tomografi (CCT) incelemesinden geçmelidir. Muayene sonuçları ile yeniden müsabakalara katılım izni, sporcunun sağlık kaydına işlenmelidir.\n\nYükümlülüklerin Bildirilmesi\nUlusal Dernekler; reşit olmayan sporcular ve dil yeterliliği sınırlı olan sporcular dahil tüm sporcuların, tıbbi gereklilikleri, sorumlulukları ve müsabakalara güvenli dönüş prosedürlerini tam olarak anlayabilmeleri amacıyla gerekli bilgilendirmenin erişilebilir ve anlaşılır biçimde yapılmasını sağlamakla yükümlüdür. Antrenman sırasında meydana gelen kafa travmalarında da tüm koruyucu tedbirler aynı şekilde uygulanır.",
+      en: "RULE 9: PROCEDURES FOR HEAD INJURIES (KOH/RSCH)\n\n9.1: MANDATORY PROBATION PERIOD\nAn Athlete shall receive a mandatory period of rest in the event of a Knock-Out or RSC caused by strikes to the head.\n• One (1) KOH or RSCH: An Athlete who has been knocked out or for whom the Referee has stopped the contest due to receiving hard hits to the head rendering the Athlete defenceless or incapable of continuing, shall not be permitted to take part in competition of Muaythai or sparring for a period of at least thirty (30) days.\n• Two (2) KOH or RSCH: An Athlete who has been knocked out as result of head hits or wherein the Referee has stopped the contest due to an Athlete having received hard hits to the head rendering the Athlete defenceless or incapable of continuing twice within a period of ninety (90) days, shall not be allowed to take part in Muaythai competition or sparring for a period of ninety (90) days from the second KOH or RSCH.\n• Three (3) KOH or RSCH: An Athlete who has been knocked out as a result of head hits or wherein the Referee has stopped the contest due to the Athlete having received hard hits to the head rendering the Athlete defenceless or incapable of continuing three (3) times in a period of twelve (12) months, shall not be allowed to take part in Muaythai competition or sparring for a period of twelve (12) months from the third KOH or RSCH.\nEach Knock-Out suffered as a result of head hits and each RSCH must be recorded in the Athlete's medical record, IFMA event management system (RSportz) and the Athlete's National Federation must be informed.\n\n9.2: PROTECTIVE MEASURES\nAny Athlete having lost a hard contest with many hits to the head or having been knocked down several times in some consecutive contests, may not be permitted to take part in Muaythai competition or training for a period of at least four (4) weeks after the last contest on the advice of the Medical Officer should they decide that it would be necessary.\n\n9.3: MEDICAL CERTIFICATION FOLLOWING PROBATION\nBefore resuming Muaythai after any periods of medical probation, an Athlete must be certified by a neurologist as fit to take part in Muaythai competition. The Athlete should undergo, if possible, a special examination, electroencephalogram (EEG) and, if necessary, a contrast-enhanced computed tomography (CCT) test. The results of examinations as well as the permission to resume competing shall be entered in the medical record.\n\nCommunication of Obligations\nNational Associations must ensure that these medical and safeguarding obligations are communicated in an accessible way to all Athletes, including minors and Athletes with limited language proficiency, so that they fully understand the medical requirements, their responsibilities, and the procedures to follow for safe return to competition. All protective measures apply equally if a head injury occurs during training."
     },
     when: { tr: "Kafa darbesi sonrası nakavt/RSCH durumunda.", en: "After a head-strike knockout/RSCH." },
     right: { tr: "Her KOH/RSCH tıbbi kayda işlenir ve Ulusal Federasyona bildirilir.", en: "Each KOH/RSCH is recorded and reported to the national federation." },
     wrong: { tr: "Dinlenme süresi dolmadan sporcuyu kaydetmek.", en: "Registering the athlete before the rest period ends." },
     related: ["FOUL_KO"],
-    tags: ["koh", "rsch", "dinlenme", "30 gün", "9.1"]
+    tags: ["koh", "rsch", "dinlenme", "30 gün", "koruyucu tedbir", "nörolog", "9.1", "9.2", "9.3"]
   },
   {
-    id: "MED_FORM", module: "kayit", subtopic: "saglik", label: "ifma",
+    id: "MED_FORM", module: "kayit", subtopic: "ifma-medical", label: "ifma",
     rule: "10.1", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: true, video: false, animation: false },
     imgs: [
-      { src: "assets/img/form-medical-declaration.jpg", cap: { tr: "Bölüm 1 — Sağlık durumu beyanı", en: "Section 1 — Medical conditions" } },
-      { src: "assets/img/form-pregnancy-declaration.jpg", cap: { tr: "Bölüm 4 — Kadın sporcular için Hamile Olmama Beyanı", en: "Section 4 — Female Non-Pregnancy Declaration" } }
+      { src: "assets/img/form-medical-declaration.jpg", cap: { tr: "IFMA Tıbbi Beyan Formu — sağlık durumu beyanı", en: "IFMA Medical Declaration Form — medical conditions" } }
     ],
     links: [ { url: "https://muaythai.sport/wp-content/uploads/2020/06/IFMA-Medical-Declaration-for-Athletes-V.9.pdf", label: { tr: "Tam formu aç / indir (PDF, 4 sayfa)", en: "Open / download full form (PDF, 4 pages)" } } ],
-    title: { tr: "IFMA Tıbbi Beyan Formu", en: "IFMA Medical Declaration Form" },
+    title: { tr: "IFMA Tıbbi Onay Formu", en: "IFMA Medical Declaration Form" },
     quick: {
-      tr: "Sporcunun sağlık durumunu beyan ettiği, yetkili bir tıp doktoru tarafından imzalanan resmî IFMA formu (İngilizce, 4 bölüm: sağlık durumu, doktor onayı, kilo kontrolü ve kadın sporcular için hamile olmama beyanı). Kayıt/akreditasyonda ibraz edilir.",
-      en: "The official IFMA form declaring the athlete's health, signed by a licensed doctor (in English, 4 sections: medical conditions, physician approval, weight-cut control and a female non-pregnancy declaration). Presented at registration/accreditation."
+      tr: "Eksiksiz doldurulmuş, İngilizce hazırlanmış ve yetkili bir tıp doktoru tarafından imzalanmış IFMA Tıbbi Beyan Formu kayıt için zorunludur.",
+      en: "A completed IFMA Medical Declaration Form, prepared in English and signed by an authorised Doctor of Medicine, is mandatory for registration."
+    },
+    ruleText: {
+      tr: "10.1: TIBBİ BEYAN\nYetkili bir tıp doktoru tarafından imzalanmış, eksiksiz bir IFMA Tıbbi Beyan Formu bulunmayan hiçbir sporcunun müsabakaya katılmasına izin verilmeyecektir. Beyan İngilizce olarak doldurulmalı ve yetkili doktor tarafından imzalanmalıdır; beyan, sporcunun ülkesinden ayrılmadan önce fiziksel durumunun iyi olduğunu ve müsabaka kapasitesini etkileyebilecek herhangi bir sakatlık, enfeksiyon veya engellilik durumunun bulunmadığını teyit etmelidir. Sporcunun vücut ve uzuv bütünlüğü açısından uygun olmalıdır.",
+      en: "10.1: MEDICAL DECLARATION\nNo Athlete shall be allowed to compete without having a completed IFMA Medical Declaration Form, which must be signed by an authorised Doctor of Medicine. The medical declaration must be completed in the English language stating that prior to leaving their country the Athlete was in good physical condition and not suffering from any injury, infection or disability liable to affect the Athlete’s capacity to compete. The Athlete must be intact and of full body."
     },
     when: { tr: "Kayıt/akreditasyonda (Kural 10.1).", en: "At registration/accreditation (Rule 10.1)." },
-    right: { tr: "18 yaş altı için veli/vasi imzası gerekir; 16+ için HIV/HBV/HCV kan testleri eklenir. Hamile olmama beyanı tüm kadın sporcular için doldurulur (10.1.1, 10.2).", en: "Under-18s need a parent/guardian signature; ages 16+ add HIV/HBV/HCV blood tests. The non-pregnancy declaration is completed by all female athletes (10.1.1, 10.2)." },
-    related: ["REG_DOCS", "DOPING_FORM"],
-    tags: ["tıbbi beyan formu", "medical declaration", "sağlık formu", "hamile olmama beyanı", "gebelik", "non-pregnancy", "10.1"]
+    right: { tr: "Form ülke dışına çıkmadan önce tamamlanmalı ve yetkili doktor tarafından imzalanmalıdır.", en: "The form must be completed before leaving the athlete’s country and signed by an authorised doctor." },
+    related: ["PREGNANCY_FORM", "REG_BLOOD_TESTS"],
+    tags: ["tıbbi onay formu", "tıbbi beyan formu", "medical declaration", "sağlık formu", "10.1"]
   },
   {
-    id: "TMF_ACCRED", module: "kayit", subtopic: "kimlik", label: "tmf",
-    rule: "Ek IX / TMF", revision: "2026-05-11", status: P,
-    discipline: [], age: [], gender: [], role: ["weigh"],
+    id: "PREGNANCY_FORM", module: "kayit", subtopic: "non-pregnancy", label: "ifma",
+    rule: "10.1.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: ["female"], role: ["weigh", "jury"],
     media: { photo: true, video: false, animation: false },
-    title: { tr: "Akreditasyon ve sporcu kitabı", en: "Accreditation & athletes book" },
+    imgs: [
+      { src: "assets/img/form-pregnancy-declaration.jpg", cap: { tr: "Kadın sporcular için Hamile Olmama Beyanı", en: "Declaration of Non-pregnancy for female athletes" } }
+    ],
+    links: [ { url: "https://muaythai.sport/wp-content/uploads/2020/06/IFMA-Medical-Declaration-for-Athletes-V.9.pdf", label: { tr: "Beyanın bulunduğu tam formu aç / indir (PDF)", en: "Open / download the full form containing the declaration (PDF)" } } ],
+    title: { tr: "Hamile Olmama Beyanı", en: "Declaration of Non-pregnancy" },
     quick: {
-      tr: "Akreditasyonda kimlik, sporcu kitabı (Athletes Book) ve Khan belgesi ibraz edilir. Ulusal uygulama ayrıntıları TMF organizasyon talimatına göre yürütülür.",
-      en: "At accreditation, ID, the Athletes Book and the Khan certificate are presented. National details follow the TMF organisation instruction."
+      tr: "18 yaş ve üzerindeki sporcular beyanı şahsen imzalar; 18 yaş altındaki sporcular için ebeveyn veya yasal vasi ek imzası gerekir.",
+      en: "Athletes aged 18 and above sign the declaration personally; athletes under 18 require an additional parent or legal guardian signature."
     },
-    when: { tr: "Kayıt/akreditasyon aşamasında.", en: "At registration/accreditation." },
-    right: { tr: "Sporcu kitabı her müsabaka sonunda geri alınır (8.1.4).", en: "The Athletes Book is collected back after each event (8.1.4)." },
-    wrong: { tr: "Belge doğrulaması olmadan akredite etmek.", en: "Accrediting without document verification." },
-    related: ["MED_KOH"],
-    tags: ["akreditasyon", "sporcu kitabı", "khan", "tmf", "kayıt"]
+    ruleText: {
+      tr: "10.1.1: HAMİLE OLMAMA BEYANI\n18 yaş ve üzerindeki sporcular, Hamile Olunmadığına Dair Beyanı şahsen imzalamak zorundadır. 18 yaşın altındaki sporcular için sporcunun ebeveynlerinden ve/veya yasal vasilerinden birinin ek imzası gereklidir.\n\nGizlilik ve Amaç\nHamile olmama beyanları, yalnızca yüksek etkili bir sporda sporcu sağlığını korumak amacıyla talep edilir. Bu beyanlar gizli tıbbi bilgi olarak değerlendirilecek ve başka hiçbir amaç için kullanılmayacaktır.\n\nPeriyodik Gözden Geçirme\nSağlık ve Toplumsal Cinsiyet Eşitliği Kurulları; güncel tıbbi kanıtları, uluslararası insan hakları ve toplumsal cinsiyet eşitliği standartlarını referans alarak, hamile olunmadığına dair beyanların formatını, gerekliliğini ve ölçülülüğünü en az dört (4) yılda bir periyodik olarak gözden geçirecektir.",
+      en: "10.1.1: DECLARATION OF NON-PREGNANCY\nAthletes aged 18 and above must sign the Declaration of Non-pregnancy. Athletes under this age require an additional signature from one of the Athlete’s parents and/or legal guardians.\n\nConfidentiality and Purpose\nNon-pregnancy declarations are required solely for the protection of Athlete health in a high-impact sport. These declarations shall be treated as confidential medical information and shall not be used for any other purpose.\n\nPeriodic Review\nThe Medical and Gender Equality Commissions shall periodically review the format, necessity, and proportionality of non-pregnancy declarations at least every four (4) years, with reference to current medical evidence and international human-rights and gender-equality standards."
+    },
+    when: { tr: "IFMA kayıt/akreditasyon sürecinde.", en: "During IFMA registration/accreditation." },
+    right: { tr: "Beyan gizli tıbbi bilgi olarak değerlendirilir ve yalnızca sporcu sağlığını koruma amacıyla kullanılır.", en: "The declaration is confidential medical information used solely to protect athlete health." },
+    related: ["MED_FORM"],
+    tags: ["hamile olmama beyanı", "gebelik", "non-pregnancy", "kadın sporcu", "10.1.1"]
   },
   {
-    id: "REG_DOCS", module: "kayit", subtopic: "belgeler", label: "ifma",
-    rule: "10, 12", revision: "2026-05-11", status: A,
+    id: "REG_ADEL", module: "kayit", subtopic: "adel", label: "ifma",
+    rule: "12.1.2", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: true, video: false, animation: false },
-    title: { tr: "Kayıt için gerekli evraklar", en: "Documents required for registration" },
+    imgs: [
+      {
+        src: "assets/img/adel-wada.png",
+        cap: {
+          tr: "ADEL — Dünya Dopingle Mücadele Ajansı (WADA) eğitim platformu",
+          en: "ADEL — World Anti-Doping Agency (WADA) education platform"
+        }
+      }
+    ],
+    links: [
+      {
+        url: "https://adel.wada-ama.org/learn/learning-plans/1/international-level-athletes-education-program-english",
+        label: { tr: "U16 ve üzeri sporcular — Uluslararası Düzey Sporcular Eğitim Programı", en: "Athletes U16 and above — International-Level Athletes Education Program" }
+      },
+      {
+        url: "https://adel.wada-ama.org/learn/signin;redirectUrl=%2F",
+        label: { tr: "ADEL'e giriş — Genç Sporcular Eğitim Programına erişim", en: "Sign in to ADEL — access the Youth Athletes Education Program" }
+      },
+      {
+        url: "https://adel.wada-ama.org/learn/learning-plans/7/coaches-of-high-performance-education-program-english",
+        label: { tr: "Antrenörler — Yüksek Performans Antrenörleri Eğitim Programı", en: "Coaches — Coaches of High Performance Education Program" }
+      },
+      {
+        url: "https://adel.wada-ama.org/learn/learning-plans/13/medical-professionalseducationprogram-english",
+        label: { tr: "Takım doktorları — Sağlık Profesyonelleri Eğitim Programı", en: "Team doctors — Medical Professionals Education Program" }
+      }
+    ],
+    title: { tr: "Zorunlu Eğitim Programları (ADEL)", en: "Mandatory Education Programmes (ADEL)" },
     quick: {
-      tr: "Kayıt/akreditasyonda gerekenler: IFMA Tıbbi Beyan Formu (doktor imzalı), 16+ için HIV/HBV/HCV kan testleri (son 6 ay), Sporcu Kitabı, geçerli Khan sertifikası ve Anti-Doping Onay Formu.",
-      en: "Required at registration/accreditation: the IFMA Medical Declaration Form (doctor-signed), HIV/HBV/HCV blood tests for ages 16+ (within 6 months), the Athletes Book, a valid Khan certificate and the Anti-Doping Consent Form."
+      tr: "Sporcu, antrenör ve takım doktorları rolleri ile yaş gruplarına uygun anti-doping eğitim programını tamamlamak zorundadır.",
+      en: "Athletes, coaches and team doctors must complete the anti-doping education programme applicable to their role and age group."
     },
-    when: { tr: "Kayıt/akreditasyon aşamasında.", en: "At registration/accreditation." },
-    right: { tr: "18 yaş altı için tıbbi ve anti-doping formları veli/vasi ek imzası gerektirir (10.1.1, 12.1.1).", en: "For under-18s, the medical and anti-doping forms need a parent/guardian's extra signature (10.1.1, 12.1.1)." },
-    wrong: { tr: "Eksik belge veya süresi geçmiş kan testiyle akredite etmek.", en: "Accrediting with missing documents or expired blood tests." },
-    related: ["REG_KHAN", "WEIGH_OFFICIAL", "MED_FORM", "DOPING_FORM"],
-    tags: ["evrak", "belge", "kan testi", "tıbbi beyan", "anti-doping", "10.1", "10.2", "12.1"]
+    ruleText: {
+      tr: "12.1.2: DOPİNGLE MÜCADELE EĞİTİM ZORUNLULUĞU\n• U16 ve üzeri sporcular, Uluslararası Düzey Sporcular Eğitim Programını (International-Level Athletes Education Program) tamamlamak zorundadır.\n• U12–U14 sporcuları, ADEL Genç Sporcular Eğitim Programını (ADEL Youth Athletes Education Program) tamamlamak zorundadır.\n• Tüm antrenörler, Yüksek Performans Antrenörleri Eğitim Programını (Coaches of High Performance Education Program) tamamlamak zorundadır.\n• Tüm takım doktorları, Sağlık Profesyonelleri için ADEL Eğitim Programını (ADEL for Medical Professional's Education Program) tamamlamak zorundadır.",
+      en: "12.1.2: ANTI-DOPING EDUCATION REQUIREMENT\n• Athletes U16 and above must complete the International-Level Athletes Education Program.\n• Athletes U12–U14 must complete the ADEL Youth Athletes Education Program.\n• All coaches must complete the Coaches of High Performance Education Program.\n• All team doctors must complete the ADEL for Medical Professional's Education Program."
+    },
+    when: { tr: "IFMA etkinlik kaydı öncesinde.", en: "Before registration for an IFMA event." },
+    right: { tr: "Yaş kategorisine ve role uygun güncel eğitim tamamlanmalıdır.", en: "The current programme appropriate to the age category and role must be completed." },
+    related: ["DOPING_FORM"],
+    tags: ["adel", "zorunlu eğitim", "anti-doping eğitim", "12.1.2", "u12", "u14", "u16"]
   },
   {
-    id: "DOPING_FORM", module: "kayit", subtopic: "belgeler", label: "ifma",
-    rule: "12.1", revision: "2026-05-11", status: A,
+    id: "DOPING_FORM", module: "kayit", subtopic: "anti-doping", label: "ifma",
+    rule: "12", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: true, video: false, animation: false },
     imgs: [ { src: "assets/img/form-consent.jpg", cap: { tr: "Anti-Doping Onay Formu (2020) — 1. sayfa (tamamı 2 sayfa)", en: "Athlete Consent Form (2020) — page 1 (2 pages total)" } } ],
     links: [ { url: "https://muaythai.sport/wp-content/uploads/2020/06/Athlete-Consent-Form-IFMA-Events-and-Anti-Doping_2020.pdf", label: { tr: "Formu aç / indir (PDF)", en: "Open / download form (PDF)" } } ],
     title: { tr: "Anti-Doping Onay Formu", en: "Athlete Consent Form (Anti-Doping)" },
     quick: {
-      tr: "Sporcunun IFMA etkinlikleri ve anti-doping kurallarını kabul ettiği resmî onay formu. Kayıtta imzalanır.",
-      en: "The official consent form by which the athlete accepts IFMA events and the anti-doping rules. Signed at registration."
+      tr: "18 yaş ve üzerindeki sporcular IFMA Anti-Doping Onay Formunu imzalar; daha küçük sporcular için ebeveyn veya yasal vasi ek imzası gerekir.",
+      en: "Athletes aged 18 and above sign the IFMA Anti-Doping Consent Form; younger athletes require an additional parent or legal guardian signature."
+    },
+    ruleText: {
+      tr: "KURAL 12: İLAÇ KULLANIMI VE DOPİNG\n\n12.1: DOPİNG\nBir sporcunun normal beslenme düzeninin bir parçasını oluşturmayan ilaçların veya kimyasal maddelerin sporcuya verilmesi/uygulanması yasaktır. Dünya Dopingle Mücadele Ajansı (WADA) Doping Yönetmelikleri ve IFMA Dopingle Mücadele Kuralları uygulanacaktır.\n\n12.1.1: ANTİ-DOPİNG ONAYI\n18 yaş ve üzerindeki sporcular, IFMA Anti-Doping Onay Formunu imzalamak zorundadır. Bu yaşın altındaki sporcular için ayrıca sporcunun ebeveynlerinden ve/veya yasal vasilerinden birinin ek imzası gereklidir.\n\n12.1.2: DOPİNGLE MÜCADELE EĞİTİM ZORUNLULUĞU\n• U16 ve üzeri sporcular, Uluslararası Düzey Sporcular Eğitim Programını (International-Level Athletes Education Program) tamamlamak zorundadır.\n• U12–U14 sporcuları, ADEL Genç Sporcular Eğitim Programını (ADEL Youth Athletes Education Program) tamamlamak zorundadır.\n• Tüm antrenörler, Yüksek Performans Antrenörleri Eğitim Programını (Coaches of High Performance Education Program) tamamlamak zorundadır.\n• Tüm takım doktorları, Sağlık Profesyonelleri için ADEL Eğitim Programını (ADEL for Medical Professional's Education Program) tamamlamak zorundadır.\n\n12.2: YAPTIRIMLAR\nBu yükümlülüğü ihlal eden herhangi bir sporcu veya resmi görevli, IFMA tarafından diskalifiye veya uzaklaştırma cezalarına tabi tutulacaktır.\n\n12.3: LOKAL ANESTEZİKLER\nLokal anesteziklerin kullanımına, Sağlık Kurulu doktorunun takdirine ve onayına bağlı olarak izin verilir.\n\n12.4: YASAKLI İLAÇLAR\nDünya Dopingle Mücadele Ajansının (WADA) güncel yasaklı maddeler listesi, IFMA’nın yasaklı maddeler listesini oluşturur. Bu tür maddeleri kullanan herhangi bir sporcu veya bu maddeleri uygulayan herhangi bir resmi görevli cezalara tabi tutulacaktır. IFMA, IFMA Sağlık Kurulunun tavsiyesi üzerine ek maddeleri de yasaklayabilir.",
+      en: "RULE 12: ADMINISTRATION OF DRUGS & DOPING\n\n12.1: DOPING\nThe administration to an Athlete of drugs or chemical substances not forming part of the usual diet of an Athlete is prohibited. The doping regulations of the World Anti-Doping Agency (WADA) and the IFMA Anti-Doping Code shall be applied.\n\n12.1.1: ANTI-DOPING CONSENT\nAthletes age 18 and above must sign the IFMA Anti-Doping Consent Form. Athletes under this age will also require an additional signature from one of the Athletes parents and/or legal guardians.\n\n12.1.2: ANTI-DOPING EDUCATION REQUIREMENT\n• Athletes U16 and above must complete the International-Level Athletes Education Program.\n• Athletes U12–U14 must complete the ADEL Youth Athletes Education Program.\n• All coaches must complete the Coaches of High Performance Education Program.\n• All team doctors must complete the ADEL for Medical Professional's Education Program.\n\n12.2: PENALTIES\nAny Athlete or official violating this prohibition shall be liable to disqualification or suspension by IFMA.\n\n12.3: LOCAL ANESTHETICS\nThe use of local anaesthetics is permitted according to the discretion of a doctor of the Medical Commission.\n\n12.4: PROHIBITED DRUGS\nThe current World Anti-Doping Agency (WADA) list of prohibited substances shall constitute IFMA’s list of prohibited substances. Any Athlete taking such substances or any official administering such substances shall be subject to the penalties. IFMA may ban additional substances upon the recommendation of the IFMA Medical Commissions."
     },
     when: { tr: "Kayıtta (Kural 12.1.1).", en: "At registration (Rule 12.1.1)." },
     right: { tr: "18 yaş altı sporcular için veli/vasi imzası zorunludur (12.1.1).", en: "For under-18 athletes a parent/guardian signature is required (12.1.1)." },
-    related: ["REG_DOCS", "MED_FORM"],
-    tags: ["anti-doping onay formu", "consent form", "doping", "onay formu", "12.1"]
+    related: ["REG_ADEL"],
+    tags: ["anti-doping onay formu", "consent form", "doping", "onay formu", "12", "12.1", "12.2", "12.3", "12.4"]
   },
   {
-    id: "REG_KHAN", module: "kayit", subtopic: "khanbelge", label: "ifma",
+    id: "REG_KHAN", module: "kayit", subtopic: "khan", label: "ifma",
     rule: "6", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: false, video: false, animation: false },
+    khanTable: {
+      title: { tr: "Asgari Khan Dereceleri", en: "Minimum Khan Levels" },
+      subtitle: {
+        tr: "IFMA etkinlikleri için kayıt ve akreditasyon şartı",
+        en: "Registration and accreditation requirement for IFMA events"
+      },
+      minimumLabel: { tr: "Asgari derece", en: "Minimum level" },
+      categoryLabel: { tr: "Yaş kategorisi", en: "Age category" },
+      athleteTitle: { tr: "Sporcular", en: "Athletes" },
+      officialTitle: { tr: "Antrenörler ve Teknik Görevliler", en: "Coaches and Technical Officials" },
+      roleLabel: { tr: "Rol", en: "Role" },
+      definitionLabel: { tr: "Unvan", en: "Designation" },
+      athletes: [
+        { category: { tr: "Masters 45+", en: "Masters 45+" }, level: 6 },
+        { category: { tr: "Masters 40+", en: "Masters 40+" }, level: 6 },
+        { category: { tr: "Masters 35+", en: "Masters 35+" }, level: 6 },
+        { category: { tr: "Elite", en: "Elite" }, level: 6 },
+        { category: { tr: "U24", en: "U24" }, level: 6 },
+        { category: { tr: "U18", en: "U18" }, level: 5 },
+        { category: { tr: "U16", en: "U16" }, level: 4 },
+        { category: { tr: "U14", en: "U14" }, level: 3 },
+        { category: { tr: "U12", en: "U12" }, level: 2 },
+        { category: { tr: "U10", en: "U10" }, level: 1 },
+        { category: { tr: "U8", en: "U8" }, level: 1 }
+      ],
+      officials: [
+        {
+          role: { tr: "Takım Menajeri / Kıdemli Antrenör", en: "Team Manager / Senior Coach" },
+          level: 10,
+          definition: { tr: "Uluslararası Eğitmen", en: "International Instructor" }
+        },
+        {
+          role: { tr: "Antrenör / Köşe Görevlisi", en: "Coach / Second" },
+          level: 7,
+          definition: { tr: "Yardımcı Eğitmen", en: "Assistant Instructor" }
+        },
+        {
+          role: { tr: "Teknik Görevliler", en: "Technical Officials" },
+          level: 7,
+          definition: { tr: "Yardımcı Eğitmen", en: "Assistant Instructor" }
+        }
+      ]
+    },
     title: { tr: "Khan derecesi şartı", en: "Khan level requirement" },
     quick: {
       tr: "IFMA etkinliklerinde asgari Khan derecesi şarttır. Sporcular: Elite/U24/35+/40+/45+ = 6, U18 = 5, U16 = 4, U14 = 3, U12 = 2, U10/U8 = 1.",
       en: "A minimum Khan level is required at IFMA events. Athletes: Elite/U24/Masters 35+/40+/45+ = 6, U18 = 5, U16 = 4, U14 = 3, U12 = 2, U10/U8 = 1."
     },
+    ruleText: {
+      tr: "KURAL 6: KHAN DERECESİ ŞARTI\nIFMA onaylı etkinliklere katılan tüm Sporcular, Antrenörler, Köşe Görevlileri (Seconds) ve Teknik Görevliler, belirlenen asgari Khan derecesi şartını karşılamak zorundadır. Geçerli Khan sertifikasının kanıtı, kayıt veya akreditasyon sırasında ibraz edilmelidir. Gerekli derecenin karşılanamaması durumunda katılım sağlanmasına onay verilmez.\n\n6.1: YAŞ KATEGORİSİNE GÖRE SPORCULAR İÇİN ASGARİ KHAN DERECESİ\nVeteranlar 45+: 6\nVeteranlar 40+: 6\nBüyükler 35+: 6\nElite: 6\nU24: 6\nU18: 5\nU16: 4\nU14: 3\nU12: 2\nU10: 1\nU8: 1",
+      en: "RULE 6: KHAN LEVEL REQUIREMENT\nAll Athletes, Coaches, Seconds, and Technical Officials participating in IFMA-sanctioned events must meet the prescribed minimum Khan level requirement. Proof of valid Khan certification must be presented during registration or accreditation. Failure to meet the required level shall result in ineligibility to participate.\n\n6.1: ATHLETES MINIMUM KHAN BY AGE CATEGORY\nMasters 45+: 6\nMasters 40+: 6\nMasters 35+: 6\nElite: 6\nU24: 6\nU18: 5\nU16: 4\nU14: 3\nU12: 2\nU10: 1\nU8: 1"
+    },
     when: { tr: "Kayıt/akreditasyonda geçerli Khan sertifikası ibraz edilir.", en: "A valid Khan certificate is presented at registration/accreditation." },
     right: { tr: "Antrenörler: Menajer/Kıdemli Antrenör = 10, Antrenör/Köşe = 7, Teknik Görevliler = 7 (6.2).", en: "Officials: Manager/Senior Coach = 10, Coach/Seconds = 7, Technical Officials = 7 (6.2)." },
     wrong: { tr: "Geçerli Khan sertifikası olmadan katılıma izin vermek.", en: "Allowing participation without a valid Khan certificate." },
-    related: ["REG_DOCS"],
+    related: ["REG_ACCREDITATION"],
     tags: ["khan", "derece", "6", "6.1", "6.2"]
   },
   {
-    id: "WEIGH_OFFICIAL", module: "kayit", subtopic: "resmitarti", label: "ifma",
+    id: "REG_BLOOD_TESTS", module: "kayit", subtopic: "blood-tests", label: "ifma",
+    rule: "10.2", revision: "2026-05-11", status: A,
+    discipline: [], age: ["U18", "U24", "ELITE", "M35", "V40", "V45"], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Kan Testleri", en: "Blood Tests" },
+    quick: {
+      tr: "16 yaş ve üzerindeki sporcular HIV antikoru, HBV ve HCV tarama sonuçlarını laboratuvar antetli kâğıdında ve son 6 ay içinde alınmış olarak sunar.",
+      en: "Athletes aged 16 and above present HIV antibody, HBV and HCV screening results on laboratory letterhead, completed within the previous 6 months."
+    },
+    ruleText: {
+      tr: "10.2: KAN TESTLERİ\nSağlık Beyanına ek olarak, 16 yaş ve üzerindeki sporcular; HIV antikoru, HBV (Hepatit B Yüzey Antijeni) ve HCV (Hepatit C Antikoru) tarama kan testlerinin sonuçlarını ibraz etmek zorundadır. Sonuçlar, testleri uygulayan laboratuvarın antetli kâğıdına basılı olmalı ve müsabakadan önceki son 6 ay içinde alınmış olmalıdır.",
+      en: "10.2: BLOOD TESTS\nIn addition to the Medical Declaration, Athletes aged 16 and above must present completed HIV antibody & HBV (Hepatitis B Surface Antigen) & HCV (Hepatitis C Antibody) screening blood tests. The results must be printed on the letterhead of the laboratory that administered the tests and must have been completed within the 6 months prior to competition."
+    },
+    when: { tr: "16 yaş ve üzerindeki sporcuların IFMA kaydında.", en: "At IFMA registration for athletes aged 16 and above." },
+    right: { tr: "Üç testin sonucu da laboratuvar antetli kâğıdında ve geçerli 6 aylık süre içinde olmalıdır.", en: "All three test results must be on laboratory letterhead and within the valid 6-month period." },
+    related: ["MED_FORM"],
+    tags: ["kan testi", "hiv", "hbv", "hcv", "hepatit", "laboratuvar", "6 ay", "10.2"]
+  },
+  {
+    id: "REG_ATHLETES_BOOK", module: "kayit", subtopic: "athletes-book", label: "ifma",
+    rule: "8.1.4", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Athlete's Book", en: "Athlete's Book" },
+    quick: {
+      tr: "Dijital veya fiziksel Sporcu Kitabı zorunludur; akreditasyondaki uyruğu yansıtmalı, tüm sağlık kontrolleri ve tartılarda sunulmalıdır.",
+      en: "The digital or physical Athletes Book is compulsory; it must reflect the nationality recorded at accreditation and be presented at all medical checks and weigh-ins."
+    },
+    ruleText: {
+      tr: "8.1.4: SPORCU EL KİTABI (ATHLETES BOOK)\nDijital veya fiziksel Sporcu Kitabı, sporcunun akreditasyon sırasında kaydedilen uyruğunu yansıtmalıdır. Bu kitabın bulundurulması zorunludur; tüm sağlık kontrollerinde ve tartılarda ibraz edilmelidir. Kitap, her müsabakanın sonunda geri alınmalıdır.",
+      en: "8.1.4: ATHLETES BOOK\nThe Athletes Book, digital or physical, must reflect the athlete’s nationality as recorded during accreditation. It is compulsory and must be presented at all medical checks and weigh-ins. The book must be collected at the end of each contest."
+    },
+    when: { tr: "Akreditasyonda, sağlık kontrolünde ve tartıda.", en: "At accreditation, medical checks and weigh-ins." },
+    right: { tr: "Sporcu Kitabı her müsabakanın sonunda geri alınır.", en: "The Athletes Book is collected at the end of each contest." },
+    related: ["REG_ACCREDITATION"],
+    tags: ["athlete's book", "athletes book", "sporcu kitabı", "sporcu el kitabı", "8.1.4"]
+  },
+  {
+    id: "REG_ACCREDITATION", module: "kayit", subtopic: "accreditation-card", label: "ifma",
+    rule: "8.1.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Akreditasyon Kartı", en: "Accreditation Card" },
+    quick: {
+      tr: "Akreditasyon sırasında kimlik ve uyruk doğrulaması yapılır; sporcu pasaportunda ibraz edilen uyruğu temsil etmelidir.",
+      en: "Identity and nationality are verified at accreditation; the athlete must represent the nationality presented in their passport."
+    },
+    ruleText: {
+      tr: "8.1.1: KİMLİK TESPİTİ\nSporcu, akreditasyon esnasında pasaportunda ibraz edilen uyruğu temsil etmek zorundadır.",
+      en: "8.1.1: IDENTIFICATION\nThe Athlete must represent the same nationality as presented in their passport at accreditation."
+    },
+    when: { tr: "IFMA akreditasyonu sırasında.", en: "During IFMA accreditation." },
+    right: { tr: "Akreditasyon bilgileri pasaporttaki uyrukla eşleşmelidir.", en: "Accreditation details must match the nationality in the passport." },
+    related: ["REG_ATHLETES_BOOK", "REG_KHAN"],
+    tags: ["akreditasyon kartı", "akreditasyon", "kimlik", "pasaport", "uyruk", "8.1.1"]
+  },
+  {
+    id: "WEIGH_GENERAL", module: "tarti", subtopic: "genel", label: "ifma",
+    rule: "11.3.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Genel Tartı Kuralları", en: "General Weigh-in Rules" },
+    quick: {
+      tr: "Teknik Delege isterse tüm sporcular Resmi Kayıt Tartısı ve sağlık kontrolüne katılır; aksi hâlde yarışacakları her sabah Günlük Müsabaka Tartısına ve zorunlu sağlık kontrolüne girer.",
+      en: "When required by the Technical Delegate, all athletes attend the Official Weigh-in and medical check; otherwise they attend the Competition Weigh-in and compulsory medical check each morning they compete."
+    },
+    ruleText: {
+      tr: "11.3.1: KATILIM\nTeknik Delege tarafından talep edilmesi halinde, tüm sıkletlerdeki sporcular; müsabakanın bütünü için esas alınacak kilolarının belirleneceği Resmi Kayıt Tartısına ve Sağlık Kontrolüne katılmak zorundadır. Sporcu yalnızca tartıda uygun bulunduğu sıklette yarışabilir.\nTeknik Delege tarafından Resmi Kayıt Tartısının talep edilmediği durumlarda sporcu; o günkü mevcut kilosunun kendi sıkletinin üst sınırını aşmadığından emin olmak için yarışacağı her günün sabahında yalnızca Günlük Müsabaka Tartısına katılmalı ve zorunlu sağlık kontrolünden geçmelidir.\n• Tartıya katılmayan sporcu otomatik olarak diskalifiye edilir (DSQ).",
+      en: "11.3.1: ATTENDANCE\nAthletes in all weight divisions when required by the Technical Delegate, must complete a medical and weight check at the Official Weigh-in, which shall determine their weight for the entirety of competition. An Athlete may only compete in the weight classification for which they have qualified at the weigh-in.\nWhen not required by the Technical Delegate, an Athlete shall present themselves only at the Competition Weigh-in each morning that they are scheduled to compete, to ensure that their actual weight on that day does not exceed the maximum of their weight class, and must pass the compulsory medical check.\n• An Athlete who does not attend their weigh-in will automatically be disqualified (DSQ)."
+    },
+    when: { tr: "Tüm IFMA tartı ve sağlık kontrolü süreçlerinde.", en: "Across all IFMA weigh-in and medical-check processes." },
+    right: { tr: "Sporcu yalnızca tartıda uygun bulunduğu sıklette yarışır.", en: "The athlete competes only in the weight classification qualified for at weigh-in." },
+    related: ["WEIGH_OFFICIAL", "WEIGH_DAILY", "WEIGH_MEDICAL_EXAM", "WEIGH_FAILED"],
+    tags: ["genel tartı", "katılım", "dsq", "11.3.1"]
+  },
+  {
+    id: "WEIGH_DAILY", module: "tarti", subtopic: "gunluk", label: "ifma",
     rule: "11.1", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: false, video: false, animation: false },
-    title: { tr: "Resmi, günlük ve maç öncesi tartı", en: "Official, daily & pre-contest weigh-in" },
+    title: { tr: "Günlük Müsabaka Tartısı", en: "Competition Weigh-in" },
     quick: {
-      tr: "Üç tartı zamanı: Resmi Kayıt Tartısı (1 gün önce), Günlük Müsabaka Tartısı (her sabah) ve Maç Öncesi Tartı (maçtan önce herhangi bir zaman). Müsabaka, günlük tartıdan en az 3 saat sonra başlar.",
-      en: "Three weigh-in times: Official Weigh-In (1 day before), Competition Weigh-In (each morning) and Pre-Contest Weigh-In (any time before the bout). Competition starts at least 3 hours after the Competition Weigh-In."
+      tr: "Günlük Müsabaka Tartısı müsabakanın her sabahı yapılır; müsabaka normalde tartının tamamlanmasından en erken üç saat sonra başlar.",
+      en: "The Competition Weigh-in is held each morning of competition; competition normally starts no earlier than three hours after it closes."
     },
-    when: { tr: "Müsabaka öncesi ve günlerinde.", en: "Before and on competition days." },
-    right: { tr: "Tartıya katılmayan sporcu otomatik diskalifiye (DSQ); sıkleti tutturamayan veya sağlık kontrolünü geçemeyen mağlup sayılır ve rakibe WO verilir (11.3.1, 11.4).", en: "Not attending = automatic DSQ; failing to make weight or the medical = a loss, and a WO to the opponent (11.3.1, 11.4)." },
-    wrong: { tr: "Günlük tartı ile maç arasındaki 3 saatlik süreye uymamak.", en: "Not observing the 3-hour gap between the daily weigh-in and the bout." },
-    related: ["WEIGH_5PCT", "WEIGH_STANDARD"],
-    tags: ["resmi tartı", "günlük tartı", "maç öncesi tartı", "official weigh-in", "11.1"]
+    ruleText: {
+      tr: "11.1: GÜNLÜK MÜSABAKA TARTISI\nGünlük Müsabaka Tartısı, müsabakanın her sabahı gerçekleştirilir. Müsabaka, Günlük Müsabaka Tartısının tamamlanmasından en erken üç (3) saat sonra başlayacaktır. Organizasyon Kurulu veya diğer IFMA yetkili delegeleri, Sağlık Kuruluna danıştıktan sonra durumun uygun olduğuna ve o günkü programın ilk tur maçlarına çıkacak sporcuları olumsuz etkilemeyeceğine karar verirse, müsabakaların daha kısa bir sürede başlamasına izin verilebilir.",
+      en: "11.1: COMPETITION WEIGH-IN\nThe Competition Weigh-in is conducted each morning of competition. Competition shall start no earlier than three (3) hours after the close of the Competition Weigh-in. A shorter time may be permitted by the Organising Committee or other IFMA authorised delegates after consulting the Medical Commission, should it be determined as suitable and not detrimental to an Athlete taking part in the early contests of the forthcoming session."
+    },
+    when: { tr: "Sporcunun yarışacağı her günün sabahında.", en: "Each morning the athlete is scheduled to compete." },
+    right: { tr: "Zorunlu sağlık kontrolü günlük tartıyla birlikte tamamlanır.", en: "The compulsory medical check is completed with the daily weigh-in." },
+    related: ["WEIGH_GENERAL", "WEIGH_MEDICAL_EXAM"],
+    tags: ["günlük tartı", "competition weigh-in", "3 saat", "11.1"]
   },
   {
-    id: "WEIGH_STANDARD", module: "kayit", subtopic: "tartistandart", label: "ifma",
+    id: "WEIGH_EXCEPTION", module: "tarti", subtopic: "istisna", label: "ifma",
+    rule: "11.3.4", revision: "2026-05-11", status: A,
+    discipline: [], age: ["U24"], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "İstisnai Durum", en: "Contentious Circumstance" },
+    quick: {
+      tr: "Seyahat aksaklığı Teknik Delege tarafından onaylanan U24 sporcuya 0,5 kg tolerans verilebilir; ilk müsabaka gününde Maç Öncesi Tartı zorunludur.",
+      en: "An U24 athlete whose travel disruption is approved by the Technical Delegate may receive a 0.5 kg allowance; the Pre-contest Weigh-in is mandatory on the first competition day."
+    },
+    ruleText: {
+      tr: "11.3.4: SEYAHAT KAYNAKLI İSTİSNAİ DURUM\nSeyahat koşullarındaki aksaklıklar nedeniyle tartıyı kaçırma riski olan ve Teknik Delege tarafından onaylanan bir U24 sporcusuna 0,5 kg tolerans tanınacaktır. Ancak bu sporcunun, müsabakanın ilk gününde istisnasız olarak Maç Öncesi Tartıya girmesi zorunludur.",
+      en: "11.3.4: CONTENTIOUS CIRCUMSTANCE\nAn U24 athlete, approved by the Technical Delegate, who is likely to fail their weigh-in due to contentious travel circumstances, will be allowed a 0.5 kg allowance. However, they will be required to make the Pre-contest Weigh-in without exception on their first day of competition."
+    },
+    when: { tr: "Yalnızca Teknik Delege onaylı U24 seyahat aksaklığında.", en: "Only for a Technical Delegate-approved U24 travel disruption." },
+    right: { tr: "Tolerans otomatik değildir; onay ve ilk gün Maç Öncesi Tartı birlikte aranır.", en: "The allowance is not automatic; approval and a first-day Pre-contest Weigh-in are both required." },
+    related: ["WEIGH_5PCT", "WEIGH_GENERAL"],
+    tags: ["istisna", "u24", "0.5 kg", "seyahat", "11.3.4"]
+  },
+  {
+    id: "WEIGH_MEDICAL_EXAM", module: "tarti", subtopic: "saglik-muayenesi", label: "ifma",
+    rule: "11.2", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Sağlık Muayenesi", en: "Medical Examination" },
+    quick: {
+      tr: "Sporcu her müsabaka gününde tartıdan hemen önce organizasyon doktoru tarafından muayene edilmeli ve yarışmaya uygun bulunmalıdır.",
+      en: "On each competition day, the athlete must be examined immediately before weigh-in by the appointed doctor and passed fit to compete."
+    },
+    ruleText: {
+      tr: "11.2: SAĞLIK MUAYENESİ\nSporcu, her müsabaka gününde tartıya çıkmadan hemen önce Organizasyon Kurulu tarafından görevlendirilen doktor tarafından muayene edilmeli ve yarışmaya uygun olduğuna dair onay almak zorundadır.",
+      en: "11.2: MEDICAL EXAMINATION\nEach day of competition the Athlete must be passed as fit to compete by the doctor appointed by the Organising Committee immediately before being weighed in."
+    },
+    when: { tr: "Her müsabaka gününde, tartıdan hemen önce.", en: "Each competition day, immediately before weigh-in." },
+    right: { tr: "Sağlık onayı olmadan tartı süreci tamamlanmış sayılmaz.", en: "The weigh-in process is not complete without medical clearance." },
+    related: ["WEIGH_MEDICAL_FIT", "MED_KOH", "WEIGH_FAILED"],
+    tags: ["sağlık muayenesi", "doktor", "tartı öncesi", "11.2"]
+  },
+  {
+    id: "WEIGH_MEDICAL_FIT", module: "tarti", subtopic: "tibbi-uygunluk", label: "ifma",
+    rule: "10.1, 10.1.2, 10.1.3, 10.3, 10.5, 10.6", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    restTable: {
+      title: { tr: "Zorunlu Dinlenme Süreleri", en: "Mandatory Rest Periods" },
+      roundsLabel: { tr: "Toplam raund", en: "Total rounds" },
+      restLabel: { tr: "Zorunlu dinlenme", en: "Mandatory rest" },
+      rows: [
+        { rounds: "1", rest: { tr: "7 gün", en: "7 days" } },
+        { rounds: "2-4", rest: { tr: "14 gün", en: "14 days" } },
+        { rounds: "4-9", rest: { tr: "21 gün", en: "21 days" } },
+        { rounds: "10+", rest: { tr: "28 gün", en: "28 days" } },
+        { rounds: "KOH/RSCH", rest: { tr: "30 gün*", en: "30 days*" }, alert: true }
+      ],
+      note: {
+        tr: "* KOH/RSCH durumlarında Kural 9.1'deki daha uzun zorunlu süreler önceliklidir.",
+        en: "* For KOH/RSCH, the longer mandatory periods under Rule 9.1 take precedence."
+      }
+    },
+    title: { tr: "Tıbbi Uygunluk", en: "Medical Aptitude" },
+    quick: {
+      tr: "Geçerli tıbbi beyan, engelli ve reşit olmayan sporcuların korunması, günlük doktor onayı, kesik kontrolleri ve zorunlu dinlenme süreleri birlikte değerlendirilir.",
+      en: "The medical declaration, safeguards for disabled and minor athletes, daily doctor clearance, checks for cuts and mandatory recovery periods are assessed together."
+    },
+    ruleText: {
+      tr: "10.1: TIBBİ BEYAN\nYetkili bir tıp doktoru tarafından imzalanmış, eksiksiz bir IFMA Tıbbi Beyan Formu bulunmayan hiçbir sporcunun müsabakaya katılmasına izin verilmeyecektir. Beyan İngilizce olarak doldurulmalı ve yetkili doktor tarafından imzalanmalıdır; beyan, sporcunun ülkesinden ayrılmadan önce fiziksel durumunun iyi olduğunu ve müsabaka kapasitesini etkileyebilecek herhangi bir sakatlık, enfeksiyon veya engellilik durumunun bulunmadığını teyit etmelidir. Sporcunun vücut ve uzuv bütünlüğü açısından uygun olmalıdır.\n\n10.1.2: ENGELLİ SPORCULAR İÇİN KATILIM ESASLARI\nEngelli sporcuların (vücut veya uzuv bütünlüğü tam olmayanlar dahil) dövüş veya teknik Muaythai müsabakalarına katılımına getirilen her türlü kısıtlama, yalnızca sert temaslı ortamlar için yapılan tıbbi ve güvenlik değerlendirmelerine dayanır ve ayrımcılık teşkil etmez. Engelli sporcular, gerekli diğer şartları karşıladıkları takdirde Muaythai müsabakalarına katılma hakkına sahip olabilir.\n\nKapsayıcılık ve Kültürel Gelişim Yolları\nSağlık, Sporcu ve Toplumsal Cinsiyet Eşitliği Kurulları; kültürel Muaythai müsabakaları dahil olmak üzere güvenli ve kapsayıcı katılım modellerini birlikte değerlendirecektir.\n\nPeriyodik Değerlendirme\nBu hükümler periyodik olarak gözden geçirilecek ve ilgili kurullar; sporcu güvenliğiyle uyumlu kapsayıcı müsabaka veya gösteri formatlarına ilişkin önerilerde bulunacaktır.\n\n10.1.3: REŞİT OLMAYAN SPORCULARIN KORUNMASI VE ONAYI\n18 yaşın altındaki sporcular için yapılan tüm tıbbi testler ve belgelendirmeler, sporcunun kendi ülkesindeki geçerli çocuk koruma ve tıbbi gizlilik yasalarına uygun olmalıdır. Bu tür testler yalnızca bir ebeveynin veya yasal vasinin bilgilendirilmiş onayı ile yapılabilir; bilgiler gizli tutulacak ve yalnızca sporcu sağlığı ve güvenliği amaçlarıyla kullanılacaktır.\n\n10.3: MÜSABAKA GÜNÜ TIBBİ UYGUNLUK ONAYI\nSporcu, her müsabaka günü ilgili organizasyonun yetkisi altında onaylanmış nitelikli bir tıp doktoru tarafından müsabakaya uygun bulunduğuna dair sağlık onayı almak zorundadır. Dünya Şampiyonaları, Dünya Kupası, Kıta Şampiyonaları ve Kıta Kupalarında bu onay, IFMA veya ilgili Kıta Federasyonunun Sağlık Kurulu tarafından yetkilendirilen doktorlar tarafından verilir.\n\n10.5: KESİKLER VE SIYRIKLAR\nSporcunun kafa derisinde veya yüzünde (burun ve kulaklar dahil) bir kesik, yara, sıyrık, yırtılma veya kan toplanması (hematom) üzerinde pansuman/bandaj varsa, maça çıkmasına izin verilmeyecektir. Bir sıyrık steri-strip/dikiş bandı ile kapatılmışsa sporcunun yarışmasına izin verilir. Bu karar, müsabaka günü sporcuyu muayene eden doktor tarafından verilmelidir.\n\n10.6: FİZİKSEL HAZIRLIK VE ZORUNLU DİNLENME SÜRELERİ\nSporcular, bir sonraki maçlarına veya gelecekteki müsabakalarına fiziksel olarak hazır olabilmeleri için katıldıkları her maçın ardından toplam raund sayılarına göre zorunlu dinlenme sürelerine uymak zorundadır.\n• Tek bir müsabakada toplam bir (1) raund maç yaparak kazanan sporcular yedi (7) gün dinlenmelidir.\n• Tek bir müsabakada toplam dört (4) raunda kadar maç yaparak kazanan sporcular en az on dört (14) gün dinlenmelidir.\n• Tek bir turnuva içerisinde toplam dört (4) ila dokuz (9) raund maç yapan sporcular en az yirmi bir (21) gün dinlenmelidir.\n• Tek bir turnuvada toplam on (10) veya daha fazla raund maç yapan sporcular en az yirmi sekiz (28) gün dinlenmelidir.\n• KOH veya RSCH durumunda Kural 9.1'deki zorunlu süreler diğer tüm dinlenme kurallarından önceliklidir.",
+      en: "10.1: MEDICAL DECLARATION\nNo Athlete shall be allowed to compete without having a completed IFMA Medical Declaration Form, which must be signed by an authorised Doctor of Medicine. The medical declaration must be completed in the English language stating that prior to leaving their country the Athlete was in good physical condition and not suffering from any injury, infection or disability liable to affect the Athlete's capacity to compete. The Athlete must be intact and of full body.\n\n10.1.2: DISABILITY CLAUSE\nAny restriction on participation of Athletes with a disability, including not being intact or of full body, in combat or technical Muaythai competitions is based solely on medical and safety assessments in high-impact environments and shall not constitute discrimination. Athletes with a disability may still be eligible to compete in cultural Muaythai competitions, provided they meet the other necessary requirements.\n\nInclusion and Cultural Pathways\nThe Medical, Athletes, and Gender Equality Commissions shall work together to explore safe, inclusive participation formats, including in Muaythai cultural competitions.\n\nReview Clause\nThese provisions shall be reviewed periodically, with the Medical, Athletes, and Gender Equality Commissions making recommendations for inclusive competition or demonstration formats consistent with Athlete safeguarding.\n\n10.1.3: MINORS SAFEGUARDING AND CONSENT\nAll medical testing and documentation for Athletes under 18 must comply with applicable child protection and medical confidentiality laws in the Athlete's home jurisdiction. Such testing may only be conducted with the informed consent of a parent or legal guardian, and the information shall be treated as confidential and used solely for Athlete health and safety purposes.\n\n10.3: COMPETITION MEDICAL CERTIFICATION\nOn each day of competition the Athlete shall be certified as fit to compete by a qualified doctor of medicine approved by the Association under whose jurisdiction the competition is taking place, or at World Championships, World Cup, Continental Championships and Continental Cup by the medical commission of IFMA or the Continental Federation.\n\n10.5: CUTS AND ABRASIONS\nNo Athlete shall be allowed to take part in any contest if the Athlete is wearing a dressing on a cut, wound, abrasion, laceration or blood swelling on the Athlete's scalp or face including the nose and ears. An Athlete is allowed to compete if an abrasion is covered with steri-strip. The decision should be made by the doctor examining the Athlete on the day of competition.\n\n10.6: PHYSICAL READINESS\nAthletes must observe mandatory recovery periods after each contest to ensure they are physically fit for their next contest or future competition.\n• Winning a competition within one (1) round: rest for at least seven (7) days.\n• Winning a competition within up to four (4) rounds: rest for at least fourteen (14) days.\n• Accumulating four (4) to nine (9) rounds across contests in a single tournament: rest for at least twenty-one (21) days.\n• Accumulating ten (10) or more rounds in a single tournament: rest for at least twenty-eight (28) days.\n• KOH/RSCH requirements under Rule 9.1 supersede all other recovery rules."
+    },
+    when: { tr: "Kayıt, sağlık kontrolü ve her müsabaka gününde.", en: "At registration, medical checks and on each competition day." },
+    right: { tr: "Doktor onayı ve zorunlu dinlenme süreleri birlikte doğrulanır.", en: "Medical clearance and mandatory recovery periods are verified together." },
+    related: ["MED_FORM", "MED_KOH", "WEIGH_MEDICAL_EXAM"],
+    tags: ["tıbbi uygunluk", "engelli sporcu", "reşit olmayan", "kesik", "dinlenme", "10.1", "10.1.2", "10.1.3", "10.3", "10.5", "10.6"]
+  },
+  {
+    id: "WEIGH_OFFICIAL", module: "tarti", subtopic: "resmi-kayit", label: "ifma",
+    rule: "11.1, 11.1.1", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Resmi Kayıt Tartısı", en: "Official Weigh-in" },
+    quick: {
+      tr: "Resmi Kayıt Tartısı müsabakanın başlamasından bir gün önce ve yalnızca Teknik Delegenin takdirine bağlı olarak yapılır.",
+      en: "The Official Weigh-in is held one day before competition and only at the discretion of the Technical Delegate."
+    },
+    ruleText: {
+      tr: "11.1: RESMİ KAYIT TARTISI\nResmi Kayıt Tartısı, müsabakanın başlamasından bir (1) gün önce gerçekleştirilir.\n\n11.1.1: TEKNİK DELEGE KARARI\nResmi Kayıt Tartısı yalnızca Teknik Delegenin takdirine bağlı olarak gerçekleştirilecektir.",
+      en: "11.1: OFFICIAL WEIGH-IN\nThe Official Weigh-in is conducted one (1) day prior to the start of competition.\n\n11.1.1: TECHNICAL DELEGATE DECISION\nThe Official Weigh-in will be conducted only at the discretion of the Technical Delegate."
+    },
+    when: { tr: "Müsabaka öncesi ve günlerinde.", en: "Before and on competition days." },
+    right: { tr: "Teknik Delege isterse bu tartı müsabakanın tamamı için sporcunun sıkletini belirler.", en: "When required, this weigh-in determines the athlete's class for the entire competition." },
+    wrong: { tr: "Teknik Delege kararı olmadan Resmi Kayıt Tartısı uygulamak.", en: "Conducting the Official Weigh-in without the Technical Delegate's decision." },
+    related: ["WEIGH_GENERAL", "WEIGH_DAILY"],
+    tags: ["resmi kayıt tartısı", "official weigh-in", "teknik delege", "11.1", "11.1.1"]
+  },
+  {
+    id: "WEIGH_STANDARD", module: "tarti", subtopic: "katilim-standardi", label: "ifma",
     rule: "11.3.2", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh"],
-    media: { photo: true, video: false, animation: false },
-    title: { tr: "Tartı görünüm standardı", en: "Weigh-in appearance standard" },
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Tartıya Katılım Standartları", en: "Weigh-in Participation Standards" },
     quick: {
       tr: "Sporcular tartıya uygun hafif iç çamaşırıyla ve müsabakaya tamamen hazır halde çıkar (çorapsız, sakal tıraşı olmuş, ayak tırnakları kesilmiş vb.).",
       en: "Athletes weigh in wearing suitable lightweight undergarments, fully prepared for competition (no socks, facial hair shaved, toenails trimmed, etc.)."
+    },
+    ruleText: {
+      tr: "11.3.2: TARTIYA KATILIM STANDARTLARI\nSporcular tartı işlemini hafif ve uygun bir iç çamaşırıyla ve müsabakaya tamamen hazır bir halde (örneğin; çorapsız, sakal tıraşı olmuş, ayak tırnakları kesilmiş vb.) tamamlamak zorundadır.",
+      en: "11.3.2: CLOTHING & DRESS\nAthletes must complete their weigh-in in suitable lightweight undergarments, and in a fully prepared state for competition (e.g. no socks, facial hair shaved, trimmed toenails, etc.)."
     },
     when: { tr: "Her tartıda.", en: "At every weigh-in." },
     right: { tr: "Kadın sporcuların tartısı aynı yapı ve modelle ayrı yürütülür (11.3.5–11.3.6).", en: "Female weigh-ins are conducted separately using the same structure (11.3.5–11.3.6)." },
@@ -1076,8 +1381,8 @@ window.IFMA.cards = [
     tags: ["tartı görünüm", "iç çamaşırı", "11.3.2"]
   },
   {
-    id: "WEIGH_ROOM", module: "kayit", subtopic: "tartiodasi", label: "ifma",
-    rule: "11.3.6", revision: "2026-05-11", status: A,
+    id: "WEIGH_ROOM", module: "tarti", subtopic: "oda-gorevleri", label: "ifma",
+    rule: "11.3.6, 11.3.7", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh", "jury"],
     media: { photo: false, video: false, animation: false },
     title: { tr: "Tartı odası görev dağılımı", en: "Weigh-in room staffing" },
@@ -1085,11 +1390,49 @@ window.IFMA.cards = [
       tr: "Bir Tartı Noktası 3 Teknik Görevliden oluşur: giriş kontrolü, kilo ölçümü ve belgelendirme. Bir Jüri üyesi Tartı Baş Sorumlusu olarak atanır.",
       en: "A Weigh-in Station has 3 Technical Officials: entry control, weight measurement and documentation. One Jury member is appointed Head of Weigh-ins."
     },
+    ruleText: {
+      tr: "11.3.6: GÖREVLENDİRME\nBu bölüm, o gün tartıya girmesi planlanan toplam sporcu sayısına ve mevcut zaman dilimine bağlı olarak, sporcu tartılarının yürütülmesi için gereken Teknik Görevli sayısına ilişkin öneri sunmaktadır.\n• Tartı Noktası: Bir Tartı Noktası üç (3) Teknik Görevliden oluşur; giriş kontrolü için bir (1), kilo ölçümü için bir (1) ve belgelendirme/kayıt için bir (1) görevli.\n• Jüri Görevlisi: Bir (1) Jüri Görevlisi Tartı Baş Sorumlusu olarak atanır. Tüm tartı noktalarını denetler, prosedürlere uyulmasını sağlar, anlaşmazlıkları veya usulsüzlükleri çözüme kavuşturur ve gerektiğinde tartı sonuçlarını onaylar.\n• Tartı İşlem Kapasitesi: Bir Tartı Noktası yaklaşık olarak saatte yirmi (20) sporcunun, iki ila üç (2-3) saatlik bir zaman diliminde ise kırk ila altmış (40-60) sporcunun tartı işlemini gerçekleştirir.\n• 60 sporcu = 3 Teknik Görevli + 1 Jüri (1 Tartı Noktası, 1 Ring).\n• 120 sporcu = 6 Teknik Görevli + 1 Jüri (2 Tartı Noktası, 1-2 Ring).\n• 180 sporcu = 9 Teknik Görevli + 1 Jüri (3 Tartı Noktası, 2-3 Ring).\n• 300 sporcu = 15 Teknik Görevli + 1 Jüri (5 Tartı Noktası, 3-4 Ring).\nKadın sporcuların tartıları aynı yapı ve görevlendirme modeli kullanılarak ayrı şekilde gerçekleştirilir.\n\n11.3.7: BASKÜL\nElektronik basküllerin kullanılması tavsiye edilir ve ağırlığı metrik sistemde (kg cinsinden) göstermelidir.",
+      en: "11.3.6: STAFFING\nThis section provides a recommendation for the number of Technical Officials required to conduct Athlete weigh-ins, based on the total number of Athletes scheduled for weigh-in on that day and the available time window.\n• Weigh-in Station: A Weigh-in Station consists of three (3) Technical Officials; one (1) for entry control, one (1) for weight measurement and one (1) for documentation.\n• Jury Official: One (1) Jury Official shall be appointed as Head of Weigh-ins. The official oversees all stations, ensures compliance, resolves disputes or irregularities and validates outcomes where required.\n• Processing Capacity: One (1) station processes approximately twenty (20) Athletes per hour, or forty to sixty (40-60) Athletes within a two to three (2-3) hour window.\n• 60 Athletes = 3 Technical Officials + 1 Jury (1 Station, 1 Ring).\n• 120 Athletes = 6 Technical Officials + 1 Jury (2 Stations, 1-2 Rings).\n• 180 Athletes = 9 Technical Officials + 1 Jury (3 Stations, 2-3 Rings).\n• 300 Athletes = 15 Technical Officials + 1 Jury (5 Stations, 3-4 Rings).\nFemale weigh-ins shall be conducted separately using the same structure and staffing model.\n\n11.3.7: SCALE\nElectronic scales are recommended and shall present the weight in metric."
+    },
     when: { tr: "Tartı organizasyonunda.", en: "In organising the weigh-in." },
     right: { tr: "Bir nokta saatte ~20 sporcu işler. Ölçek: 60 sporcu = 3 görevli + 1 jüri; 120 = 6+1; 180 = 9+1; 300 = 15+1 (11.3.6).", en: "One station processes ~20 athletes/hour. Scaling: 60 athletes = 3 officials + 1 jury; 120 = 6+1; 180 = 9+1; 300 = 15+1 (11.3.6)." },
     wrong: { tr: "Görevli sayısını sporcu sayısına göre planlamamak.", en: "Not scaling official numbers to the athlete count." },
     related: ["WEIGH_STANDARD", "WEIGH_OFFICIAL"],
-    tags: ["tartı odası", "görevli", "staffing", "11.3.6"]
+    tags: ["tartı odası", "görevli", "staffing", "baskül", "elektronik", "11.3.6", "11.3.7"]
+  },
+  {
+    id: "WEIGH_NATIONAL_RECORD", module: "tarti", subtopic: "ulusal-tutanak", label: "national",
+    rule: "—", revision: "2026-05-11", status: P,
+    source: { tr: "Ulusal müsabaka uygulaması", en: "National competition practice" },
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Tartı Tutanağı (Ulusal Maçlar)", en: "Weigh-in Record (National Bouts)" },
+    quick: {
+      tr: "Ulusal müsabakalarda kullanılacak tartı tutanağı için ayrılmış bölümdür. Resmî tutanak dosyası sağlandığında bu alana eklenecektir.",
+      en: "This section is reserved for the weigh-in record used in national bouts. The official record file will be added here when supplied."
+    },
+    when: { tr: "Ulusal maçların tartı sürecinde.", en: "During the weigh-in process for national bouts." },
+    related: ["WEIGH_ROOM", "WEIGH_FAILED"],
+    tags: ["tartı tutanağı", "ulusal maç", "weigh-in record"]
+  },
+  {
+    id: "WEIGH_FAILED", module: "tarti", subtopic: "elenme", label: "ifma",
+    rule: "11.4", revision: "2026-05-11", status: A,
+    discipline: [], age: [], gender: [], role: ["weigh", "jury"],
+    media: { photo: false, video: false, animation: false },
+    title: { tr: "Tartıda Elenme", en: "Failed Weigh-in" },
+    quick: {
+      tr: "Sıkletine uygun bulunmayan veya sağlık kontrolünü geçemeyen sporcu otomatik mağlup sayılır; rakibine Hükmen Galibiyet (WO) verilir.",
+      en: "An athlete who fails to qualify for the weight class or pass the medical check automatically loses; the opponent receives a Walk Over (WO)."
+    },
+    ruleText: {
+      tr: "11.4: TARTIDA ELENME\nSıklet kategorisine uygun bulunmayan veya sağlık kontrolünü geçemeyen sporcu otomatik olarak mağlup sayılır ve Hükmen Galibiyet (WO) kararı verilir. Bu durumda rakip sporcunun ringe çıkması gerekmez.",
+      en: "11.4: FAILED\nAn Athlete who fails to qualify for their weight classification or fails to pass the medical check will automatically receive a loss, and a Walk Over (WO) decision will be given. Their opponent will not be required to present themselves at the ring."
+    },
+    when: { tr: "Sıklet veya sağlık kontrolü başarısız olduğunda.", en: "When the athlete fails the weight classification or medical check." },
+    right: { tr: "Rakibe WO verilir; ringe çıkması gerekmez.", en: "The opponent receives a WO and need not appear in the ring." },
+    related: ["WEIGH_GENERAL", "WEIGH_MEDICAL_EXAM"],
+    tags: ["tartıda elenme", "wo", "walk over", "sağlık kontrolü", "11.4"]
   },
 
   /* ===================== MÜSABAKA ALANI & EKİPMAN ===================== */

@@ -71,7 +71,9 @@
     recent: loadJSON("ifma_recent", []),
     quiz: {},                   // senaryo cevap durumları
     q: "",                      // arama sorgusu
-    roleMode: store.get("ifma_role_mode") || null
+    roleMode: store.get("ifma_role_mode") || null,
+    moduleSections: {},         // sekmeli modüllerde seçili şampiyona
+    moduleDocuments: {}         // sekmeli modüllerde seçili belge
   };
   if (state.active) state.sel = Object.assign({}, state.sel, state.active);
 
@@ -82,6 +84,29 @@
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
     return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function ic(n, c) { return D.icon(n, c); }
+
+  function formatRuleText(value) {
+    var namedHeadings = [
+      "gizlilik ve amaç", "periyodik gözden geçirme",
+      "kapsayıcılık ve kültürel gelişim yolları", "periyodik değerlendirme", "yükümlülüklerin bildirilmesi",
+      "confidentiality and purpose", "periodic review", "inclusion and cultural pathways", "review clause", "communication of obligations"
+    ];
+    return String(value == null ? "" : value).split(/\r?\n/).map(function (line) {
+      var trimmed = line.trim();
+      if (!trimmed) return '<span class="rule-text-space" aria-hidden="true"></span>';
+      var isMain = /^(?:KURAL|RULE)\s+\d/i.test(trimmed);
+      var isNumbered = /^\d+(?:\.\d+)*:\s/.test(trimmed);
+      var isNamed = namedHeadings.indexOf(trimmed.toLocaleLowerCase("tr")) >= 0;
+      if (isMain || isNumbered || isNamed) {
+        return '<strong class="rule-text-heading ' + (isMain ? "is-main" : "") + '">' + esc(trimmed) + '</strong>';
+      }
+      if (/^•\s*/.test(trimmed)) {
+        return '<span class="rule-text-bullet"><span class="rule-text-bullet-mark" aria-hidden="true">•</span><span>' +
+          esc(trimmed.replace(/^•\s*/, "")) + '</span></span>';
+      }
+      return '<span class="rule-text-line">' + esc(trimmed) + '</span>';
+    }).join("");
+  }
 
   var cardIndex = {}; D.cards.forEach(function (c) { cardIndex[c.id] = c; });
   var moduleIndex = {}; D.modules.forEach(function (m) { moduleIndex[m.id] = m; });
@@ -110,6 +135,7 @@
     return BASE_PATH + parts.join("/") + "/";
   }
   function syncUrl() {
+    if (location.protocol === "file:") return;
     var url = currentRoutePath(lang());
     if (location.pathname !== url) history.replaceState({ifma:true}, "", url + location.search + location.hash);
     var origin = location.origin === "null" ? "https://tmf-muaythai.github.io" : location.origin;
@@ -308,6 +334,10 @@
       '<div class="detail-title">' + esc(L(m)) + '</div>' +
       '<div class="when-text">' + esc(lang() === "tr" ? m.purposeTr : m.purposeEn) + '</div></div>';
 
+    if (m.championships && m.championships.length) return viewChampionshipModule(m, html);
+    if (m.weighingOutline && m.weighingOutline.length) return viewWeighingModule(m, html);
+    if (m.categorySections && m.categorySections.length) return viewCategoryModule(m, html);
+
     html += '<div class="section-title">' + esc(t("inThisModule")) + '</div><div class="list">';
     m.subtopics.forEach(function (sub) {
       var cs = cardsInSub(mid, sub.id);
@@ -329,11 +359,163 @@
     return '<div class="fade-in">' + html + '</div>';
   }
 
+  function flattenWeighingOutline(items, depth, out) {
+    out = out || [];
+    (items || []).forEach(function (item) {
+      out.push({ item: item, depth: depth || 0 });
+      if (item.children && item.children.length) flattenWeighingOutline(item.children, (depth || 0) + 1, out);
+    });
+    return out;
+  }
+
+  function viewWeighingModule(m, html) {
+    var outline = flattenWeighingOutline(m.weighingOutline, 0, []);
+    var selectedId = state.moduleDocuments[m.id] || outline[0].item.id;
+    var selected = outline.filter(function (entry) { return entry.item.id === selectedId; })[0] || outline[0];
+    state.moduleDocuments[m.id] = selected.item.id;
+    var card = cardIndex[selected.item.card];
+
+    html += '<div class="weighing-workspace"><nav class="weighing-outline" aria-label="' +
+      esc(lang() === "tr" ? "Tartı modülü içerikleri" : "Weigh-in module contents") + '"><div class="weighing-outline-head"><span>' +
+      esc(lang() === "tr" ? "Tartı Akışı" : "Weigh-in Flow") + '</span><small>' + outline.length + ' ' +
+      esc(lang() === "tr" ? "başlık" : "topics") + '</small></div><div class="weighing-outline-list">';
+
+    outline.forEach(function (entry) {
+      var item = entry.item;
+      var on = item.id === selected.item.id;
+      html += '<button id="weigh-item-' + esc(item.id) + '" class="weighing-outline-item depth-' + entry.depth + ' ' +
+        (on ? "on" : "") + '" aria-current="' + (on ? "true" : "false") + '" data-act="module-document" data-module="' +
+        esc(m.id) + '" data-document="' + esc(item.id) + '"><span class="weighing-outline-number">' + esc(item.number) +
+        '</span><span class="weighing-outline-copy"><strong>' + esc(L(item)) + '</strong>' +
+        (item.ruleRef ? '<small>' + esc((lang() === "tr" ? "Madde " : "Article ") + item.ruleRef) + '</small>' : '') +
+        '</span>' + ic("chevron") + '</button>';
+    });
+
+    html += '</div></nav><div class="weighing-content">' +
+      registrationDocumentPanel(card, selected.item.id, { tabPrefix: "weigh-item-" }) + '</div></div>';
+    return '<div class="fade-in">' + html + '</div>';
+  }
+
+  function viewCategoryModule(m, html) {
+    var sections = m.categorySections || [];
+    var selectedId = state.moduleDocuments[m.id] || sections[0].id;
+    var selected = sections.filter(function (item) { return item.id === selectedId; })[0] || sections[0];
+    var card = cardIndex[selected.card];
+    state.moduleDocuments[m.id] = selected.id;
+
+    html += '<div class="category-direct-tabs" role="tablist" aria-label="' +
+      esc(lang() === "tr" ? "Kategori kuralları içerikleri" : "Category rules contents") + '">';
+    sections.forEach(function (item) {
+      var on = item.id === selected.id;
+      html += '<button id="category-tab-' + esc(item.id) + '" class="category-direct-tab ' + (on ? "on" : "") +
+        '" role="tab" aria-selected="' + on + '" data-act="module-document" data-module="' + esc(m.id) +
+        '" data-document="' + esc(item.id) + '"><span class="category-tab-number">' + esc(item.number) +
+        '</span><span class="category-tab-copy"><strong>' + esc(L(item)) + '</strong><small>' +
+        esc((lang() === "tr" ? "Madde " : "Article ") + item.ruleRef) + '</small></span></button>';
+    });
+    html += '</div><div class="category-direct-content">' +
+      registrationDocumentPanel(card, selected.id, { tabPrefix: "category-tab-", showAllMedia: true, hideDetail: true }) + '</div>' +
+      renderCategoryResources(m.categoryResources || []);
+    return '<div class="fade-in">' + html + '</div>';
+  }
+
+  function renderCategoryResources(resources) {
+    if (!resources.length) return "";
+    var html = '<section class="category-resources" aria-labelledby="category-resources-title"><div class="category-resources-head">' +
+      '<div><span class="category-resources-kicker">' + esc(lang() === "tr" ? "Federasyon Kaynakları" : "Federation Resources") +
+      '</span><h2 id="category-resources-title">' + esc(lang() === "tr" ? "İndirilebilir 2026 Tabloları" : "Downloadable 2026 Tables") +
+      '</h2><p>' + esc(lang() === "tr" ? "Tabloları PDF veya yüksek çözünürlüklü PNG olarak telefonuna kaydedebilirsin." :
+        "Save the tables to your phone as a PDF or high-resolution PNG.") + '</p></div><span class="category-resource-count">' +
+      resources.length + '</span></div><div class="category-resource-grid">';
+
+    resources.forEach(function (resource) {
+      html += '<article class="category-resource-card"><figure class="category-resource-preview"><img src="' +
+        esc(resource.image) + '" alt="' + esc(L(resource.title)) + '" loading="lazy"></figure><div class="category-resource-body">' +
+        '<h3>' + esc(L(resource.title)) + '</h3><p>' + esc(L(resource.description)) + '</p><div class="category-resource-actions">' +
+        '<a class="category-download pdf" href="' + esc(resource.pdf) + '" download>' + ic("doc") + '<span>' +
+        esc(lang() === "tr" ? "PDF İndir" : "Download PDF") + '</span></a><a class="category-download image" href="' +
+        esc(resource.image) + '" download>' + ic("camera") + '<span>' + esc(lang() === "tr" ? "Resim İndir" : "Download Image") +
+        '</span></a></div></div></article>';
+    });
+    return html + '</div></section>';
+  }
+
+  function viewChampionshipModule(m, html) {
+    var championships = m.championships || [];
+    var sectionId = state.moduleSections[m.id] || championships[0].id;
+    var section = championships.filter(function (s) { return s.id === sectionId; })[0] || championships[0];
+    state.moduleSections[m.id] = section.id;
+
+    html += '<div class="championship-tabs" role="tablist" aria-label="' + esc(lang() === "tr" ? "Şampiyona türü" : "Championship type") + '">';
+    championships.forEach(function (item) {
+      var on = item.id === section.id;
+      html += '<button id="champ-tab-' + esc(item.id) + '" class="championship-tab ' + (on ? "on" : "") + '" role="tab" aria-selected="' + on + '" data-act="module-section" data-module="' + m.id + '" data-section="' + item.id + '">' +
+        ic(item.id === "ifma" ? "globe" : "flag") + '<span>' + esc(L(item)) + '</span></button>';
+    });
+    html += '</div>';
+
+    if (!section.documents || !section.documents.length) {
+      var empty = lang() === "tr" ? section.emptyTr : section.emptyEn;
+      html += '<div class="registration-empty" role="tabpanel" aria-labelledby="champ-tab-' + esc(section.id) + '">' +
+        ic("clipboard") + '<div class="registration-empty-title">' + esc(L(section)) + '</div>' +
+        '<div class="when-text">' + esc(empty || t("comingSoonTitle")) + '</div></div>';
+      return '<div class="fade-in">' + html + '</div>';
+    }
+
+    var documentId = state.moduleDocuments[m.id] || section.documents[0].id;
+    var documentItem = section.documents.filter(function (item) { return item.id === documentId; })[0] || section.documents[0];
+    var card = cardIndex[documentItem.card];
+    state.moduleDocuments[m.id] = documentItem.id;
+
+    html += '<div class="registration-documents">' +
+      '<div class="section-head registration-section-head"><div><div class="section-title">' +
+      esc(lang() === "tr" ? section.documentsTr : section.documentsEn) + '</div><div class="document-count">' +
+      section.documents.length + ' ' + esc(lang() === "tr" ? "belge sekmesi" : "document tabs") + '</div></div></div>';
+
+    html += '<div class="document-tabs" role="tablist" aria-label="' + esc(lang() === "tr" ? "Gerekli belgeler" : "Required documents") + '">';
+    section.documents.forEach(function (item, index) {
+      var sub = (m.subtopics || []).filter(function (s) { return s.id === item.id; })[0];
+      var on = item.id === documentItem.id;
+      html += '<button id="doc-tab-' + esc(item.id) + '" class="document-tab ' + (on ? "on" : "") + '" role="tab" aria-selected="' + on + '" data-act="module-document" data-module="' + m.id + '" data-document="' + item.id + '">' +
+        '<span class="document-tab-number">' + (index + 1) + '</span><span>' + esc(L(sub)) + '</span></button>';
+    });
+    html += '</div>' + registrationDocumentPanel(card, documentItem.id) + '</div>';
+    return '<div class="fade-in">' + html + '</div>';
+  }
+
+  function registrationDocumentPanel(c, documentId, options) {
+    if (!c) return emptyBox(t("comingSoonTitle"), "doc");
+    options = options || {};
+    var html = '<section class="registration-document" role="tabpanel" aria-labelledby="' + esc(options.tabPrefix || "doc-tab-") + esc(documentId) + '">';
+    html += '<div class="registration-document-head"><div class="detail-labels"><span class="pill ' + c.label + '">' +
+      esc(L(D.labels[c.label])) + '</span>' + statusBadge(c) +
+      (c.rule && c.rule !== "—" ? '<span class="badge rule-ref">' + esc((lang() === "tr" ? "Madde " : "Article ") + c.rule) + '</span>' : '') + '</div>' +
+      '<h2>' + esc(L(c.title)) + '</h2><p>' + esc(L(c.quick)) + '</p></div>';
+
+    var hasStructuredMedia = (c.imgs && c.imgs.length) || c.khanTable || c.restTable || c.headInjuryTable || c.roundsTable;
+    if (hasStructuredMedia || (options.showAllMedia && hasCardMedia(c))) html += '<div class="registration-media"><div class="block-label">' + ic("camera") +
+      esc(t("cardDocumentVisual")) + '</div>' + mediaBox(c) + '</div>';
+
+    if (c.ruleText) html += '<div class="registration-rule-text"><div class="block-label">' + ic("book") +
+      esc(t("cardRuleText")) + '</div><div class="rule-text">' + formatRuleText(L(c.ruleText)) + '</div></div>';
+
+    if (c.links && c.links.length) html += '<div class="registration-document-links"><div class="section-title">' +
+      esc(t("cardLinks")) + '</div><div class="related-row">' + c.links.map(function (lk) {
+        return '<a class="doc-link" href="' + esc(lk.url) + '" target="_blank" rel="noopener noreferrer">' +
+          ic("doc") + '<span>' + esc(L(lk.label)) + '</span>' + ic("chevron") + '</a>';
+      }).join("") + '</div></div>';
+
+    if (!options.hideDetail) html += '<button class="registration-detail-btn" data-act="open-card" data-id="' + c.id + '">' +
+      ic("doc") + '<span>' + esc(t("openDocumentDetail")) + '</span>' + ic("chevron") + '</button>';
+    html += '</section>';
+    return html;
+  }
+
   function statusDots(cs) {
     var labels = {};
     cs.forEach(function (c) { labels[c.label] = true; });
     var out = "";
-    ["ifma", "tmf", "training"].forEach(function (k) {
+    ["ifma", "tmf", "national", "training"].forEach(function (k) {
       if (labels[k]) out += ' <span class="pill ' + k + '" style="font-size:8.5px;padding:2px 6px">' + esc(L(D.labels[k])) + '</span>';
     });
     return out;
@@ -377,6 +559,7 @@
   }
   function clip(s, n) { s = String(s || ""); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
   function sourceShort(c) {
+    if (c.source) return L(c.source);
     if (c.label === "training") return lang() === "tr" ? "Eğitim uygulaması" : "Training drill";
     if (c.rule === "—" || !c.rule) return "IFMA 2026";
     return "IFMA 2026 • " + (lang() === "tr" ? "Kural " : "Rule ") + c.rule;
@@ -428,10 +611,11 @@
     if (st === "pending") html += '<div class="note">' + ic("info") + '<span>' + esc(L(D.status.pending)) + ' — ' + esc(c.rule) + '</span></div>';
 
     html += '<div class="block quick-block"><div class="block-label">' + ic("bolt") + esc(t("cardQuickAnswer")) + '</div><div class="quick-text">' + esc(L(c.quick)) + '</div></div>';
-    html += '<div class="block"><div class="block-label">' + ic("camera") + esc(t("cardVisual")) + '</div>' + mediaBox(c) + '</div>';
+    if (hasCardMedia(c)) html += '<div class="block"><div class="block-label">' + ic("camera") + esc(t("cardVisual")) + '</div>' + mediaBox(c) + '</div>';
+    if (c.ruleText) html += '<div class="block rule-text-block"><div class="block-label">' + ic("book") + esc(t("cardRuleText")) + '</div><div class="rule-text">' + formatRuleText(L(c.ruleText)) + '</div></div>';
     if (c.right) html += '<div class="rw-grid"><div class="rw ok"><div class="rw-head">' + ic("check") + esc(t("cardRight")) + '</div><div class="rw-text">' + esc(L(c.right)) + '</div></div></div>';
 
-    html += '<div class="source source-permanent">' + ic("doc") + '<div class="source-body"><b>' + esc(t("cardSource")) + ':</b> ' + esc(D.meta.source) +
+    html += '<div class="source source-permanent">' + ic("doc") + '<div class="source-body"><b>' + esc(t("cardSource")) + ':</b> ' + esc(c.source ? L(c.source) : D.meta.source) +
       (c.rule && c.rule !== "—" ? ' • <b>' + esc(t("cardRuleNo")) + '</b> <span class="rule-ref">' + esc(c.rule) + '</span>' : '') +
       ' • <span>' + esc(lang() === "tr" ? "Revizyon " + formatDate(c.revision || D.meta.revision) : "Revision " + formatDate(c.revision || D.meta.revision)) + '</span></div></div>';
 
@@ -454,8 +638,107 @@
       return '<span class="badge">' + esc(x) + '</span>'; }).join("") + '</div>';
   }
 
+  function hasCardMedia(c) {
+    var m = c.media || {};
+    var diagram = window.IFMA.cardDiagram && window.IFMA.cardDiagram[c.id];
+    return !!(c.khanTable || c.restTable || c.headInjuryTable || c.roundsTable || (c.imgs && c.imgs.length) || diagram || m.photo || m.video || m.animation);
+  }
+
+  function renderRoundsTable(c) {
+    var table = c.roundsTable;
+    var rows = (table.rows || []).map(function (row) {
+      return '<tr><th scope="row">' + esc(L(row.categories)) + '</th><td><span class="round-duration">' +
+        esc(L(row.duration)) + '</span></td><td><span class="round-count">' + esc(row.rounds) + '</span></td><td>' +
+        esc(L(row.rest)) + '</td></tr>';
+    }).join("");
+    return '<section class="rounds-table-card" aria-label="' + esc(L(table.title)) + '"><header><span class="rounds-table-mark">' +
+      ic("clock") + '</span><div><h3>' + esc(L(table.title)) + '</h3><p>' +
+      esc(lang() === "tr" ? "IFMA 2026 · Kural 7" : "IFMA 2026 · Rule 7") + '</p></div></header>' +
+      '<div class="rounds-table-wrap"><table><thead><tr><th scope="col">' + esc(L(table.categoryLabel)) + '</th><th scope="col">' +
+      esc(L(table.durationLabel)) + '</th><th scope="col">' + esc(L(table.roundsLabel)) + '</th><th scope="col">' +
+      esc(L(table.restLabel)) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div><footer>' + ic("info") +
+      '<span>' + esc(L(table.note)) + '</span></footer></section>';
+  }
+
+  function renderRestTable(c) {
+    var table = c.restTable;
+    var rows = (table.rows || []).map(function (row) {
+      return '<tr class="' + (row.alert ? "is-alert" : "") + '"><th scope="row">' + esc(row.rounds) +
+        '</th><td><span>' + esc(L(row.rest)) + '</span></td></tr>';
+    }).join("");
+    return '<section class="rest-table-card" aria-label="' + esc(L(table.title)) + '"><header>' + ic("clock") +
+      '<div><h3>' + esc(L(table.title)) + '</h3><p>' + esc(lang() === "tr" ? "Kural 10.6 · Fiziksel hazırlık" : "Rule 10.6 · Physical readiness") +
+      '</p></div></header><table><thead><tr><th scope="col">' + esc(L(table.roundsLabel)) + '</th><th scope="col">' +
+      esc(L(table.restLabel)) + '</th></tr></thead><tbody>' + rows + '</tbody></table><p class="rest-table-note">' +
+      ic("info") + '<span>' + esc(L(table.note)) + '</span></p></section>';
+  }
+
+  function renderHeadInjuryTable(c) {
+    var table = c.headInjuryTable;
+    var rows = (table.rows || []).map(function (row) {
+      return '<tr class="is-' + esc(row.tone || "caution") + '"><th scope="row"><span class="head-step">' +
+        esc(row.step) + '</span><strong>' + esc(L(row.event)) + '</strong></th><td><small class="head-mobile-label">' +
+        esc(L(table.windowLabel)) + '</small>' + esc(L(row.window)) + '</td><td><small class="head-mobile-label">' +
+        esc(L(table.restLabel)) + '</small><span class="head-rest">' + esc(L(row.rest)) + '</span></td></tr>';
+    }).join("");
+    var checks = (table.clearance.items || []).map(function (item) {
+      return '<li>' + ic("check") + '<span>' + esc(L(item)) + '</span></li>';
+    }).join("");
+
+    return '<section class="head-injury-card" aria-label="' + esc(L(table.title)) + '"><header class="head-injury-hero">' +
+      '<span class="head-injury-mark">' + ic("shield") + '</span><div><h3>' + esc(L(table.title)) + '</h3><p>' +
+      esc(L(table.subtitle)) + '</p></div><span class="head-rule-chip">' + esc(lang() === "tr" ? "Kural 9" : "Rule 9") +
+      '</span></header><div class="head-table-wrap"><table class="head-procedure-table"><thead><tr><th scope="col">' +
+      esc(L(table.eventLabel)) + '</th><th scope="col">' + esc(L(table.windowLabel)) + '</th><th scope="col">' +
+      esc(L(table.restLabel)) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<div class="head-action-grid"><article class="head-action protective"><div class="head-action-top"><span>' +
+      esc((lang() === "tr" ? "Madde " : "Article ") + table.protective.rule) + '</span><strong>' +
+      esc(L(table.protective.duration)) + '</strong></div><h4>' + esc(L(table.protective.title)) + '</h4><p>' +
+      esc(L(table.protective.text)) + '</p></article><article class="head-action clearance"><div class="head-action-top"><span>' +
+      esc((lang() === "tr" ? "Madde " : "Article ") + table.clearance.rule) + '</span></div><h4>' +
+      esc(L(table.clearance.title)) + '</h4><ul>' + checks + '</ul></article></div><footer class="head-record-note">' +
+      ic("info") + '<span>' + esc(L(table.recordNote)) + '</span></footer></section>';
+  }
+
+  function khanLevelClass(level) {
+    if (level >= 7) return "is-instructor";
+    if (level >= 5) return "is-advanced";
+    if (level >= 3) return "is-progress";
+    return "is-foundation";
+  }
+
+  function renderKhanTable(c) {
+    var table = c.khanTable;
+    var athletes = (table.athletes || []).map(function (row) {
+      return '<tr><th scope="row">' + esc(L(row.category)) + '</th><td><span class="khan-level ' +
+        khanLevelClass(row.level) + '"><small>Khan</small>' + esc(row.level) + '</span></td></tr>';
+    }).join("");
+    var officials = (table.officials || []).map(function (row) {
+      return '<article class="khan-official-row" role="listitem"><div class="khan-official-role"><span>' +
+        esc(L(table.roleLabel)) + '</span><strong>' + esc(L(row.role)) + '</strong></div><span class="khan-level ' +
+        khanLevelClass(row.level) + '"><small>Khan</small>' + esc(row.level) + '</span><div class="khan-official-definition"><span>' +
+        esc(L(table.definitionLabel)) + '</span><strong>' + esc(L(row.definition)) + '</strong></div></article>';
+    }).join("");
+
+    return '<section class="khan-table-card" aria-label="' + esc(L(table.title)) + '">' +
+      '<header class="khan-table-hero"><span class="khan-table-mark">' + ic("shield") + '</span><div><h3>' +
+      esc(L(table.title)) + '</h3><p>' + esc(L(table.subtitle)) + '</p></div><span class="khan-rule-chip">' +
+      esc((lang() === "tr" ? "Kural " : "Rule ") + c.rule) + '</span></header>' +
+      '<div class="khan-table-layout"><section class="khan-athlete-panel"><div class="khan-section-title"><span>' +
+      esc(L(table.athleteTitle)) + '</span><small>' + esc(L(table.minimumLabel)) + '</small></div>' +
+      '<table class="khan-athlete-table" aria-label="' + esc(L(table.athleteTitle)) + '"><thead><tr><th scope="col">' +
+      esc(L(table.categoryLabel)) + '</th><th scope="col">' + esc(L(table.minimumLabel)) + '</th></tr></thead><tbody>' +
+      athletes + '</tbody></table></section><section class="khan-official-panel"><div class="khan-section-title"><span>' +
+      esc(L(table.officialTitle)) + '</span><small>' + esc(L(table.minimumLabel)) + '</small></div><div class="khan-official-list" role="list">' +
+      officials + '</div></section></div></section>';
+  }
+
   function mediaBox(c) {
     var m = c.media || {};
+    if (c.headInjuryTable) return renderHeadInjuryTable(c);
+    if (c.restTable) return renderRestTable(c);
+    if (c.khanTable) return renderKhanTable(c);
+    if (c.roundsTable) return renderRoundsTable(c);
     // Gerçek görsel (resmî şema / fotoğraf) varsa önce onu göster
     if (c.imgs && c.imgs.length) {
       return c.imgs.map(function (im) {
@@ -581,7 +864,7 @@
     // Sıklet
     if (sel.weight) items += sumItem("scale", t("catWeight"), '<span class="big">' + esc(sel.weight) + ' kg</span><small>' + (lang() === "tr" ? "Kural 4 — yaş+cinsiyete göre" : "Rule 4 — by age+gender") + '</small>');
 
-    items += sumItem("doc", t("catSources"), sourceChips(["CAT_ROUNDS", "CAT_REST", "CAT_LIMIT", "FOUL_CCL", "AREA_EQUIP"]));
+    items += sumItem("doc", t("catSources"), sourceChips(["CAT_ROUNDS", "CAT_LIMIT", "FOUL_CCL", "AREA_EQUIP"]));
 
     return '<div class="summary">' + head + items + '</div>';
   }
@@ -812,6 +1095,11 @@
       }
     }
     main.innerHTML = html;
+    var activeDocumentTab = main.querySelector(".document-tab.on");
+    if (activeDocumentTab && activeDocumentTab.parentElement) {
+      var documentTabList = activeDocumentTab.parentElement;
+      documentTabList.scrollLeft = Math.max(0, activeDocumentTab.offsetLeft - (documentTabList.clientWidth - activeDocumentTab.offsetWidth) / 2);
+    }
     syncUrl();
 
     // Arama girişi: odak ve canlı sonuç
@@ -872,6 +1160,17 @@
         state.detail = []; state.detail.push({ kind: "category" }); scrollTop(); render(); break;
       case "open-module":
         push({ kind: "module", id: el.getAttribute("data-id") }); break;
+      case "module-section": {
+        var moduleId = el.getAttribute("data-module");
+        var sectionId = el.getAttribute("data-section");
+        state.moduleSections[moduleId] = sectionId;
+        var moduleData = moduleIndex[moduleId];
+        var sectionData = moduleData && (moduleData.championships || []).filter(function (item) { return item.id === sectionId; })[0];
+        if (sectionData && sectionData.documents && sectionData.documents.length) state.moduleDocuments[moduleId] = sectionData.documents[0].id;
+        render(); break;
+      }
+      case "module-document":
+        state.moduleDocuments[el.getAttribute("data-module")] = el.getAttribute("data-document"); render(); break;
       case "open-subtopic":
         push({ kind: "subtopic", module: el.getAttribute("data-module"), sub: el.getAttribute("data-sub") }); break;
       case "open-card":

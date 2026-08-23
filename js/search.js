@@ -26,6 +26,7 @@ window.IFMA = window.IFMA || {};
       if (c.title) parts.push(c.title[lg]);
       if (c.quick) parts.push(c.quick[lg]);
       if (c.when) parts.push(c.when[lg]);
+      if (c.ruleText) parts.push(c.ruleText[lg]);
     });
     if (c.tags) parts.push(c.tags.join(" "));
     return {

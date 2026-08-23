@@ -3,7 +3,7 @@
    Temel kabuk + içerik çevrimdışı açılsın diye önbelleğe alınır.
    İçerik güncellenince CACHE sürümünü artır (v1 -> v2).
    ========================================================================= */
-var CACHE = "ifma-hakem-v4";
+var CACHE = "ifma-hakem-v11";
 var ASSETS = [
   "./",
   "index.html",
@@ -38,7 +38,12 @@ var ASSETS = [
   "assets/img/wraps.jpg",
   "assets/img/form-medical-declaration.jpg",
   "assets/img/form-pregnancy-declaration.jpg",
-  "assets/img/form-consent.jpg"
+  "assets/img/form-consent.jpg",
+  "assets/img/adel-wada.png",
+  "assets/img/muaythai-kategori-siklet-kural-ozet-tablosu-2026.png",
+  "assets/img/dogum-yili-yas-kategorileri-2026.png",
+  "assets/docs/muaythai-kategori-siklet-kural-ozet-tablosu-2026.pdf",
+  "assets/docs/muaythai-yas-kategorileri-2026.pdf"
 ];
 
 self.addEventListener("install", function (e) {

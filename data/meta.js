@@ -9,7 +9,7 @@ window.IFMA = window.IFMA || {};
 /* ---- Uygulama meta ---- */
 window.IFMA.meta = {
   appId: "ifma-hakem-rehberi",
-  version: "0.1.0",                 // uygulama sürümü (kod)
+  version: "0.2.0",                 // uygulama sürümü (kod)
   source: "IFMA Kuralları ve Yönetmelikleri 2026",
   revision: "2026-05-11",           // kaynak yönetmelik revizyonu
   revisionLabel: { tr: "Revizyon: 11.05.2026", en: "Revision: 11 May 2026" },
@@ -27,6 +27,7 @@ window.IFMA.meta = {
 window.IFMA.labels = {
   ifma:     { key: "ifma",     color: "var(--label-ifma)",     tr: "IFMA KURALI",            en: "IFMA RULE" },
   tmf:      { key: "tmf",      color: "var(--label-tmf)",      tr: "TMF / ORGANİZASYON",     en: "TMF / ORGANISATION" },
+  national: { key: "national", color: "var(--label-tmf)",      tr: "ULUSAL MAÇLAR",          en: "NATIONAL BOUTS" },
   training: { key: "training", color: "var(--label-training)", tr: "HAKEM EĞİTİMİ",          en: "REFEREE TRAINING" }
 };
 
@@ -85,7 +86,7 @@ window.IFMA.ui = {
     whatsChangedDesc: "Bu sürüm 11.05.2026 IFMA yönetmeliğine dayanır.",
     offlineReady: "Çevrimdışı kullanıma hazır",
     offlinePartial: "Temel içerik çevrimdışı açılır",
-    modulesTitle: "8 Ana Modül",
+    modulesTitle: "9 Ana Modül",
     // Kategori seçici
     catDiscipline: "Disiplin",
     catAge: "Yaş Kategorisi",
@@ -105,13 +106,16 @@ window.IFMA.ui = {
     catActive: "Aktif kategori",
     // Kart
     cardQuickAnswer: "Hızlı cevap",
+    cardRuleText: "İlgili kural metni",
     cardWhenValid: "Ne zaman geçerli?",
     cardVisual: "Görsel anlatım",
+    cardDocumentVisual: "İlgili belge / görsel",
     cardRight: "Doğru uygulama",
     cardWrong: "Sık yapılan hata",
     cardSource: "Kaynak",
     cardRelated: "İlgili içerikler",
     cardRuleNo: "Madde",
+    openDocumentDetail: "Belge kartının detayını aç",
     addFav: "Favorilere ekle",
     remFav: "Favoriden çıkar",
     // Görev modu
@@ -190,7 +194,7 @@ window.IFMA.ui = {
     whatsChangedDesc: "This version is based on the IFMA rulebook rev. 11 May 2026.",
     offlineReady: "Ready for offline use",
     offlinePartial: "Core content opens offline",
-    modulesTitle: "8 Main Modules",
+    modulesTitle: "9 Main Modules",
     catDiscipline: "Discipline",
     catAge: "Age Category",
     catGender: "Gender",
@@ -208,13 +212,16 @@ window.IFMA.ui = {
     catNoSelection: "No category selected yet.",
     catActive: "Active category",
     cardQuickAnswer: "Quick answer",
+    cardRuleText: "Relevant rule text",
     cardWhenValid: "When does it apply?",
     cardVisual: "Visual explanation",
+    cardDocumentVisual: "Related document / visual",
     cardRight: "Correct application",
     cardWrong: "Common mistake",
     cardSource: "Source",
     cardRelated: "Related content",
     cardRuleNo: "Article",
+    openDocumentDetail: "Open document card details",
     addFav: "Add to favourites",
     remFav: "Remove favourite",
     taskPickRole: "Pick your role",

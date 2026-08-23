@@ -44,7 +44,7 @@ ifma-hakem-rehberi/
 ├── data/                   >>> İÇERİK KODDAN AYRIDIR <<<
 │   ├── meta.js             Arayüz metinleri (TR/EN), etiketler
 │   ├── categories.js       Filtreler + kategori profilleri (raund/kısıt/CCL)
-│   ├── modules.js          8 modül + alt başlıklar
+│   ├── modules.js          9 modül + alt başlıklar
 │   ├── cards.js            Kural kartları (gerçek örnek + gelecek yer tutucular)
 │   └── flows.js            Görev modu akışları + eğitim senaryoları
 └── assets/
@@ -83,7 +83,7 @@ Fotoğraf/video eklerken `data/cards.js`'e `photoSrc`/`videoSrc` alanları eklen
 
 ## Fazlar
 
-- **Faz 1 (bu depo):** 5 sekme, 8 modül, kategori seçici, standart kart, görev modu,
+- **Faz 1 (bu depo):** 4 ana sekme, 9 modül, kategori seçici, standart kart, görev modu,
   eğitim iskeleti, arama, TR/EN, PWA. Öncelikli modüllerde gerçek örnek kartlar.
 - **Faz 2:** Açıklama görselleri + fotoğraflar; tüm modüllerin içeriğinin doldurulması;
   uzman onaylı EN çeviriler.

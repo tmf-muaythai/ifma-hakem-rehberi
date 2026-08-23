@@ -103,28 +103,41 @@ window.IFMA = window.IFMA || {};
 
     /* Kategori karşılaştırma tablosu (veriden üretilir) */
     "category-table": function (lang) {
-      var head = window.IFMA.headRules, ccl = window.IFMA.cclRules, prof = window.IFMA.ageProfiles;
-      var headShort = {
-        none: tr(lang, "—", "—"),
-        noElbowKneeHead: tr(lang, "kafaya diz/dirsek ✗", "no knee/elbow to head"),
-        noHead: tr(lang, "kafaya vuruş ✗", "no head strikes")
-      };
-      var cclShort = { A: "3 / 4", B: "2 / 3", C: "— / 2" };
-      var order = ["U8", "U10", "U12", "U14", "U16", "U18", "U24", "ELITE", "M35", "V40", "V45"];
-      var names = {}; window.IFMA.filters.age.forEach(function (a) { names[a.id] = (lang === "en" ? a.en : a.tr); });
-      var rows = order.map(function (id) {
-        var p = prof[id]; if (!p) return "";
-        return '<tr><td class="k">' + names[id] + '</td><td>' + p.roundMin + '×' + p.rounds +
-          '</td><td>' + p.restMin + '</td><td class="lim">' + headShort[p.head] + '</td><td>' + cclShort[p.ccl] + '</td></tr>';
+      var groups = [
+        {
+          tone: "free",
+          categories: tr(lang, "Veteranlar 40+ ve 45+|Büyükler 35+|Elite|U24|U18|U16", "Masters 40+ and 45+|Masters 35+|Elite|U24|U18|U16"),
+          label: tr(lang, "Kısıtlama Yok", "No Restrictions"),
+          detail: tr(lang, "Tüm Muaythai teknikleri uygulanabilir.", "All Muaythai techniques may be used.")
+        },
+        {
+          tone: "caution",
+          categories: "U14",
+          label: tr(lang, "Kafaya Dirsek veya Diz Yok", "No Elbow or Knee to the Head"),
+          detail: tr(lang, "Diğer izinli teknikler kurallar çerçevesinde uygulanabilir.", "Other permitted techniques may be used within the Rules.")
+        },
+        {
+          tone: "blocked",
+          categories: "U12|U10|U8",
+          label: tr(lang, "Kafaya Vuruş Yok", "No Strikes to the Head"),
+          detail: tr(lang, "Kafaya hiçbir Muaythai tekniği uygulanamaz.", "No Muaythai technique may be delivered to the head.")
+        }
+      ];
+      var body = groups.map(function (group) {
+        var chips = group.categories.split("|").map(function (name) {
+          return '<span class="restriction-chip">' + name + '</span>';
+        }).join("");
+        return '<article class="restriction-row is-' + group.tone + '"><div class="restriction-categories">' +
+          '<span class="restriction-column-label">' + tr(lang, "Kategori", "Category") + '</span><div>' + chips +
+          '</div></div><div class="restriction-rule"><span class="restriction-column-label">' +
+          tr(lang, "Kısıtlanmış Muaythai Teknikleri", "Restricted Muaythai Skills") + '</span><strong>' + group.label +
+          '</strong><small>' + group.detail + '</small></div></article>';
       }).join("");
-      return '<div class="diagram dg-scroll"><table class="dg-table"><thead><tr>' +
-        '<th>' + tr(lang, "Kategori", "Category") + '</th>' +
-        '<th>' + tr(lang, "Raund (dk)", "Round (min)") + '</th>' +
-        '<th>' + tr(lang, "Dinlenme", "Rest") + '</th>' +
-        '<th>' + tr(lang, "Kafa kısıtı", "Head limit") + '</th>' +
-        '<th>' + tr(lang, "CCL r/m", "CCL r/m") + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
-        '<div class="dg-cap">' + tr(lang, "CCL = raund / maç sayım limiti • Kural 7, 30.2.5, 31.3",
-                                     "CCL = round / match count limit • Rule 7, 30.2.5, 31.3") + '</div></div>';
+      return '<div class="diagram restriction-matrix"><header><span>31.3</span><div><strong>' +
+        tr(lang, "Kategori Bazlı Kısıtlı Vuruşlar", "Restricted Strikes by Division") + '</strong><small>' +
+        tr(lang, "Yalnızca vuruş kısıtları gösterilir", "Strike restrictions only") + '</small></div></header>' + body +
+        '<div class="dg-cap">' + tr(lang, "Kısıtlanmış bir tekniğin kullanılması fauldür • Kural 31.3",
+          "Use of a restricted technique is a foul • Rule 31.3") + '</div></div>';
     },
 
     /* Geçerli / yasak hedef bölgeleri */
@@ -183,15 +196,24 @@ window.IFMA = window.IFMA || {};
   // CCL grubu tablosu (kısa)
   DG["ccl-table"] = function (lang) {
     var rows = [
-      [tr(lang, "U24 · Elite · 35+", "U24 · Elite · 35+"), tr(lang, "raundda 3  ·  maçta 4", "3 in a round · 4 in match"), "navy"],
-      [tr(lang, "U18 · V40+ · V45+", "U18 · V40+ · V45+"), tr(lang, "raundda 2  ·  maçta 3", "2 in a round · 3 in match"), "amber"],
-      [tr(lang, "U8 – U16", "U8 – U16"), tr(lang, "maçta 2", "2 in match"), "teal"]
+      { categories: tr(lang, "U24 · Elite · Büyükler 35+", "U24 · Elite · Masters 35+"), round: "3", total: "4", tone: "navy" },
+      { categories: tr(lang, "U18 · Veteranlar 40+ · Veteranlar 45+", "U18 · Masters 40+ · Masters 45+"), round: "2", total: "3", tone: "amber" },
+      { categories: "U8 · U10 · U12 · U14 · U16", round: "2", total: "2", tone: "teal" }
     ];
     var body = rows.map(function (r) {
-      return '<div class="dg-scale-row ' + r[2] + '"><b>' + r[0] + '</b><em>' + r[1] + '</em></div>';
+      return '<article class="ccl-limit-card is-' + r.tone + '"><h4>' + r.categories + '</h4><div class="ccl-limit-values">' +
+        '<div><span>' + tr(lang, "Aynı Raundda", "In the Same Round") + '</span><strong>' + r.round + '</strong><small>' +
+        tr(lang, "sayım", "counts") + '</small></div><span class="ccl-or">' + tr(lang, "veya", "or") + '</span><div><span>' +
+        tr(lang, "Toplam Müsabakada", "In the Whole Contest") + '</span><strong>' + r.total + '</strong><small>' +
+        tr(lang, "sayım", "counts") + '</small></div></div></article>';
     }).join("");
-    return '<div class="diagram"><div class="dg-scale">' + body + '</div>' +
-      '<div class="dg-cap">' + tr(lang, "Zorunlu Sayma Limiti • Kural 30.2.5", "Compulsory Count Limit • Rule 30.2.5") + '</div></div>';
+    return '<div class="diagram ccl-limit-board"><header><span>CCL</span><div><strong>' +
+      tr(lang, "Zorunlu Sayma Limiti", "Compulsory Count Limit") + '</strong><small>' +
+      tr(lang, "İlk ulaşılan limitte müsabaka biter", "The contest ends when either limit is reached") + '</small></div></header>' +
+      '<div class="ccl-limit-grid">' + body + '</div><div class="ccl-skill-note">' +
+      tr(lang, "CCL sayımı bir Muaythai tekniği sonucunda başlamış olmalıdır.",
+        "A CCL count must be initiated by a Muaythai skill.") + '</div><div class="dg-cap">' +
+      tr(lang, "Zorunlu Sayma Limiti • Kural 30.2.5", "Compulsory Count Limit • Rule 30.2.5") + '</div></div>';
   };
 
   // SbS onay: kaç Yan Hakem gerekli (1 sn içinde çoğunluk)
@@ -271,19 +293,36 @@ window.IFMA = window.IFMA || {};
 
   // Sıklet aralıkları (kategoriye göre özet)
   DG["weight-table"] = function (lang) {
-    var order = [["SENIOR", tr(lang, "Büyükler / Elite", "Seniors / Elite")], ["U24", "U24"], ["U18", "U18"],
+    var order = [["SENIOR", tr(lang, "Büyükler ve Elite", "Masters and Elite")], ["U24", "U24"], ["U18", "U18"],
                  ["U16", "U16"], ["U14", "U14"], ["U12", "U12"], ["U10", "U10 ***"], ["U8", "U8 ***"]];
     var g = window.IFMA.weightGroups || {};
-    function rng(a) { return (a && a.length) ? (a[0] + "–" + a[a.length - 1] + " (" + a.length + ")") : "—"; }
+    function weightChips(items, group, gender) {
+      return (items || []).map(function (value, index) {
+        var note = group === "SENIOR" && gender === "male" && index === 0 ? "*" :
+          (group === "SENIOR" && gender === "male" && value === "+91" ? "**" : "");
+        return '<span class="weight-chip' + (note ? ' is-note' : '') + '"><b>' + value + '</b><small>kg' + note + '</small></span>';
+      }).join("");
+    }
     var body = order.map(function (o) {
       var w = g[o[0]] || {};
-      return '<tr><td class="k">' + o[1] + '</td><td>' + rng(w.male) + '</td><td>' + rng(w.female) + '</td></tr>';
+      return '<article class="weight-category-card"><header><strong>' + o[1] + '</strong><small>' +
+        tr(lang, "Kural 4 · kilogram", "Rule 4 · kilograms") + '</small></header><div class="weight-gender-row male">' +
+        '<div class="weight-gender-label"><span>♂</span><strong>' + tr(lang, "Erkek", "Male") + '</strong><small>' +
+        (w.male || []).length + ' ' + tr(lang, "sıklet", "classes") + '</small></div><div class="weight-class-list">' +
+        weightChips(w.male, o[0], "male") + '</div></div><div class="weight-gender-row female"><div class="weight-gender-label">' +
+        '<span>♀</span><strong>' + tr(lang, "Kadın", "Female") + '</strong><small>' + (w.female || []).length + ' ' +
+        tr(lang, "sıklet", "classes") + '</small></div><div class="weight-class-list">' +
+        weightChips(w.female, o[0], "female") + '</div></div></article>';
     }).join("");
-    return '<div class="diagram dg-scroll"><table class="dg-table"><thead><tr><th>' +
-      tr(lang, "Kategori", "Category") + '</th><th>' + tr(lang, "Erkek (kg)", "Male (kg)") + '</th><th>' +
-      tr(lang, "Kadın (kg)", "Female (kg)") + '</th></tr></thead><tbody>' + body + '</tbody></table><div class="dg-cap">' +
-      tr(lang, "Aralık (sınıf sayısı) • tam liste için Kategori Seç → yaş+cinsiyet • *** U8/U10 Tatami • Kural 4",
-               "Range (class count) • pick a category for the full list • *** U8/U10 Tatami • Rule 4") + '</div></div>';
+    return '<div class="diagram weight-board"><header class="weight-board-head"><div><strong>' +
+      tr(lang, "Kategori ve Cinsiyete Göre Sıkletler", "Weight Classes by Category and Gender") + '</strong><small>' +
+      tr(lang, "Her değer ilgili sıkletin üst sınırını gösterir", "Each value shows the upper limit of the weight class") +
+      '</small></div><span>KG</span></header><div class="weight-category-grid">' + body + '</div><div class="weight-footnotes">' +
+      '<span>* ' + tr(lang, "Seçilmiş çoklu spor etkinliklerinde IFMA onayına tabidir.", "Subject to IFMA approval in selected multi-sport events.") +
+      '</span><span>** ' + tr(lang, "Veteranlar 40+ ve 45+ için +91 kg uygulanmaz.", "+91 kg does not apply to Masters 40+ and 45+.") +
+      '</span><span>*** ' + tr(lang, "U8 ve U10 yalnızca Muaythai Teknik (Tatami).", "U8 and U10 are Muaythai Technical (Tatami) only.") +
+      '</span></div><div class="dg-cap">' + tr(lang, "Resmî sıklet sınıflandırmaları • Kural 4",
+        "Official weight classifications • Rule 4") + '</div></div>';
   };
 
   // Puan verme basamakları (raund eşitse sırasıyla)
@@ -316,8 +355,8 @@ window.IFMA = window.IFMA || {};
     FOUL_DOUBLE_KD: "count-flow", FOUL_RETDQ: "decision-tree", FOUL_WONC: "decision-tree",
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
     MED_KOH: "rest-table", WEIGH_ROOM: "weigh-staffing",
-    FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table", CAT_ROUNDS: "category-table", CAT_REST: "category-table",
-    CAT_AGE: "birthyear-table", CAT_WEIGHT: "weight-table", CAT_EQUIP: "bodyprotector-table",
+    FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table",
+    CAT_AGE: "birthyear-table", CAT_WEIGHT: "weight-table",
     JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-steps", JUDGE_RBR: "scoring-scale",
     JUDGE_SBS: "sbs-accept", JUDGE_BUTON: "sbs-accept",
     JUDGE_TARGET: "target-zones",

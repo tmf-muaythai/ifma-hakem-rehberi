@@ -69,7 +69,7 @@ window.IFMA.headRules = {
 window.IFMA.cclRules = {
   A: { tr: "Aynı raundda 3 sayım veya maç boyunca toplam 4 sayım", en: "3 counts in the same round, or 4 total in the match" },
   B: { tr: "Aynı raundda 2 sayım veya maç boyunca toplam 3 sayım", en: "2 counts in the same round, or 3 total in the match" },
-  C: { tr: "Maç boyunca toplam 2 sayım",                            en: "2 counts total in the whole match" }
+  C: { tr: "Aynı raundda 2 sayım veya maç boyunca toplam 2 sayım", en: "2 counts in the same round, or 2 total in the whole match" }
 };
 
 /* ---- Yaş kategorisi profilleri (Full/Semi Contact) ----

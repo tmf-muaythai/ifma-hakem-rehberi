@@ -3,6 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <script>
+    (function () {
+      var base = new URL('.', location.href).href;
+      var el = document.createElement('base');
+      el.href = base;
+      document.head.appendChild(el);
+    })();
+  </script>
   <title>Muaythai Hakem Rehberi — IFMA 2026 Kuralları</title>
   <meta name="description" content="IFMA 2026 kurallarını hızlı, görsel ve kaynağı açık bir dijital rehbere dönüştüren hakem uygulaması." />
   <meta name="theme-color" content="#103A61" />
