@@ -2746,3 +2746,89 @@ html[data-theme="dark"] .ft-logo-tmf img { filter:drop-shadow(0 0 1px rgba(255,2
   .block, .source, .rw { break-inside:avoid; box-shadow:none!important; }
   .original-panel[hidden] { display:none!important; }
 }
+
+/* =========================================================================
+   V7 — REFINED ELEVATION & TYPOGRAPHY
+   A focused polish pass on top of V6: real depth on cards (soft shadow +
+   lift instead of a flat border-only state), a tighter typographic
+   rhythm, a header with genuine depth instead of a hard rule, and a
+   slightly richer icon-tile treatment. No V6 rule is removed or
+   reworded — this layer only overrides the exact selectors listed below,
+   so everything else in the file (including the still-active parts of
+   older layers) keeps behaving exactly as before.
+   ========================================================================= */
+
+/* ---- Type: tighter, more deliberate rhythm ---- */
+html { -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility; }
+body { font-feature-settings:"kern" 1; }
+.home-page-head h1 { letter-spacing:-.032em; }
+.section-title { letter-spacing:-.006em; }
+.detail-title { letter-spacing:-.028em; }
+.mod-num,.mod-count,.rule-ref,.card-foot .src { font-variant-numeric:tabular-nums; }
+.brand-copy b { letter-spacing:-.006em; }
+.rule-text { line-height:1.68; }
+
+/* ---- Section marker: a two-tone bar instead of a flat red tick ---- */
+.section > .section-title::before,
+.section-head > .section-title::before {
+  width:4px;
+  height:16px;
+  border-radius:99px;
+  background:linear-gradient(180deg,var(--brand-red),color-mix(in srgb,var(--brand-red) 45%,var(--brand-blue)));
+}
+
+/* ---- Cards: real elevation at rest, a genuine lift on hover/focus ---- */
+.card,.row,.mod-card,.tile,.task-prompt,.training-scenario-cta,.focus-card,.train-tile,.role-card {
+  box-shadow:0 1px 2px rgba(16,37,54,.05),0 1px 1px rgba(16,37,54,.04);
+  transition:border-color .16s ease,background-color .16s ease,transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s ease;
+}
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .row,
+html[data-theme="dark"] .mod-card,
+html[data-theme="dark"] .tile,
+html[data-theme="dark"] .task-prompt,
+html[data-theme="dark"] .training-scenario-cta,
+html[data-theme="dark"] .focus-card,
+html[data-theme="dark"] .train-tile,
+html[data-theme="dark"] .role-card {
+  box-shadow:0 1px 2px rgba(0,0,0,.28);
+}
+.card:hover,.row:hover,.mod-card:hover,.tile:hover,.task-prompt:hover,.training-scenario-cta:hover,.role-card:hover,
+.card:focus-visible,.row:focus-visible,.mod-card:focus-visible,.tile:focus-visible,.task-prompt:focus-visible,.training-scenario-cta:focus-visible,.role-card:focus-visible {
+  box-shadow:0 10px 24px -12px color-mix(in srgb,var(--brand-blue) 55%,transparent),0 2px 6px rgba(16,37,54,.06);
+  transform:translateY(-2px);
+}
+html[data-theme="dark"] .card:hover,html[data-theme="dark"] .row:hover,html[data-theme="dark"] .mod-card:hover,html[data-theme="dark"] .tile:hover,html[data-theme="dark"] .task-prompt:hover,html[data-theme="dark"] .training-scenario-cta:hover,html[data-theme="dark"] .role-card:hover,
+html[data-theme="dark"] .card:focus-visible,html[data-theme="dark"] .row:focus-visible,html[data-theme="dark"] .mod-card:focus-visible,html[data-theme="dark"] .tile:focus-visible,html[data-theme="dark"] .task-prompt:focus-visible,html[data-theme="dark"] .training-scenario-cta:focus-visible,html[data-theme="dark"] .role-card:focus-visible {
+  box-shadow:0 12px 26px -12px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.3);
+}
+
+/* ---- Icon tiles: a subtle gradient + inner ring instead of a flat fill ---- */
+.task-prompt > .ic:first-child,.training-scenario-cta > .ic:first-child,
+.mod-ico,.row-ico,.role-ico {
+  background:linear-gradient(155deg,var(--brand-blue-soft),color-mix(in srgb,var(--brand-blue) 14%,var(--brand-blue-soft)));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--brand-blue) 16%,transparent);
+}
+html[data-theme="dark"] .task-prompt > .ic:first-child,
+html[data-theme="dark"] .training-scenario-cta > .ic:first-child,
+html[data-theme="dark"] .mod-ico,
+html[data-theme="dark"] .row-ico,
+html[data-theme="dark"] .role-ico {
+  background:linear-gradient(155deg,var(--brand-blue-soft),color-mix(in srgb,var(--brand-blue) 24%,var(--brand-blue-soft)));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--brand-blue) 32%,transparent);
+}
+
+/* ---- Header: layered depth instead of a hard rule underneath ---- */
+.app-header {
+  background:linear-gradient(120deg,#0C304E 0%,#154F7E 62%,#1A5C90 100%);
+  border-bottom:none;
+  box-shadow:inset 0 -3px 0 var(--brand-red),0 6px 18px -8px rgba(6,20,34,.45);
+}
+
+/* ---- Motion & print safety ---- */
+@media (prefers-reduced-motion:reduce) {
+  .card,.row,.mod-card,.tile,.task-prompt,.training-scenario-cta,.focus-card,.train-tile,.role-card,.ft-logo-slot { transition:none; }
+}
+@media print {
+  .card,.row,.mod-card,.tile,.task-prompt,.training-scenario-cta,.focus-card,.train-tile,.role-card { box-shadow:none!important;transform:none!important; }
+}
