@@ -88,7 +88,6 @@ window.IFMA = window.IFMA || {};
     /* Puanlama ölçeği (On Puan Sistemi) */
     "scoring-scale": function (lang) {
       var rows = [
-        ["10–10", tr(lang, "Fark yok", "Tie"), "0", "teal"],
         ["10–9", tr(lang, "Küçük fark", "Small margin"), "≤ 7", "navy"],
         ["10–8", tr(lang, "Açık fark", "Clear margin"), "8–14", "amber"],
         ["10–7", tr(lang, "Tam üstünlük", "Full dominance"), "15–21", "red"]
@@ -98,6 +97,9 @@ window.IFMA = window.IFMA || {};
           '<em>' + tr(lang, "vuruş farkı ", "strike diff ") + r[2] + '</em></div>';
       }).join("");
       return '<div class="diagram"><div class="dg-scale">' + body + '</div>' +
+        '<div class="dg-scale-note"><strong>' + tr(lang, "Not", "Note") + ':</strong><span>' +
+        tr(lang, "10–10 yalnızca raundu kazanan sporcu İhtar (Warning) aldığında verilebilir.",
+          "10–10 may only be awarded when the Athlete who won the round receives a Warning.") + '</span></div>' +
         '<div class="dg-cap">' + tr(lang, "Kaynak: Kural 29.2", "Source: Rule 29.2") + '</div></div>';
     },
 
@@ -277,6 +279,53 @@ window.IFMA = window.IFMA || {};
       tr(lang, "Köşe rengiyle uyumlu • Kural 15.4", "Corner-colour coordinated • Rule 15.4") + '</div></div>';
   };
 
+  // Kural 15: kategoriye göre temel ve değişken zorunlu ekipmanlar
+  DG["equipment-category-table"] = function (lang) {
+    var rows = [
+      { category: "U8 – U24", body: tr(lang, "Zorunlu", "Mandatory"), chest: tr(lang, "İsteğe Bağlı", "Optional"), bodyTone: "yes", chestTone: "optional" },
+      { category: "Elite", body: tr(lang, "Kullanılmaz", "Not worn"), chest: tr(lang, "Zorunlu", "Mandatory"), bodyTone: "no", chestTone: "yes" },
+      { category: tr(lang, "Masters 35+", "Masters 35+"), body: tr(lang, "Kullanılmaz", "Not worn"), chest: tr(lang, "Zorunlu", "Mandatory"), bodyTone: "no", chestTone: "yes" },
+      { category: tr(lang, "Masters 40+ & 45+", "Masters 40+ & 45+"), body: tr(lang, "Zorunlu", "Mandatory"), chest: tr(lang, "İsteğe Bağlı", "Optional"), bodyTone: "yes", chestTone: "optional" }
+    ];
+    var body = rows.map(function (row) {
+      return '<tr><th scope="row">' + row.category + '</th><td><span class="equip-status is-' + row.bodyTone + '">' +
+        row.body + '</span></td><td><span class="equip-status is-' + row.chestTone + '">' + row.chest + '</span></td></tr>';
+    }).join("");
+    var essentials = [
+      tr(lang, "Eldiven", "Gloves"), tr(lang, "Bandaj", "Wraps"), tr(lang, "Kask", "Head guard"),
+      tr(lang, "Kaval koruyucu", "Shin guards"), tr(lang, "Dirseklik", "Elbow guards"),
+      tr(lang, "Dişlik", "Gum shield"), tr(lang, "Kasık koruyucu", "Groin guard"),
+      tr(lang, "Şort", "Shorts"), tr(lang, "Atlet", "Singlet"), "Mongkon (Wai Kru)"
+    ].map(function (item) { return '<span>' + item + '</span>'; }).join("");
+    return '<div class="diagram equipment-category-board"><header><div><strong>' +
+      tr(lang, "Kategorilere Göre Zorunlu Ekipmanlar", "Mandatory Equipment by Category") + '</strong><small>' +
+      tr(lang, "Tüm dövüş kategorilerinde ortak temel set", "Core set shared by all combat divisions") +
+      '</small></div><b>15</b></header><div class="equipment-essentials">' + essentials +
+      '</div><div class="equipment-category-wrap"><table><thead><tr><th>' + tr(lang, "Kategori", "Category") +
+      '</th><th>' + tr(lang, "Gövde Koruyucu", "Body Protector") + '</th><th>' +
+      tr(lang, "Kadın Göğüs Koruyucu", "Female Chest Protection") + '</th></tr></thead><tbody>' + body +
+      '</tbody></table></div><footer>' + tr(lang,
+        "Kasık koruyucu tüm kadın ve erkek sporcularda kişiseldir ve zorunludur.",
+        "Every male and female athlete must use a personal mandatory groin guard.") + '</footer></div>';
+  };
+
+  // Kural 15.8: kadın göğüs koruyucusu kategori tablosu
+  DG["chestprotector-table"] = function (lang) {
+    var rows = [
+      [tr(lang, "Masters 40+ & 45+", "Masters 40+ & 45+"), tr(lang, "İsteğe Bağlı", "Optional"), "optional"],
+      [tr(lang, "Masters 35+", "Masters 35+"), tr(lang, "Zorunlu", "Mandatory"), "yes"],
+      ["Elite", tr(lang, "Zorunlu", "Mandatory"), "yes"],
+      ["U8 – U24", tr(lang, "İsteğe Bağlı", "Optional"), "optional"]
+    ];
+    var body = rows.map(function (row) {
+      return '<tr><th scope="row">' + row[0] + '</th><td><span class="equip-status is-' + row[2] + '">' + row[1] + '</span></td></tr>';
+    }).join("");
+    return '<div class="diagram protector-status-board"><header><strong>' +
+      tr(lang, "Kadın Göğüs Koruyucu", "Female Chest Protection") + '</strong><span>15.8</span></header>' +
+      '<table><thead><tr><th>' + tr(lang, "Kategori", "Category") + '</th><th>' +
+      tr(lang, "Kullanım", "Use") + '</th></tr></thead><tbody>' + body + '</tbody></table></div>';
+  };
+
   // Doğum yılı bazlı kategoriler (2026 sezonu)
   DG["birthyear-table"] = function (lang) {
     var rows = (window.IFMA.birthYears2026 || []);
@@ -351,15 +400,14 @@ window.IFMA = window.IFMA || {};
     REF_YOOT: "command-flow", REF_YAEK: "command-flow", REF_CHOCK: "command-flow",
     REF_SAYIMREF: "count-flow", FOUL_COUNT_THAI: "thai-count", FOUL_RULE8: "count-flow",
     FOUL_KO: "count-flow", FOUL_KNOCKDOWN: "count-flow",
-    REF_RSC_POWER: "decision-tree", FOUL_RSC: "decision-tree", REF_ENDMATCH: "decision-tree",
-    FOUL_DOUBLE_KD: "count-flow", FOUL_RETDQ: "decision-tree", FOUL_WONC: "decision-tree",
+    REF_RSC_POWER: "decision-tree", REF_ENDMATCH: "decision-tree",
+    FOUL_DOUBLE_KD: "count-flow",
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
     MED_KOH: "rest-table", WEIGH_ROOM: "weigh-staffing",
-    FOUL_CAT_LIMIT: "category-table", CAT_LIMIT: "category-table",
+    CAT_LIMIT: "category-table",
     CAT_AGE: "birthyear-table", CAT_WEIGHT: "weight-table",
-    JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-steps", JUDGE_RBR: "scoring-scale",
-    JUDGE_SBS: "sbs-accept", JUDGE_BUTON: "sbs-accept",
-    JUDGE_TARGET: "target-zones",
-    AREA_FOP: "fop-layout", AREA_RINGSIZE: "fop-layout", AREA_TABLES: "fop-layout", AREA_GOVDE: "bodyprotector-table"
+    JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-steps",
+    JUDGE_SBS: "sbs-accept",
+    AREA_FOP: "fop-layout"
   };
 })();

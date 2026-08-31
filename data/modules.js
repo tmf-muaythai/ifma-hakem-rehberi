@@ -1,6 +1,6 @@
 /* =========================================================================
    IFMA HAKEM REHBERİ  —  data/modules.js
-   9 ana içerik modülü, alt başlıkları ve IFMA kural eşlemeleri (Plan §04).
+   10 ana içerik modülü, alt başlıkları ve IFMA kural eşlemeleri (Plan §04).
    Kartlar bu modül + subtopic kimliklerine bağlanır (data/cards.js).
    ========================================================================= */
 window.IFMA = window.IFMA || {};
@@ -8,6 +8,7 @@ window.IFMA = window.IFMA || {};
 window.IFMA.modules = [
   {
     id: "kayit", num: 1, icon: "clipboard", color: "#2E6E9E",
+    /* avatar: "assets/avatars/modules/kayit.png",  — kare görsel ekleyince bu satırı aç */
     tr: "Sporcu Kayıt", en: "Athlete Registration",
     purposeTr: "Uluslararası ve ulusal şampiyona kayıt belgelerini ayrı akışlarda sunmak.",
     purposeEn: "Present international and national championship registration documents in separate flows.",
@@ -20,7 +21,11 @@ window.IFMA.modules = [
       { id: "khan", tr: "Khan Derecesi Şartı", en: "Khan Level Requirement" },
       { id: "blood-tests", tr: "Kan Testleri", en: "Blood Tests" },
       { id: "athletes-book", tr: "Athlete's Book", en: "Athlete's Book" },
-      { id: "accreditation-card", tr: "Akreditasyon Kartı", en: "Accreditation Card" }
+      { id: "accreditation-card", tr: "Akreditasyon Kartı", en: "Accreditation Card" },
+      { id: "national-delegation-list", tr: "Kafile Listesi", en: "Delegation List" },
+      { id: "national-license-id", tr: "Sporcu Lisansı ve Kimliği", en: "Athlete Licence and Identity Document" },
+      { id: "national-weigh-sheet", tr: "Tartı Kağıdı", en: "Weigh-in Sheet" },
+      { id: "national-doctor-report", tr: "Gerekli Durumlarda Doktor Raporu", en: "Doctor's Report When Required" }
     ],
     championships: [
       {
@@ -44,15 +49,20 @@ window.IFMA.modules = [
         id: "national",
         tr: "Ulusal Şampiyonalar",
         en: "National Championships",
-        emptyTr: "Ulusal Şampiyonalar kayıt içeriği daha sonra eklenecek.",
-        emptyEn: "National Championships registration content will be added later.",
-        documents: []
+        documentsTr: "Kayıt İçin Gerekli Belgeler",
+        documentsEn: "Documents Required for Registration",
+        documents: [
+          { id: "national-delegation-list", card: "REG_NAT_DELEGATION_LIST" },
+          { id: "national-license-id", card: "REG_NAT_LICENSE_ID" },
+          { id: "national-weigh-sheet", card: "REG_NAT_WEIGH_SHEET" },
+          { id: "national-doctor-report", card: "REG_NAT_DOCTOR_REPORT" }
+        ]
       }
     ]
   },
   {
     id: "tarti", num: 2, icon: "scale", color: "#087F8D",
-    tr: "Tartı", en: "Weigh-in",
+    tr: "Tartı İşlemleri", en: "Weigh-in Procedures",
     purposeTr: "Tartı türlerini, sağlık uygunluğunu, katılım standartlarını ve görev dağılımını tek bir hiyerarşik akışta sunmak.",
     purposeEn: "Present weigh-in types, medical fitness, participation standards and staffing in one hierarchical flow.",
     rules: "Kural 9–11 / Ulusal",
@@ -134,64 +144,102 @@ window.IFMA.modules = [
   },
   {
     id: "alan", num: 4, icon: "ring", color: "#2A9D8F",
-    tr: "Müsabaka Alanı & Ekipman", en: "Field of Play & Equipment",
-    purposeTr: "Ring/FOP düzenini ve sporcu ekipmanını görsel olarak öğretmek.",
-    purposeEn: "Teach the ring/FOP layout and athlete equipment visually.",
-    rules: "Kural 13–15",
+    tr: "Müsabaka Alanı", en: "Field of Play",
+    purposeTr: "Müsabaka alanının, medya bölgelerinin ve ringin IFMA standartlarına göre kurulumunu öğretmek.",
+    purposeEn: "Teach the IFMA-standard setup of the field of play, media areas and ring.",
+    rules: "Kural 13–14",
     subtopics: [
-      { id: "fop",        tr: "FOP yerleşimi (Şekil 1 & 2)", en: "FOP layout (Fig. 1 & 2)" },
-      { id: "ringolcu",   tr: "Ring ölçüleri",          en: "Ring dimensions" },
-      { id: "masalar",    tr: "Resmi görevli masaları",  en: "Officials' tables" },
-      { id: "eldiven",    tr: "Eldiven ve bandaj",       en: "Gloves & wraps" },
-      { id: "kask",       tr: "Kask",                    en: "Head guard" },
-      { id: "govde",      tr: "Gövde koruyucu",          en: "Body protector" },
-      { id: "dislik",     tr: "Dişlik",                  en: "Gum shield" },
-      { id: "kasik",      tr: "Kasık / göğüs koruyucu",  en: "Groin / chest guard" },
-      { id: "kiyafet",    tr: "Giyim, mongkon ve prajiad",en: "Attire, mongkon & prajiad" },
-      { id: "kontrolakis",tr: "Ekipman kontrol akışı",   en: "Equipment check flow" }
+      { id: "kurulum", tr: "Müsabaka Alanı Kurulumu", en: "Competition Area Setup" },
+      { id: "medya",   tr: "Medya",                    en: "Media" },
+      { id: "ring",    tr: "Ring",                     en: "The Ring" }
+    ],
+    fieldSections: [
+      { id: "kurulum", number: "1", card: "AREA_FOP",   tr: "Müsabaka Alanı Kurulumu", en: "Competition Area Setup", ruleRef: "13.1–13.2" },
+      { id: "medya",   number: "2", card: "AREA_MEDIA", tr: "Medya",                    en: "Media",                  ruleRef: "13.3" },
+      { id: "ring",    number: "3", card: "AREA_RING",  tr: "Ring",                     en: "The Ring",               ruleRef: "14" }
     ]
   },
   {
-    id: "orta", num: 5, icon: "whistle", color: "#1F6FB2",
-    tr: "Orta Hakem", en: "Referee",
+    id: "ekipman", num: 5, icon: "shield", color: "#8B5DAD",
+    tr: "Ekipman", en: "Equipment",
+    purposeTr: "Zorunlu sporcu ekipmanlarını kategori, ürün ve kısıtlama bazında fotoğraflı olarak incelemek.",
+    purposeEn: "Review mandatory athlete equipment by category, item and restriction with photographs.",
+    rules: "Kural 15",
+    subtopics: [
+      { id: "kategoriler",   tr: "Kategorilere Göre Zorunlu Ekipmanlar", en: "Mandatory Equipment by Category" },
+      { id: "ekipmanlar",    tr: "Ekipmanlar",                         en: "Equipment" },
+      { id: "kisitlamalar",  tr: "Kısıtlamalar",                       en: "Restrictions" }
+    ],
+    equipmentSections: [
+      { id: "kategoriler", number: "1", card: "AREA_EQUIP", tr: "Kategorilere Göre Zorunlu Ekipmanlar", en: "Mandatory Equipment by Category", ruleRef: "15.1–15.9" },
+      { id: "ekipmanlar", number: "2", tr: "Ekipmanlar", en: "Equipment", ruleRef: "15.1–15.9", cards: [
+        "EQUIP_GLOVES", "EQUIP_WRAPS", "AREA_KASK", "EQUIP_SHIN", "EQUIP_ELBOW", "AREA_GOVDE", "AREA_DISLIK",
+        "AREA_KASIK", "EQUIP_CHEST", "EQUIP_SHORTS", "EQUIP_SINGLET", "EQUIP_MONGKON", "EQUIP_COVER"
+      ] },
+      { id: "kisitlamalar", number: "3", tr: "Kısıtlamalar", en: "Restrictions", ruleRef: "15.6 / 15.10 / 15.11", cards: [
+        "EQUIP_ANKLE", "EQUIP_LINIMENT", "EQUIP_FLAG"
+      ] }
+    ]
+  },
+  {
+    id: "orta", num: 6, icon: "whistle", color: "#1F6FB2",
+    tr: "Hakem (Orta Hakem)", en: "Referee",
     purposeTr: "Maç öncesinden maç sonuna kadar Orta Hakemin görev akışını video destekli öğretmek.",
     purposeEn: "Teach the referee's task flow from pre-match to post-match, with video support.",
-    rules: "Kural 19, 21, 26, 30–33",
+    rules: "Kural 19, 21, 26, 30–32",
     subtopics: [
-      { id: "hazirlik",   tr: "Giyim ve fiziksel hazırlık", en: "Attire & physical readiness" },
-      { id: "ringgiris",  tr: "Ringe giriş / ekipman kontrolü", en: "Ring entry / equipment check" },
-      { id: "baslatma",   tr: "Maç başlatma",            en: "Starting the match" },
-      { id: "komutlar",   tr: "Komutlar: CHOCK / YOOT / YAEK / TIME", en: "Commands: CHOCK / YOOT / YAEK / TIME" },
-      { id: "pozisyon",   tr: "Adımlama ve pozisyon",    en: "Footwork & positioning" },
-      { id: "clinch",     tr: "Clinch ayırma",           en: "Breaking the clinch" },
-      { id: "ikazihtar",  tr: "İkaz / ihtar verme",      en: "Giving caution / warning" },
-      { id: "sayimref",   tr: "Sayım yapma",             en: "Performing the count" },
-      { id: "doktor",     tr: "Doktor çağırma",          en: "Calling the doctor" },
-      { id: "ringdisi",   tr: "Ring dışına düşme",       en: "Falling out of the ring" },
-      { id: "macsonu",    tr: "Maç sonu ve karar",       en: "Match end & decision" }
+      { id: "giyim",      tr: "Giyim Kuralları",                 en: "Attire Rules" },
+      { id: "yetkiler",   tr: "Orta Hakemin Yetkileri",          en: "Powers of the Referee" },
+      { id: "ekipman",    tr: "Ekipman Kontrolü",                 en: "Equipment Inspection" },
+      { id: "komutlar",   tr: "Komutlar",                         en: "Commands" },
+      { id: "baslatma",   tr: "Maç Başlatma Adımları",            en: "Starting the Contest" },
+      { id: "pozisyon",   tr: "Adımlama ve Pozisyon",             en: "Footwork and Positioning" },
+      { id: "ikazihtar",  tr: "İkaz / İhtar Verme",               en: "Giving a Caution / Warning" },
+      { id: "sayim",      tr: "Sayım Yapma",                       en: "Performing the Count" },
+      { id: "ayirma",     tr: "Ayırma Pozisyonları",               en: "Separation Positions" },
+      { id: "doktor",     tr: "Doktor Çağırma",                    en: "Calling the Doctor" },
+      { id: "macsonu",    tr: "Maç Sonu",                          en: "End of Contest" }
+    ],
+    refereeSections: [
+      { id: "giyim",     number: "1",  cards: ["REF_ATTIRE"],     tr: "Giyim Kuralları",                en: "Attire Rules", ruleRef: "21.12 / 26.1 / 26.6" },
+      { id: "yetkiler",  number: "2",  cards: ["REF_RSC_POWER"],  tr: "Orta Hakemin Yetkileri",         en: "Powers of the Referee", ruleRef: "21.5 / 26.2–26.4" },
+      { id: "ekipman",   number: "3",  cards: ["REF_RINGGIRIS"],  tr: "Ekipman Kontrolü",                en: "Equipment Inspection", ruleRef: "19.1 / 26.3" },
+      { id: "komutlar",  number: "4",  cards: ["REF_CHOCK", "REF_YOOT", "REF_YAEK", "REF_TIME"], tr: "Komutlar", en: "Commands", ruleRef: "26.3" },
+      { id: "baslatma",  number: "5",  cards: ["REF_BASLATMA"],   tr: "Maç Başlatma Adımları",           en: "Starting the Contest", ruleRef: "19.1–19.3" },
+      { id: "pozisyon",  number: "6",  cards: ["REF_POZISYON"],   tr: "Adımlama ve Pozisyon",            en: "Footwork and Positioning", ruleRef: "26.3" },
+      { id: "ikazihtar", number: "7",  cards: ["REF_IKAZIHTAR"], tr: "İkaz / İhtar Verme",              en: "Giving a Caution / Warning", ruleRef: "31.1" },
+      { id: "sayim",     number: "8",  cards: ["REF_SAYIMREF"],  tr: "Sayım Yapma",                      en: "Performing the Count", ruleRef: "32.1–32.5" },
+      { id: "ayirma",    number: "9",  cards: ["REF_CLINCH"],    tr: "Ayırma Pozisyonları",              en: "Separation Positions", ruleRef: "26.3 / 31.2" },
+      { id: "doktor",    number: "10", cards: ["REF_DOKTOR"],    tr: "Doktor Çağırma",                   en: "Calling the Doctor", ruleRef: "30.2.2" },
+      { id: "macsonu",   number: "11", cards: ["REF_ENDMATCH"],  tr: "Maç Sonu",                         en: "End of Contest", ruleRef: "26.3" }
     ]
   },
   {
-    id: "yan", num: 6, icon: "eye", color: "#C77D1A",
-    tr: "Yan Hakem & Puanlama", en: "Judge & Scoring",
-    purposeTr: "Puanlama sistemini karar ağacı ve örnek videolarla öğretmek.",
-    purposeEn: "Teach the scoring system with a decision tree and example videos.",
-    rules: "Kural 27, 29, 30",
+    id: "yan", num: 7, icon: "eye", color: "#C77D1A",
+    tr: "Hakim & Puanlama", en: "Judge & Scoring",
+    purposeTr: "Yan hakem puanlamasını, puan sistemlerini ve puan kesintisini Kural 29'a göre öğretmek.",
+    purposeEn: "Teach judging, scoring systems and point deductions under Rule 29.",
+    rules: "Kural 29",
     subtopics: [
-      { id: "kriter",     tr: "Puanlama kriterleri",     en: "Scoring criteria" },
-      { id: "onpuan",     tr: "Zorunlu On Puan Sistemi", en: "Ten-Point Must System" },
-      { id: "rbr",        tr: "Raund Bazlı (RbR)",       en: "Round-by-Round (RbR)" },
-      { id: "sbs",        tr: "Vuruş Bazlı (SbS)",       en: "Strike-by-Strike (SbS)" },
-      { id: "hedefler",   tr: "Puanlanan / yasak hedefler", en: "Scoring / forbidden targets" },
-      { id: "skorkart",   tr: "Skor kartı",              en: "Scorecard" },
-      { id: "buton",      tr: "Elektronik butonlama",    en: "Electronic buttons" },
-      { id: "kesinti",    tr: "Puan kesintisi",          en: "Point deduction" },
-      { id: "beraberlik", tr: "Beraberlik / karar",      en: "Draw / decision" }
+      { id: "kriterler",        tr: "Puanlama Kriterleri",        en: "Scoring Criteria" },
+      { id: "on-puan",          tr: "Zorunlu On Puan Sistemi",    en: "Ten-Point Must System" },
+      { id: "puanlama-sistemleri", tr: "Puanlama Sistemleri",     en: "Scoring Systems" },
+      { id: "puanlanmayan",     tr: "Puanlanmayan Hedefler",      en: "Non-scoring Targets" },
+      { id: "degerlendirilmeyen", tr: "Değerlendirilmeyen Puanlar", en: "Non-awarding of Points" },
+      { id: "kesinti",          tr: "Puan Kesintisi",             en: "Deduction of Points" }
+    ],
+    judgeSections: [
+      { id: "kriterler", number: "1", cards: ["JUDGE_KRITER"], tr: "Puanlama Kriterleri", en: "Scoring Criteria", ruleRef: "29.1 / 29.2.1" },
+      { id: "on-puan", number: "2", cards: ["JUDGE_10PT"], tr: "Zorunlu On Puan Sistemi", en: "Ten-Point Must System", ruleRef: "29.2–29.2.3" },
+      { id: "puanlama-sistemleri", number: "3", cards: ["JUDGE_SBS", "JUDGE_SKORKART"], tr: "Puanlama Sistemleri", en: "Scoring Systems", ruleRef: "29.4" },
+      { id: "puanlanmayan", number: "4", cards: ["JUDGE_NONSCORING"], tr: "Puanlanmayan Hedefler", en: "Non-scoring Targets", ruleRef: "29.1.2" },
+      { id: "degerlendirilmeyen", number: "5", cards: ["JUDGE_NONAWARD"], tr: "Değerlendirilmeyen Puanlar", en: "Non-awarding of Points", ruleRef: "29.2.2" },
+      { id: "kesinti", number: "6", cards: ["JUDGE_DEDUCT"], tr: "Puan Kesintisi", en: "Deduction of Points", ruleRef: "29.2.4–29.2.5" }
     ]
   },
   {
-    id: "zaman", num: 7, icon: "clock", color: "#5A6B7B",
-    tr: "Zaman Hakemi & Resmi Görevliler", en: "Timekeeper & Officials",
+    id: "zaman", num: 8, icon: "clock", color: "#5A6B7B",
+    tr: "Resmi Görevliler", en: "Officials",
     purposeTr: "Tüm resmi rollerin görev tanımlarını ayrı kartlarda sunmak.",
     purposeEn: "Present every official role's duties on separate cards.",
     rules: "Kural 17, 18, 21–25, 28, 33",
@@ -204,44 +252,53 @@ window.IFMA.modules = [
       { id: "mcm",        tr: "Sağlık Kurulu Üyesi (MCM)", en: "Medical Commission Member (MCM)" },
       { id: "doktortakim",tr: "Takım Doktoru",           en: "Team Doctor" },
       { id: "kose",       tr: "Köşe Görevlisi (Second)", en: "Corner (Second)" },
-      { id: "tarafsizlik",tr: "Görev değişimi ve tarafsızlık", en: "Rotation & impartiality" }
+      { id: "tarafsizlik",tr: "Görev Değişimi ve Tarafsızlık", en: "Rotation & Impartiality" }
     ]
   },
   {
-    id: "faul", num: 8, icon: "flag", color: "#C0492B",
-    tr: "Fauller • Sayım • Maç Kararları", en: "Fouls • Count • Decisions",
+    id: "faul", num: 9, icon: "flag", color: "#C0492B",
+    tr: "Fauller - Sayım - Maç Kararları", en: "Fouls - Count - Decisions",
     purposeTr: "Kritik olaylarda hakemin doğru kararı hızlı bulmasını sağlamak.",
     purposeEn: "Help the referee reach the correct decision fast in critical moments.",
-    rules: "Kural 30–33",
+    rules: "Kural 30–32",
     subtopics: [
-      { id: "faulsinif",  tr: "Faul sınıfları: İkaz / İhtar / DQ", en: "Foul classes: Caution / Warning / DQ" },
-      { id: "faultur",    tr: "27 faul türü",            en: "27 foul types" },
-      { id: "knockdown",  tr: "Knockdown (yere serilme)",en: "Knockdown" },
-      { id: "sayim8",     tr: "Sayım ve 8 kuralı",       en: "Count & the rule of 8" },
-      { id: "ko",         tr: "Nakavt (KO / KOH / KOB)", en: "Knockout (KO / KOH / KOB)" },
-      { id: "rsc",        tr: "RSC türleri (RSCS/RSCI/RSCH/RSCB/CCL)", en: "RSC types (RSCS/RSCI/RSCH/RSCB/CCL)" },
-      { id: "ciftekd",    tr: "Çifte knockdown",         en: "Double knockdown" },
-      { id: "ringdisidus",tr: "Ring dışına düşme (20 sayımı)", en: "Fall out of ring (20 count)" },
-      { id: "wonc",       tr: "WO / NC / RET / DQ",      en: "WO / NC / RET / DQ" },
-      { id: "itiraz",     tr: "İtirazlar",               en: "Appeals" }
+      { id: "fauller", tr: "Fauller", en: "Fouls" },
+      { id: "sayim", tr: "Sayım", en: "Count" },
+      { id: "kararlar", tr: "Maç Kararları", en: "Decisions" }
+    ],
+    decisionSections: [
+      { id: "fauller", number: "1", tr: "Fauller", en: "Fouls", ruleRef: "31", cards: [
+        "FOUL_CLASS", "FOUL_3WARN", "FOUL_TYPES", "FOUL_POSTSANCTION"
+      ] },
+      { id: "sayim", number: "2", tr: "Sayım", en: "Count", ruleRef: "32", cards: [
+        "FOUL_COUNT_THAI", "FOUL_RULE8", "FOUL_KNOCKDOWN", "FOUL_DOUBLE_KD", "FOUL_KO", "FOUL_OUTRING"
+      ] },
+      { id: "kararlar", number: "3", tr: "Maç Kararları", en: "Decisions", ruleRef: "30", cards: [
+        "FOUL_DECISIONS", "FOUL_CCL", "FOUL_APPEAL"
+      ] }
     ]
   },
   {
-    id: "waikru", num: 9, icon: "lotus", color: "#B5642E",
+    id: "waikru", num: 10, icon: "lotus", color: "#B5642E",
     tr: "Wai Kru & Mai Muay", en: "Wai Kru & Mai Muay",
-    purposeTr: "Kültürel disiplinleri duruş listeleri, fotoğraf ve puanlama kriterleriyle öğretmek.",
-    purposeEn: "Teach the cultural disciplines with pose lists, photos and scoring criteria.",
-    rules: "Kural 20, 34–52",
-    subtopics: [
-      { id: "wainedir",   tr: "Wai Kru nedir?",          en: "What is Wai Kru?" },
-      { id: "muziksure",  tr: "Müzik ve süre",           en: "Music & duration" },
-      { id: "baslangicdur",tr: "Başlangıç duruşları",    en: "Opening poses" },
-      { id: "promnang",   tr: "Prom Nang",               en: "Prom Nang" },
-      { id: "promyuen",   tr: "Prom Yuen",               en: "Prom Yuen" },
-      { id: "bitirisdur", tr: "Bitiriş duruşları",       en: "Closing poses" },
-      { id: "maimuayteknik",tr: "Mai Muay teknik duruşları", en: "Mai Muay technical poses" },
-      { id: "waikrukriter",tr: "Puanlama kriterleri",    en: "Scoring criteria" },
-      { id: "duruslist",  tr: "Duruş listesi",           en: "Pose list" }
+    purposeTr: "Wai Kru ve Mai Muay kültürel müsabakalarının katılım, uygulama, puanlama ve alan kurallarını öğretmek.",
+    purposeEn: "Teach the entry, performance, scoring and field-of-play rules for Wai Kru and Mai Muay cultural competitions.",
+    rules: "Kural 34–51",
+    waiSections: [
+      { id: "wai-kru-nedir", number: "1", tr: "Wai Kru Nedir?", en: "What Is Wai Kru?", ruleRef: "34", cards: ["WAI_WHAT"] },
+      { id: "mai-muay-nedir", number: "2", tr: "Mai Muay Nedir?", en: "What Is Mai Muay?", ruleRef: "34, 37", cards: ["WAI_MAI_WHAT"] },
+      { id: "yas-siniri", number: "3", tr: "Asgari ve Azami Yaş Sınırı", en: "Minimum and Maximum Age Limit", ruleRef: "35", cards: ["WAI_LIMIT"] },
+      { id: "tibbi-gereklilik", number: "4", tr: "Tıbbi Gereklilik", en: "Medical Requirement", ruleRef: "36", cards: ["WAI_MEDICAL"] },
+      { id: "musabaka-suresi", number: "5", tr: "Müsabaka Süresi", en: "Competition Duration", ruleRef: "38", cards: ["WAI_DURATION"] },
+      { id: "muzik", number: "6", tr: "Müzik", en: "Music", ruleRef: "43", cards: ["WAI_MUSIC"] },
+      { id: "ekipman-giyim", number: "7", tr: "Sporcu Ekipmanları ve Giyim", en: "Athlete Equipment and Dress", ruleRef: "42", cards: ["WAI_EQUIPMENT"] },
+      { id: "kose-gorevlileri", number: "8", tr: "Köşe Görevlileri", en: "Seconds", ruleRef: "45", cards: ["WAI_SECONDS"] },
+      { id: "puan-verme", number: "9", tr: "Puan Verme Adımları", en: "Awarding of Points", ruleRef: "49.1, 49.7", cards: ["WAI_KRITER"] },
+      { id: "postur-listesi", number: "10", tr: "Postür Listesi", en: "Posture List", ruleRef: "49.2–49.8", cards: ["WAI_POSELIST"] },
+      { id: "puanlama-sistemi", number: "11", tr: "Puanlama Sistemi", en: "Scoring System", ruleRef: "49.9–49.10", cards: ["WAI_SCORING"] },
+      { id: "mac-kararlari", number: "12", tr: "Maç Kararları", en: "Decisions", ruleRef: "50", cards: ["WAI_DECISIONS"] },
+      { id: "fauller", number: "13", tr: "Fauller", en: "Fouls", ruleRef: "51", cards: ["WAI_FOULS"] },
+      { id: "musabaka-alani", number: "14", tr: "Teknik ve Kültürel Müsabaka Alanı", en: "Technical and Cultural Field of Play", ruleRef: "39–41", cards: ["WAI_AREA", "WAI_RING_EQUIPMENT"], cardNumbers: ["14", "14.1"] }
     ]
   }
 ];

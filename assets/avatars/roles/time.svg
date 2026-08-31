@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Timekeeper">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="8" x2="220" y2="248" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1C6A72"/>
+      <stop offset="1" stop-color="#0C3A42"/>
+    </linearGradient>
+  </defs>
+  <circle cx="128" cy="128" r="128" fill="url(#bg)"/>
+  <circle cx="128" cy="128" r="116" fill="none" stroke="#D7A62B" stroke-width="8"/>
+  <circle cx="128" cy="96" r="36" fill="#EAF2F8"/>
+  <path fill="#EAF2F8" d="M62 222c10-54 38-82 66-82s56 28 66 82"/>
+  <circle cx="188" cy="188" r="28" fill="#D7A62B"/>
+  <circle cx="188" cy="188" r="20" fill="#0C3A42"/>
+  <path d="M188 176v14l10 8" fill="none" stroke="#F3CB65" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -14,7 +14,7 @@ window.IFMA.meta = {
   revision: "2026-05-11",           // kaynak yönetmelik revizyonu
   revisionLabel: { tr: "Revizyon: 11.05.2026", en: "Revision: 11 May 2026" },
   defaultLang: "tr",
-  defaultTheme: "dark",
+  defaultTheme: "light",
   ruleset: "2026",
   approval: { by: null, authority: "IFMA Rules and Regulations 2026", date: "2026-05-11" },
   languages: ["tr", "en"],
@@ -38,11 +38,10 @@ window.IFMA.status = {
   pending:  { tr: "Kaynak bekliyor", en: "Awaiting source" }
 };
 
-/* ---- Alt navigasyon (5 sabit sekme) ---- */
+/* ---- Alt navigasyon (3 sabit sekme) ---- */
 window.IFMA.tabs = [
   { id: "home",     icon: "home",   tr: "Ana Sayfa", en: "Home" },
   { id: "rules",    icon: "book",   tr: "Kurallar",  en: "Rules" },
-  { id: "task",     icon: "whistle",tr: "Görev Modu",en: "Task Mode" },
   { id: "training", icon: "cap",    tr: "Eğitim",    en: "Training" }
 ];
 
@@ -50,15 +49,12 @@ window.IFMA.tabs = [
 window.IFMA.ui = {
   tr: {
     appName: "IFMA Yönetmelik ve Kurallar Hakem Kılavuzu",
-    tagline: "Hızlı • Görsel • Kaynağı açık kural rehberi",
     // Ana sayfa
     homeHello: "Bugün hangi bilgiye ihtiyacın var?",
     homeTitle: "Yönetmelik ve Kurallar Hakem Kılavuzu",
     globalSearch: "Global arama",
     rulesetLabel: "Ruleset 2026",
     activeFilters: "Aktif filtreler",
-    roleViewing: "olarak görüntülüyorsun",
-    change: "Değiştir",
     sourceVerified: "Resmî kaynakla doğrulandı",
     approverMissing: "Onaylayan kişi kaydı yok",
     printPdf: "Yazdır / PDF",
@@ -72,8 +68,6 @@ window.IFMA.ui = {
     online: "Çevrimiçi",
     quickSearchPlaceholder: "Kural, komut, madde veya durum ara…",
     searchExamples: "Örnek: “U14 kafa diz”, “YOOT”, “RSC”, “31.2.18”, “20 sayımı”",
-    todaysTaskTitle: "Bugünkü görevin nedir?",
-    todaysTaskDesc: "Görevini seç, ana ekran o göreve göre öncelik versin.",
     pickCategory: "Kategori Seç",
     pickCategoryDesc: "Disiplin, yaş, cinsiyet, sıklet ve görevi seç; kurallar filtrelensin.",
     learnTodayTitle: "Bugün öğren",
@@ -86,7 +80,7 @@ window.IFMA.ui = {
     whatsChangedDesc: "Bu sürüm 11.05.2026 IFMA yönetmeliğine dayanır.",
     offlineReady: "Çevrimdışı kullanıma hazır",
     offlinePartial: "Temel içerik çevrimdışı açılır",
-    modulesTitle: "9 Ana Modül",
+    modulesTitle: "10 Ana Modül",
     // Kategori seçici
     catDiscipline: "Disiplin",
     catAge: "Yaş Kategorisi",
@@ -118,12 +112,6 @@ window.IFMA.ui = {
     openDocumentDetail: "Belge kartının detayını aç",
     addFav: "Favorilere ekle",
     remFav: "Favoriden çıkar",
-    // Görev modu
-    taskPickRole: "Görevini seç",
-    taskFlowTitle: "Maç Akışı",
-    taskStep: "Adım",
-    taskOpenCard: "İlgili kuralı aç",
-    taskPriorityContent: "Öne çıkan içerikler",
     // Eğitim
     trainTitle: "Eğitim Modu",
     trainMicro: "Mikro dersler",
@@ -159,14 +147,11 @@ window.IFMA.ui = {
   },
   en: {
     appName: "IFMA R&J Rules and Regulations Referee Guide",
-    tagline: "Fast • Visual • Source-linked rule guide",
     homeHello: "What do you need to know right now?",
     homeTitle: "Rules & Regulations Referee Guide",
     globalSearch: "Global search",
     rulesetLabel: "Ruleset 2026",
     activeFilters: "Active filters",
-    roleViewing: "view",
-    change: "Change",
     sourceVerified: "Verified against official source",
     approverMissing: "No named approver recorded",
     printPdf: "Print / PDF",
@@ -180,8 +165,6 @@ window.IFMA.ui = {
     online: "Online",
     quickSearchPlaceholder: "Search a rule, command, article or situation…",
     searchExamples: "e.g. “U14 knee to head”, “YOOT”, “RSC”, “31.2.18”, “20 count”",
-    todaysTaskTitle: "What is your role today?",
-    todaysTaskDesc: "Pick your role and the home screen prioritises it.",
     pickCategory: "Select Category",
     pickCategoryDesc: "Choose discipline, age, gender, weight and role to filter the rules.",
     learnTodayTitle: "Learn today",
@@ -194,7 +177,7 @@ window.IFMA.ui = {
     whatsChangedDesc: "This version is based on the IFMA rulebook rev. 11 May 2026.",
     offlineReady: "Ready for offline use",
     offlinePartial: "Core content opens offline",
-    modulesTitle: "9 Main Modules",
+    modulesTitle: "10 Main Modules",
     catDiscipline: "Discipline",
     catAge: "Age Category",
     catGender: "Gender",
@@ -224,11 +207,6 @@ window.IFMA.ui = {
     openDocumentDetail: "Open document card details",
     addFav: "Add to favourites",
     remFav: "Remove favourite",
-    taskPickRole: "Pick your role",
-    taskFlowTitle: "Match Flow",
-    taskStep: "Step",
-    taskOpenCard: "Open related rule",
-    taskPriorityContent: "Priority content",
     trainTitle: "Training Mode",
     trainMicro: "Micro-lessons",
     trainScenario: "Scenario questions",

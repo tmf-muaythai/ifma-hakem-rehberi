@@ -48,13 +48,14 @@ window.IFMA.filters = {
     { id: "w86",   tr: "86 kg",   en: "86 kg" },
     { id: "w91",   tr: "91 kg",   en: "91 kg" }
   ],
+  /* avatar: kare PNG/JPG/SVG. Dosyayı aynı yola koyup uzantıyı güncellemen yeterli. */
   role: [
-    { id: "ref",    icon: "whistle", tr: "Orta Hakem",      en: "Referee" },
-    { id: "judge",  icon: "eye",     tr: "Yan Hakem",       en: "Judge" },
-    { id: "time",   icon: "clock",   tr: "Zaman Hakemi",    en: "Timekeeper" },
-    { id: "jury",   icon: "shield",  tr: "Jüri",            en: "Jury" },
-    { id: "weigh",  icon: "scale",   tr: "Tartı",           en: "Weigh-in" },
-    { id: "corner", icon: "corner",  tr: "Köşe Görevlisi",  en: "Corner (Second)" }
+    { id: "ref",    icon: "whistle", avatar: "assets/avatars/roles/ref.svg",    tr: "Orta Hakem",      en: "Referee" },
+    { id: "judge",  icon: "eye",     avatar: "assets/avatars/roles/judge.svg",  tr: "Yan Hakem",       en: "Judge" },
+    { id: "time",   icon: "clock",   avatar: "assets/avatars/roles/time.svg",   tr: "Zaman Hakemi",    en: "Timekeeper" },
+    { id: "jury",   icon: "shield",  avatar: "assets/avatars/roles/jury.svg",   tr: "Jüri",            en: "Jury" },
+    { id: "weigh",  icon: "scale",   avatar: "assets/avatars/roles/weigh.svg",  tr: "Tartı",           en: "Weigh-in" },
+    { id: "corner", icon: "corner",  avatar: "assets/avatars/roles/corner.svg", tr: "Köşe Görevlisi",  en: "Corner (Second)" }
   ]
 };
 
