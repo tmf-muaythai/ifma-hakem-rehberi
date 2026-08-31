@@ -113,7 +113,6 @@ svg.ic { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
 }
 /* Ortalanmış başlık */
 /* Tipografik amblem (logo görseli yerine) */
-.lang-toggle button.on { background: #fff; color: var(--navy); }
 
 /* Başlık bağlam çubuğu (aktif kategori) */
 .ctx-chip {
@@ -122,7 +121,6 @@ svg.ic { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
   color: #Eaf1f8; border-radius: 999px; padding: 5px 11px; font-size: 12px; font-weight: 600;
 }
 .ctx-chip .ic { width: 15px; height: 15px; opacity: .9; }
-.ctx-btn .ic { width: 15px; height: 15px; }
 
 /* ---------- Ana içerik ---------- */
 .main {
@@ -140,17 +138,6 @@ svg.ic { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
 .section-head .link { font-size: 12px; font-weight: 700; color: var(--teal); background: none; border: 0; padding: 0; }
 
 /* ---------- Ana ekran ---------- */
-.hero-search .ic { width: 19px; height: 19px; color: var(--ink-3); flex: 0 0 auto; }
-.tile {
-  text-align: left; border: 0; border-radius: var(--radius); padding: 14px;
-  background: var(--surface); box-shadow: var(--shadow-sm); color: var(--ink);
-  display: flex; flex-direction: column; gap: 8px; min-height: 96px;
-}
-.tile .ic { width: 22px; height: 22px; }
-.tile.accent-navy { background: linear-gradient(135deg, var(--navy-2), var(--navy-3)); color: #fff; }
-.tile.accent-navy .tile-desc { color: #C7D6E5; }
-.tile.accent-teal { background: linear-gradient(135deg, var(--teal), var(--teal-2)); color: #fff; }
-.tile.accent-teal .tile-desc { color: #DAF3F5; }
 
 /* ---------- Modül ızgarası ---------- */
 .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -313,7 +300,6 @@ svg.ic { width: 18px; height: 18px; flex: 0 0 auto; vertical-align: middle; }
 
 /* ---------- Görev modu ---------- */
 .role-card.on { border-color: var(--teal); box-shadow: 0 0 0 2px color-mix(in srgb, var(--teal) 30%, transparent); }
-.role-ico .ic { width: 21px; height: 21px; }
 
 .flow { position: relative; margin-left: 8px; padding-left: 22px; }
 .flow::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: var(--line-2); }
@@ -1412,7 +1398,6 @@ html[data-theme="dark"] .ccl-limit-values strong { color:var(--gold-2); }
 .doc-link .ic { width: 17px; height: 17px; color: var(--teal); flex: 0 0 auto; }
 .doc-link:hover { border-color: var(--teal); }
 /* Tema düğmesi */
-.hd-icon-btn .ic { width: 18px; height: 18px; }
 /* Footer */
 .app-footer { margin-top: 22px; padding: 18px 6px 8px; border-top: 1px solid var(--line); text-align: center; }
 .ft-credit { font-size: 12.5px; color: var(--ink-2); }
@@ -1533,7 +1518,6 @@ button, .tab, .chip, .tool-btn, .doc-link, .ft-btn { min-height: var(--tap); }
 .network-state.is-offline { background:var(--amber); }
 
 /* Role mode banner */
-.mode-banner-inner .ic { width:15px; height:15px; color:var(--ink-2); }
 
 /* Content density and page heading */
 .main { padding-top:16px; background:var(--surface-2); }
@@ -1548,12 +1532,9 @@ button, .tab, .chip, .tool-btn, .doc-link, .ft-btn { min-height: var(--tap); }
 .task-prompt span, .training-scenario-cta span { display:flex; flex-direction:column; flex:1; min-width:0; }
 .task-prompt b, .training-scenario-cta b { font-size:13px; }
 .task-prompt small, .training-scenario-cta small { font-size:11px; color:var(--ink-3); margin-top:2px; }
-.task-prompt > .ic:last-child { color:var(--ink-3); }
 .inline-cta { flex:0 0 auto!important; display:inline-flex!important; align-items:center; justify-content:center; min-height:34px; border-radius:8px; background:var(--action); color:#fff; padding:0 11px; font-size:11px; font-weight:750; }
 
 /* Teal only for actions / active states */
-.tile, .tile.accent-navy, .tile.accent-teal { background:var(--surface); color:var(--ink); border:1px solid var(--line); box-shadow:var(--shadow-sm); }
-.tile.accent-navy .tile-desc, .tile.accent-teal .tile-desc { color:var(--ink-2); }
 .mod-card { border:1px solid var(--line); background:var(--surface); min-height:106px; }
 .mod-ico { background:var(--surface-3); color:var(--ink-2); }
 .mod-count { color:var(--ink-3); }
@@ -1760,7 +1741,6 @@ html[data-theme="dark"] .locale-select-wrap select option { color:#F3F6FA;backgr
 .network-state.is-online { background:#5FE08D;box-shadow:0 0 0 3px rgba(95,224,141,.12); }
 
 /* Role strip gets a controlled gold signal */
-.mode-banner-inner .ic { color:var(--gold); }
 
 /* Home title becomes a compact visual hero instead of floating on blank canvas */
 .home-page-head {
@@ -2098,7 +2078,6 @@ button, input, select, textarea { font-family: inherit; }
 .role-name, .mod-title, .card-title, .row-title { font-weight: 650; }
 
 /* Thai command glyphs */
-.thai, [lang="th"] { font-family: var(--font-thai); }
 
 /* Avatar slots — drop PNG/JPG over the SVG placeholders */
 .avatar {
@@ -2132,7 +2111,6 @@ button, input, select, textarea { font-family: inherit; }
 .avatar:not(:has(img)) .avatar-fallback { display: grid; }
 .avatar-md { width: 48px; height: 48px; }
 .avatar-mod { width: 38px; height: 38px; border-radius: 12px; }
-.role-detail-head .detail-labels { justify-content: center; }
 
 .inline-cta, .btn-primary { background: var(--action); }
 html[data-theme="light"] .inline-cta,
