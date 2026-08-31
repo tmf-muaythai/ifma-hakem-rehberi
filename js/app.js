@@ -226,6 +226,7 @@
   function viewHome() {
     var html = '<div class="fade-in">';
     html += '<header class="home-page-head"><h1>' + esc(t("homeTitle")) + '</h1></header>';
+    html += welcomeHeroHtml();
 
     var scenario = D.training.scenarios[0];
     html += '<div class="section"><div class="section-title">' + esc(t("learnTodayTitle")) + '</div>' +
@@ -248,6 +249,23 @@
       '<br>' + esc(t("offlineReady")) + '</div></div></div>';
     html += footerHtml() + '</div>';
     return html;
+  }
+
+  function welcomeHeroHtml() {
+    return '<div class="section"><div class="welcome-hero">' +
+      '<div class="welcome-hero-title">' + esc(t("welcomeHeroTitle")) + '</div>' +
+      '<div class="welcome-hero-row">' +
+        '<figure class="welcome-hero-person">' +
+          '<img class="welcome-hero-photo" src="assets/img/bas-hakem-erdinc-patlar-full.png" alt="' + esc(t("mhkViceChairName")) + '">' +
+          '<figcaption class="welcome-hero-name"><b>' + esc(t("mhkViceChairName")) + '</b>' + esc(t("mhkViceChairTitle")) + '</figcaption>' +
+        '</figure>' +
+        '<figure class="welcome-hero-person">' +
+          '<img class="welcome-hero-photo" src="assets/img/bas-hakem-erdogan-aydin-full.png" alt="' + esc(t("mhkChairName")) + '">' +
+          '<figcaption class="welcome-hero-name"><b>' + esc(t("mhkChairName")) + '</b>' + esc(t("mhkChairTitle")) + '</figcaption>' +
+        '</figure>' +
+      '</div>' +
+      '<p class="welcome-hero-text">' + esc(t("welcomeHeroText")) + '</p>' +
+    '</div></div>';
   }
 
   function emptyBox(msg, icon) {

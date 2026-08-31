@@ -2681,3 +2681,91 @@ html[data-theme="dark"] .role-ico {
 @media print {
   .card,.row,.mod-card,.tile,.task-prompt,.training-scenario-cta,.focus-card,.train-tile,.role-card { box-shadow:none!important;transform:none!important; }
 }
+
+/* =========================================================================
+   HOME HERO — Baş Hakemler karşılama bandı
+   Ana sayfanın en üstünde, koyu lacivert bir "sahne" zemini üzerinde MHK
+   Başkan Yardımcısı (solda) ve MHK Başkanı (sağda) tam boy görselleri,
+   aralarında kısa bir karşılama başlığı, altında açıklama metni ve her
+   karakterin altında adı/unvanı. Zemin app-header ile aynı degrade —
+   karakterlerin kendi stüdyo ışıklandırmasıyla uyumlu, düz beyaz kartta
+   "havada asılı" durmalarını önler. Salt bilgilendirici, statik bir kart —
+   .card'ın hover/tıklanabilir davranışını miras almaz.
+   ========================================================================= */
+.welcome-hero {
+  position:relative;
+  background:linear-gradient(165deg,#0C2C48 0%,#154F7E 55%,#1A5C90 100%);
+  border-radius:var(--radius);
+  box-shadow:0 10px 24px -12px rgba(9,26,44,.5),0 2px 6px rgba(9,26,44,.3);
+  padding:18px 12px 16px;
+  text-align:center;
+  overflow:hidden;
+}
+.welcome-hero::before {
+  content:"";
+  position:absolute;inset:0 0 auto 0;height:3px;
+  background:var(--brand-red);
+}
+.welcome-hero-title {
+  position:relative;z-index:2;
+  font-size:21px;font-weight:800;color:#fff;
+  letter-spacing:-.02em;
+  text-shadow:0 1px 4px rgba(4,14,26,.45);
+  margin:0 0 4px;
+}
+.welcome-hero-row {
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:22px;
+  margin-top:-6px;
+}
+.welcome-hero-person {
+  position:relative;
+  flex:0 1 118px;
+  min-width:0;
+  margin:0;
+}
+.welcome-hero-person::before {
+  content:"";
+  position:absolute;left:50%;bottom:6px;
+  width:92%;height:34%;
+  transform:translateX(-50%);
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--brand-gold,#D7A62B) 55%,transparent),transparent 72%);
+  filter:blur(6px);
+  opacity:.55;
+  z-index:0;
+}
+.welcome-hero-photo {
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100%;
+  height:auto;
+  filter:drop-shadow(0 6px 10px rgba(4,14,26,.45));
+}
+.welcome-hero-name {
+  position:relative;z-index:1;
+  margin:6px 0 0;
+  font-size:10.5px;line-height:1.3;color:rgba(255,255,255,.72);
+}
+.welcome-hero-name b { display:block;color:#fff;font-weight:700;font-size:11px; }
+.welcome-hero-text {
+  margin:16px 0 0;
+  font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.82);
+  text-align:left;
+}
+@media (min-width:560px) {
+  .welcome-hero { padding:26px 28px 24px; }
+  .welcome-hero-title { font-size:28px;margin-bottom:6px; }
+  .welcome-hero-row { gap:56px; }
+  .welcome-hero-person { flex-basis:170px; }
+  .welcome-hero-name { font-size:11.5px; }
+  .welcome-hero-name b { font-size:12.5px; }
+  .welcome-hero-text { text-align:center;font-size:13px;max-width:520px;margin-left:auto;margin-right:auto; }
+}
+@media (max-width:359px) {
+  .welcome-hero-row { gap:12px; }
+  .welcome-hero-person { flex-basis:100px; }
+}
