@@ -168,5 +168,14 @@ window.IFMA.weightsFor = function (ageId, genderId) {
   var g = window.IFMA.ageWeightGroup[ageId];
   if (!g || !(genderId === "male" || genderId === "female")) return null;
   var w = window.IFMA.weightGroups[g];
-  return w ? w[genderId] : null;
+  if (!w) return null;
+  var list = w[genderId];
+  if (!list) return null;
+  // Veteranlar 40+ ve 45+ için +91 kg uygulanmaz (bkz. weightGroups.SENIOR yorumu ve
+  // js/diagrams.js "weight-table" dipnotu **). SENIOR listesi Elite/35+ ile paylaşıldığı
+  // için burada ayrıca filtreleniyor.
+  if ((ageId === "V40" || ageId === "V45") && genderId === "male") {
+    list = list.filter(function (v) { return v !== "+91"; });
+  }
+  return list;
 };

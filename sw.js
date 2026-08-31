@@ -3,7 +3,7 @@
    Temel kabuk + içerik çevrimdışı açılsın diye önbelleğe alınır.
    İçerik güncellenince CACHE sürümünü artır (v1 -> v2).
    ========================================================================= */
-var CACHE = "ifma-hakem-v26";
+var CACHE = "ifma-hakem-v27";
 var ASSETS = [
   "./",
   "index.html",
@@ -24,6 +24,8 @@ var ASSETS = [
   "assets/icons/icon-512-maskable.png",
   "assets/img/logo.png",
   "assets/img/qr.png",
+  "assets/img/ifma-logo.png",
+  "assets/img/tmf-logo.png",
   "assets/img/fop-ring.png",
   "assets/img/fop-tatami.png",
   "assets/img/ring-dimensions.png",

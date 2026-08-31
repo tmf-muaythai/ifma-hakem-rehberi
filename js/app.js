@@ -217,7 +217,6 @@
   function renderTabbar() {
     var el = document.getElementById("tabbar");
     el.innerHTML = D.tabs.map(function (tb) {
-      var on = (state.tab === tb.id && state.detail.length === 0) || (state.tab === tb.id);
       return '<button class="tab ' + (state.tab === tb.id ? "on" : "") + '" data-act="tab" data-tab="' + tb.id + '">' +
         ic(tb.icon) + '<span>' + esc(L(tb)) + '</span></button>';
     }).join("");
@@ -1319,17 +1318,9 @@
     else { var ta=document.createElement("textarea"); ta.value=url; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");done();}catch(e){} document.body.removeChild(ta); }
   }
 
-  /* ================= ARAMA ================= */
-  function viewSearch() {
-    var html = '<div class="fade-in">';
-    html += '<div class="search-box">' + ic("search") +
-      '<input id="searchInput" type="search" autocomplete="off" placeholder="' + esc(t("quickSearchPlaceholder")) + '" value="' + esc(state.q) + '">' +
-      '<button class="search-clear" data-act="search-clear" ' + (state.q ? "" : 'style="visibility:hidden"') + '>' + ic("x") + '</button>' +
-    '</div>';
-    html += '<div id="searchResults">' + searchResultsHtml(state.q) + '</div>';
-    return html + '</div>';
-  }
-
+  /* ================= ARAMA =================
+     Not: Arama yalnızca üst çubuktaki global arama penceresi (openGlobalSearch)
+     üzerinden çalışır — ayrı bir "search" sekmesi/ekranı yok (D.tabs = home/rules/training). */
   function searchResultsHtml(q) {
     q = (q || "").trim();
     if (!q) {
@@ -1388,7 +1379,6 @@
         case "home": html = viewHome(); break;
         case "rules": html = viewRules(); break;
         case "training": html = viewTraining(); break;
-        case "search": html = viewSearch(); break;
         default: html = viewHome();
       }
     }
@@ -1399,20 +1389,6 @@
       documentTabList.scrollLeft = Math.max(0, activeDocumentTab.offsetLeft - (documentTabList.clientWidth - activeDocumentTab.offsetWidth) / 2);
     }
     syncUrl();
-
-    // Arama girişi: odak ve canlı sonuç
-    var si = document.getElementById("searchInput");
-    if (si) {
-      si.focus();
-      var v = si.value; si.value = ""; si.value = v; // imleci sona al
-      si.oninput = function () {
-        state.q = si.value;
-        var rc = document.getElementById("searchResults");
-        if (rc) rc.innerHTML = searchResultsHtml(state.q);
-        var cl = document.querySelector('[data-act="search-clear"]');
-        if (cl) cl.style.visibility = state.q ? "visible" : "hidden";
-      };
-    }
   }
 
   /* ================= OLAY YÖNETİMİ (delege) ================= */
@@ -1525,10 +1501,6 @@
       case "search-chip":
         state.q = el.getAttribute("data-q");
         if (!document.getElementById("sheet").hidden) openGlobalSearch(); else { state.tab = "home"; state.detail = []; openGlobalSearch(); } break;
-      case "search-clear":
-        state.q = ""; var si2 = document.getElementById("searchInput"); if (si2) { si2.value = ""; si2.focus(); }
-        var rc2 = document.getElementById("searchResults"); if (rc2) rc2.innerHTML = searchResultsHtml("");
-        el.style.visibility = "hidden"; break;
       case "scroll-micro": {
         var ml = document.getElementById("microList"); if (ml) ml.scrollIntoView({ behavior: "smooth", block: "start" }); break;
       }

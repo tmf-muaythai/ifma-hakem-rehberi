@@ -403,7 +403,7 @@ window.IFMA = window.IFMA || {};
     REF_RSC_POWER: "decision-tree", REF_ENDMATCH: "decision-tree",
     FOUL_DOUBLE_KD: "count-flow",
     FOUL_CCL: "ccl-table", CAT_CCL: "ccl-table",
-    MED_KOH: "rest-table", WEIGH_ROOM: "weigh-staffing",
+    WEIGH_ROOM: "weigh-staffing",
     CAT_LIMIT: "category-table",
     CAT_AGE: "birthyear-table", CAT_WEIGHT: "weight-table",
     JUDGE_10PT: "scoring-scale", JUDGE_KRITER: "scoring-steps",
