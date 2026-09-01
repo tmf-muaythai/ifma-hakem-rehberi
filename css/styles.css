@@ -2684,13 +2684,14 @@ html[data-theme="dark"] .role-ico {
 
 /* =========================================================================
    HOME HERO — Baş Hakemler karşılama bandı
-   Ana sayfanın en üstünde, koyu lacivert bir "sahne" zemini üzerinde MHK
-   Başkan Yardımcısı (solda) ve MHK Başkanı (sağda) tam boy görselleri,
-   aralarında kısa bir karşılama başlığı, altında açıklama metni ve her
-   karakterin altında adı/unvanı. Zemin app-header ile aynı degrade —
-   karakterlerin kendi stüdyo ışıklandırmasıyla uyumlu, düz beyaz kartta
-   "havada asılı" durmalarını önler. Salt bilgilendirici, statik bir kart —
-   .card'ın hover/tıklanabilir davranışını miras almaz.
+   Ana sayfanın en üstünde, koyu lacivert bir "sahne" zemini üzerinde önce
+   kısa bir karşılama başlığı, altında uygulamayı tanıtan açıklama metni,
+   en altta da MHK Başkan Yardımcısı (solda) ve MHK Başkanı (sağda) tam boy
+   görselleri — her birinin altında adı/unvanı ve kısa bir sözü. Zemin
+   app-header ile aynı degrade — karakterlerin kendi stüdyo
+   ışıklandırmasıyla uyumlu, düz beyaz kartta "havada asılı" durmalarını
+   önler. Salt bilgilendirici, statik bir kart — .card'ın hover/tıklanabilir
+   davranışını miras almaz.
    ========================================================================= */
 .welcome-hero {
   position:relative;
@@ -2711,23 +2712,28 @@ html[data-theme="dark"] .role-ico {
   font-size:21px;font-weight:800;color:#fff;
   letter-spacing:-.02em;
   text-shadow:0 1px 4px rgba(4,14,26,.45);
-  margin:0 0 4px;
+  margin:0 0 6px;
+}
+.welcome-hero-text {
+  position:relative;z-index:1;
+  margin:0 auto 16px;
+  max-width:360px;
+  font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.85);
+  text-align:center;
 }
 .welcome-hero-row {
   position:relative;
   display:flex;
   align-items:flex-start;
   justify-content:center;
-  gap:10px;
-  margin-top:-4px;
+  gap:22px;
 }
 .welcome-hero-person {
   position:relative;
-  flex:0 0 92px;
+  flex:0 0 108px;
   min-width:0;
   margin:0;
 }
-.welcome-hero-text { align-self:center; }
 .welcome-hero-person::before {
   content:"";
   position:absolute;left:50%;bottom:6px;
@@ -2772,27 +2778,20 @@ html[data-theme="dark"] .role-ico {
 }
 .welcome-hero-quote::before { content:"\201C"; }
 .welcome-hero-quote::after { content:"\201D"; }
-.welcome-hero-text {
-  flex:1 1 auto;
-  min-width:0;
-  margin:0;
-  font-size:11px;line-height:1.5;color:rgba(255,255,255,.85);
-  text-align:center;
-}
 @media (min-width:560px) {
   .welcome-hero { padding:26px 28px 24px; }
   .welcome-hero-title { font-size:28px;margin-bottom:10px; }
-  .welcome-hero-row { gap:28px; }
-  .welcome-hero-person { flex-basis:160px; }
+  .welcome-hero-text { font-size:14px;max-width:480px;margin-bottom:22px; }
+  .welcome-hero-row { gap:44px; }
+  .welcome-hero-person { flex-basis:190px; }
   .welcome-hero-name { font-size:11.5px; }
   .welcome-hero-name b { font-size:13px; }
   .welcome-hero-badge { font-size:10px;padding:3px 10px; }
   .welcome-hero-quote { font-size:11.5px; }
-  .welcome-hero-text { font-size:13.5px;max-width:340px; }
 }
 @media (max-width:340px) {
-  .welcome-hero-row { gap:6px; }
-  .welcome-hero-person { flex-basis:78px; }
+  .welcome-hero-row { gap:10px; }
+  .welcome-hero-person { flex-basis:92px; }
   .welcome-hero-text { font-size:10px; }
 }
 
