@@ -35,6 +35,33 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <!-- Açılış ekranı: uygulama ilk yüklenirken kısaca gösterilir, sonra kaybolur -->
+  <div id="appSplash" class="app-splash" aria-hidden="true">
+    <picture>
+      <source media="(min-width:860px)" srcset="assets/img/splash-desktop.jpg" />
+      <img class="app-splash-img" src="assets/img/splash-mobile.jpg" alt="" />
+    </picture>
+  </div>
+  <script>
+    (function () {
+      var el = document.getElementById("appSplash");
+      if (!el) return;
+      var MIN_MS = 700, MAX_MS = 4000, start = Date.now(), done = false;
+      function hide() {
+        if (done) return;
+        done = true;
+        var wait = Math.max(0, MIN_MS - (Date.now() - start));
+        setTimeout(function () {
+          el.classList.add("is-hidden");
+          setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 500);
+        }, wait);
+      }
+      if (document.readyState === "complete") hide();
+      else window.addEventListener("load", hide);
+      setTimeout(hide, MAX_MS);
+    })();
+  </script>
+
   <div id="app" class="app" data-lang="tr">
     <header id="appHeader" class="app-header"></header>
     <main id="main" class="main" tabindex="-1"></main>

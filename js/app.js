@@ -257,14 +257,16 @@
       '<div class="welcome-hero-row">' +
         '<figure class="welcome-hero-person">' +
           '<img class="welcome-hero-photo" src="assets/img/bas-hakem-erdinc-patlar-full.png" alt="' + esc(t("mhkViceChairName")) + '">' +
-          '<figcaption class="welcome-hero-name"><b>' + esc(t("mhkViceChairName")) + '</b>' + esc(t("mhkViceChairTitle")) + '</figcaption>' +
+          '<figcaption class="welcome-hero-name"><b>' + esc(t("mhkViceChairName")) + '</b><span class="welcome-hero-badge">' + esc(t("chiefInstructorLabel")) + '</span><span class="welcome-hero-role">' + esc(t("mhkViceChairTitle")) + '</span></figcaption>' +
+          '<blockquote class="welcome-hero-quote">' + esc(t("mhkViceChairQuote")) + '</blockquote>' +
         '</figure>' +
+        '<p class="welcome-hero-text">' + esc(t("welcomeHeroText")) + '</p>' +
         '<figure class="welcome-hero-person">' +
           '<img class="welcome-hero-photo" src="assets/img/bas-hakem-erdogan-aydin-full.png" alt="' + esc(t("mhkChairName")) + '">' +
-          '<figcaption class="welcome-hero-name"><b>' + esc(t("mhkChairName")) + '</b>' + esc(t("mhkChairTitle")) + '</figcaption>' +
+          '<figcaption class="welcome-hero-name"><b>' + esc(t("mhkChairName")) + '</b><span class="welcome-hero-badge">' + esc(t("chiefInstructorLabel")) + '</span><span class="welcome-hero-role">' + esc(t("mhkChairTitle")) + '</span></figcaption>' +
+          '<blockquote class="welcome-hero-quote">' + esc(t("mhkChairQuote")) + '</blockquote>' +
         '</figure>' +
       '</div>' +
-      '<p class="welcome-hero-text">' + esc(t("welcomeHeroText")) + '</p>' +
     '</div></div>';
   }
 
