@@ -2814,10 +2814,16 @@ html[data-theme="dark"] .role-ico {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eef1f6;
+  background: #f5f5f7;
   opacity: 1;
   visibility: visible;
   transition: opacity .45s ease, visibility 0s linear 0s;
+}
+@media (min-width:860px) {
+  /* Masaüstü görselinin kendi kenar tonuyla eşleşir — geniş ekranlarda
+     (görsel oranından daha ferah pencerelerde) yanlarda kalan boşluk
+     görselle daha kaynaşık görünür. */
+  .app-splash { background: #d0d6ea; }
 }
 .app-splash.is-hidden {
   opacity: 0;
