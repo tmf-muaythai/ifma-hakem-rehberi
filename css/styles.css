@@ -2730,8 +2730,9 @@ html[data-theme="dark"] .role-ico {
 }
 .welcome-hero-person {
   position:relative;
-  flex:0 0 108px;
+  flex:0 0 auto;
   min-width:0;
+  max-width:150px;
   margin:0;
 }
 .welcome-hero-person::before {
@@ -2748,8 +2749,10 @@ html[data-theme="dark"] .role-ico {
   position:relative;
   z-index:1;
   display:block;
-  width:100%;
-  height:auto;
+  height:148px;
+  width:auto;
+  max-width:100%;
+  margin:0 auto;
   filter:drop-shadow(0 6px 10px rgba(4,14,26,.45));
 }
 .welcome-hero-name {
@@ -2783,7 +2786,8 @@ html[data-theme="dark"] .role-ico {
   .welcome-hero-title { font-size:28px;margin-bottom:10px; }
   .welcome-hero-text { font-size:14px;max-width:480px;margin-bottom:22px; }
   .welcome-hero-row { gap:44px; }
-  .welcome-hero-person { flex-basis:190px; }
+  .welcome-hero-person { max-width:260px; }
+  .welcome-hero-photo { height:260px; }
   .welcome-hero-name { font-size:11.5px; }
   .welcome-hero-name b { font-size:13px; }
   .welcome-hero-badge { font-size:10px;padding:3px 10px; }
@@ -2791,7 +2795,7 @@ html[data-theme="dark"] .role-ico {
 }
 @media (max-width:340px) {
   .welcome-hero-row { gap:10px; }
-  .welcome-hero-person { flex-basis:92px; }
+  .welcome-hero-photo { height:120px; }
   .welcome-hero-text { font-size:10px; }
 }
 
