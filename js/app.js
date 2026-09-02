@@ -228,11 +228,15 @@
     html += '<header class="home-page-head"><h1>' + esc(t("homeTitle")) + '</h1></header>';
     html += welcomeHeroHtml();
 
-    var scenario = D.training.scenarios[0];
-    html += '<div class="section"><div class="section-title">' + esc(t("learnTodayTitle")) + '</div>' +
-      '<button class="card" data-act="tab" data-tab="training">' +
-        '<div class="card-top"><span class="pill training">' + esc(L(D.labels.training)) + '</span><span class="grow"></span>' + ic("bolt") + '</div>' +
-        '<div class="card-title">' + esc(L(scenario.q)) + '</div><div class="card-foot"><span>' + esc(t("learnTodayDesc")) + '</span></div></button></div>';
+    html += '<div class="section">' +
+      '<a class="promo-card" href="' + REFEREE_APP_URL + '" target="_blank" rel="noopener noreferrer">' +
+        '<img class="promo-card-img" src="assets/img/promo-referee-characters.jpg" alt="" loading="lazy">' +
+        '<div class="promo-card-body">' +
+          '<p class="promo-card-text">' + esc(t("promoRefereeText")) + '</p>' +
+          '<span class="promo-card-btn">' + ic("cap") + '<span>' + esc(t("promoRefereeBtn")) + '</span></span>' +
+        '</div>' +
+      '</a>' +
+    '</div>';
 
     html += '<div class="section"><div class="section-head"><div class="section-title">' + esc(t("modulesTitle")) +
       '</div><button class="link" data-act="tab" data-tab="rules">' + esc(t("seeAll")) + '</button></div>' + modGrid(D.modules.slice(0, 4)) + '</div>';
