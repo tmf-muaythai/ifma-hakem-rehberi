@@ -1373,7 +1373,8 @@ window.IFMA.cards = [
     id: "WEIGH_STANDARD", module: "tarti", subtopic: "katilim-standardi", label: "ifma",
     rule: "11.3.2", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["weigh"],
-    media: { photo: false, video: false, animation: false },
+    media: { photo: true, video: false, animation: false },
+    imgs: [{ src: "assets/img/tarti-kilik-kiyafet-kurallari.png", cap: { tr: "Tartı kılık kıyafet kuralları: takı, çorap, uzun ayak tırnağı ve tıraşsız katılım yasaktır.", en: "Weigh-in dress code: jewellery, socks, long toenails and unshaved facial hair are not permitted." } }],
     title: { tr: "Tartıya Katılım Standartları", en: "Weigh-in Participation Standards" },
     quick: {
       tr: "Sporcular tartıya uygun hafif iç çamaşırıyla ve müsabakaya tamamen hazır halde çıkar (çorapsız, sakal tıraşı olmuş, ayak tırnakları kesilmiş vb.).",
@@ -1528,7 +1529,7 @@ window.IFMA.cards = [
     rule: "15.1–15.1.4", revision: "2026-05-11", status: A,
     discipline: [], age: [], gender: [], role: ["ref", "corner"],
     media: { photo: true, video: false, animation: false },
-    imgs: [{ src: "assets/img/equipment-gloves.png", cap: { tr: "Kırmızı ve mavi 10 ons müsabaka eldivenleri", en: "Red and blue 10-ounce competition gloves" } }],
+    imgs: [{ src: "assets/img/equipment-gloves.png", cap: { tr: "10 ons Muaythai müsabaka eldiveni", en: "10-ounce Muaythai competition glove" } }],
     title: { tr: "Eldiven", en: "Gloves" },
     quick: { tr: "Yalnızca IFMA onaylı, 10 ons, temiz ve kullanılabilir kırmızı/mavi eldivenler kullanılır.", en: "Only IFMA-approved, 10-ounce, clean and serviceable red/blue gloves are used." },
     ruleText: {

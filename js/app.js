@@ -1253,7 +1253,6 @@
     html += '<div class="train-tiles">' +
       trainTile("cap", t("trainMicro"), D.training.micro.length + (lang() === "tr" ? " ders" : " lessons"), 'data-act="scroll-micro"') +
       trainTile("target", t("trainScenario"), D.training.scenarios.length + (lang() === "tr" ? " senaryo" : " scenarios"), 'data-act="open-quiz"') +
-      trainTile("check", t("trainCompare"), lang() === "tr" ? "Doğru / yanlış" : "Right / wrong", 'data-act="open-quiz"') +
       trainTile("film", t("trainSim"), esc(t("comingSoonTitle")), '') +
     '</div>';
 
