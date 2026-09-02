@@ -3,7 +3,7 @@
    Temel kabuk + içerik çevrimdışı açılsın diye önbelleğe alınır.
    İçerik güncellenince CACHE sürümünü artır (v1 -> v2).
    ========================================================================= */
-var CACHE = "ifma-hakem-v27";
+var CACHE = "ifma-hakem-v28";
 var ASSETS = [
   "./",
   "index.html",
@@ -22,6 +22,10 @@ var ASSETS = [
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
   "assets/icons/icon-512-maskable.png",
+  "assets/img/splash-mobile.jpg",
+  "assets/img/splash-desktop.jpg",
+  "assets/img/bas-hakem-erdinc-patlar-full.png",
+  "assets/img/bas-hakem-erdogan-aydin-full.png",
   "assets/img/logo.png",
   "assets/img/qr.png",
   "assets/img/ifma-logo.png",
@@ -76,6 +80,10 @@ self.addEventListener("activate", function (e) {
 self.addEventListener("fetch", function (e) {
   var req = e.request;
   if (req.method !== "GET") return;
+  // Yalnızca http/https istekleri: chrome-extension://, data:, blob: gibi
+  // şemalar (bazı tarayıcı eklentilerinin kendi istekleri) Cache API
+  // tarafından desteklenmez — bunlara hiç dokunmadan tarayıcıya bırak.
+  if (req.url.indexOf("http") !== 0) return;
   // Gezinme istekleri: ağ varsa güncel sayfa, yoksa uygulama kabuğu.
   // Pretty URL'ler (/tr/kurallar/, /en/rule/...) GitHub Pages'te de offline açılır.
   if (req.mode === "navigate") {
@@ -83,7 +91,7 @@ self.addEventListener("fetch", function (e) {
       fetch(req).then(function (res) {
         if (!res || !res.ok) return caches.match("index.html");
         var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+        caches.open(CACHE).then(function (c) { return c.put(req, copy); }).catch(function () {});
         return res;
       }).catch(function () { return caches.match(req).then(function (r) { return r || caches.match("index.html"); }); })
     );
@@ -94,7 +102,7 @@ self.addEventListener("fetch", function (e) {
     caches.match(req).then(function (r) {
       return r || fetch(req).then(function (res) {
         var copy = res.clone();
-        caches.open(CACHE).then(function (c) { try { c.put(req, copy); } catch (x) {} });
+        caches.open(CACHE).then(function (c) { return c.put(req, copy); }).catch(function () {});
         return res;
       }).catch(function () { return r; });
     })
